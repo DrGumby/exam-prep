@@ -1,0 +1,18 @@
+#+TITLE: Modelování a simulace
+
+* Úvod
+
+* Diskrétní simulace
+** Úvod
+** Petriho sítě
+** Systémy hromadné obsluhy
+** SIMLIB
+
+* Spojitá simulace
+** Úvod
+** Numerické metody
+** SIMLIB
+
+* Kombinovaná simulace
+** Úvod
+** SIMLIB
