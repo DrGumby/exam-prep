@@ -1,0 +1,5 @@
+#+TITLE: Příprava na semestrální zkoušky
+
+* Zimní semestr 3. ročníku bakalářského studia
+** [[file:IMS/main.org][Modelování a simulace]]
+** [[file:ISA/main.org][Síťové aplikace a správa sítí]]
