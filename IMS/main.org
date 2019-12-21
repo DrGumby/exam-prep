@@ -51,6 +51,63 @@ stavových a výstupních proměnných prvku systému
 
 Může být diskrétní nebo spojitá[fn:continuous]
 
+** Chování systému
+Každému časovému průběhu vstupu přiřazuje časový průběh výstupu. Lze definovat
+jako zobrazení.
+
+Systémy považujeme za systémy se stejným chováním, vyvolají-li stejné podněty u
+obou systémů stejné reakce.
+
+Izomorfní systémy jsou systémy, kde prvky systémů navzájem můžeme přiřadit 1:1.
+
+Homomorfní systémy jsou systémy, kde prvky systémů navzájem můžeme přiřadit N:1,
+ale ne naopak.
+
+** Okolí systému
+Okolí systému zahrnuje vše, co má vliv na chování systému, ale není jeho
+součástí.
+
+Systémy můžeme rozdělit na uzavřené (nekomunikují s okolím nebo jej zanedbábají)
+a otevřene (mají definované vstupy a výstupy).
+
+** Klasifikace prvků systémů
+*** Klasifikace 1
+Prvky se spojitým chováním vs prvky s diskrétním chováním
+*** Klasifikace 2
+Prvky s deterministickým chováním vs prvky s nedeterministickým chováním
+
+** Klasifikace systémů
+Typ systému závisí na typu jeho prvků
+*** Klasifikace 1
+Spojité, Diskrétní, Kombinované
+*** Klasifikace 2
+Deterministické, nedeterministické
+
+** Simulace
+Cílem simulace je získat nové informace o chování systému v závislosti na
+vstupních veličinách a na hodnotách parametrů.
+
+Opakovaně vyhodnocujeme model, tak dlouho, dokud nezískáme dostatek informací o
+chování systému nebo dokud nenalezneme takové hodnoty parametrů, pro něž má
+systém žádané chování.
+
+** Typy simulace podle modelu
+Spojitá, diskrétní, kombinovaná. Kvalitativní, kvantitativní.
+
+** Typy simulace podle simulátoru
+Na počítači, real-time, paralelní a distribuovaná
+
+** Verifikace modelu
+Měla by předcházet simulaci. Ověťujeme, zda simulační model odpovídá 1:1
+(izomorfně) abstraktnímu modelu.
+
+** Validace modelu
+Jedná se o jeden z nejobtížnějších problémů modelování. Vyžaduje neustálou
+konfrontaci informací a modelovaném systému a dat ze simulovaného systému.
+
+Nelze absolutně dokázat přesnost modelu. Pokud chování modelu neodpovídá
+předpokládanému chování systému, musíme model modifikovat.
+
 
 * Diskrétní simulace
 ** Úvod
