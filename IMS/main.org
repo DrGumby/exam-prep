@@ -1,6 +1,56 @@
 #+TITLE: Modelování a simulace
-
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 * Úvod
+** Základní pojmy
+*** Systém
+Je soubor elementárních částí, které mají mezi sebou určíté vazby.
+*** Model
+Napodobenina systému jiným systémem
+*** Modelování
+Vyrváření modelů systémů
+*** Simulace
+Získávání nových znalostí o systémz experimentováním s jeho modelech
+
+** Základní etapy modelování a simulace
+1. Vytvoření abstraktního modelu
+2. Vytvoření simulačního modelu
+3. Verifikace a validace
+4. Simulace
+5. Analýza a interpretace výsledků
+
+** Formální definice systému
+Systém $S$ je dvojice
+\[S = (U, R)\]
+
+kde:
+*** $U$ je konečná množina prvků systému:
+\[U = \{u_1, u_2, \dots, u_N\}\]
+
+*** Prvek systému $u = (X, Y)$:
+**** $X$ je množina všech vstupních proměnných
+**** $Y$ je množina všech výstupních proměnných
+
+*** Charakteristika systému $R$ je množina všech propojení
+\[R = \bigcup^{N}_{i,j=1} R_{ij}\]
+
+*** Propojení prvku $u_i$ s prvkem $u_j$:
+\[R_{ij} \subseteq Y_i \times X_j\]
+
+** Čas
+Rozlišujeme tři typy času:
+1. Reálný času
+   Probíháý skutečný děj v reálném systému
+2. Modelový čas
+   Časová osa modelu, nemusí být synchronní s reálným časem
+3. Strojový čas
+   Čas spotřebovaný na výpočet programu
+
+** Časová množína
+Množina všech časových okamžiků, ve kterých jsou definovány hodnoty vstupních,
+stavových a výstupních proměnných prvku systému
+
+Může být diskrétní nebo spojitá[fn:continuous]
+
 
 * Diskrétní simulace
 ** Úvod
@@ -16,3 +66,7 @@
 * Kombinovaná simulace
 ** Úvod
 ** SIMLIB
+
+* Footnotes
+
+[fn:continuous] Na číslicovém počítači se vždy diskretizuje
