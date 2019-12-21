@@ -1,0 +1,301 @@
+% Created 2019-12-21 Sat 14:27
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Kamil Vojanec}
+\date{\today}
+\title{Modelování a simulace}
+\hypersetup{
+ pdfauthor={Kamil Vojanec},
+ pdftitle={Modelování a simulace},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Úvod}
+\label{sec:orgd762b9f}
+\subsection{Základní pojmy}
+\label{sec:orga5ed381}
+\subsubsection{Systém}
+\label{sec:org2d91471}
+Je soubor elementárních částí, které mají mezi sebou určíté vazby.
+\subsubsection{Model}
+\label{sec:org8a16c2f}
+Napodobenina systému jiným systémem
+\subsubsection{Modelování}
+\label{sec:orgb8768c7}
+Vyrváření modelů systémů
+\subsubsection{Simulace}
+\label{sec:org17d9fc4}
+Získávání nových znalostí o systémz experimentováním s jeho modelech
+
+\subsection{Základní etapy modelování a simulace}
+\label{sec:org60746fe}
+\begin{enumerate}
+\item Vytvoření abstraktního modelu
+\item Vytvoření simulačního modelu
+\item Verifikace a validace
+\item Simulace
+\item Analýza a interpretace výsledků
+\end{enumerate}
+
+\subsection{Formální definice systému}
+\label{sec:orgc78cdb8}
+Systém \(S\) je dvojice
+\[S = (U, R)\]
+
+kde:
+\subsubsection{\(U\) je konečná množina prvků systému:}
+\label{sec:orgda291ef}
+\[U = \{u_1, u_2, \dots, u_N\}\]
+
+\subsubsection{Prvek systému \(u = (X, Y)\):}
+\label{sec:orgff82b24}
+\begin{enumerate}
+\item \(X\) je množina všech vstupních proměnných
+\label{sec:orgb126f38}
+\item \(Y\) je množina všech výstupních proměnných
+\label{sec:orgc59f790}
+\end{enumerate}
+
+\subsubsection{Charakteristika systému \(R\) je množina všech propojení}
+\label{sec:org6212db6}
+\[R = \bigcup^{N}_{i,j=1} R_{ij}\]
+
+\subsubsection{Propojení prvku \(u_i\) s prvkem \(u_j\):}
+\label{sec:orgd1da6ac}
+\[R_{ij} \subseteq Y_i \times X_j\]
+
+\subsection{Čas}
+\label{sec:org2bc4f11}
+Rozlišujeme tři typy času:
+\begin{enumerate}
+\item Reálný času
+Probíháý skutečný děj v reálném systému
+\item Modelový čas
+Časová osa modelu, nemusí být synchronní s reálným časem
+\item Strojový čas
+Čas spotřebovaný na výpočet programu
+\end{enumerate}
+
+\subsection{Časová množina}
+\label{sec:orga8fd394}
+Množina všech časových okamžiků, ve kterých jsou definovány hodnoty vstupních,
+stavových a výstupních proměnných prvku systému
+
+Může být diskrétní nebo spojitá\footnote{Na číslicovém počítači se vždy diskretizuje}
+
+\subsection{Chování systému}
+\label{sec:orgc320c3b}
+Každému časovému průběhu vstupu přiřazuje časový průběh výstupu. Lze definovat
+jako zobrazení.
+
+Systémy považujeme za systémy se stejným chováním, vyvolají-li stejné podněty u
+obou systémů stejné reakce.
+
+Izomorfní systémy jsou systémy, kde prvky systémů navzájem můžeme přiřadit 1:1.
+
+Homomorfní systémy jsou systémy, kde prvky systémů navzájem můžeme přiřadit N:1,
+ale ne naopak.
+
+\subsection{Okolí systému}
+\label{sec:org94b95fa}
+Okolí systému zahrnuje vše, co má vliv na chování systému, ale není jeho
+součástí.
+
+Systémy můžeme rozdělit na uzavřené (nekomunikují s okolím nebo jej zanedbábají)
+a otevřene (mají definované vstupy a výstupy).
+
+\subsection{Klasifikace prvků systémů}
+\label{sec:org6bd1aea}
+\subsubsection{Klasifikace 1}
+\label{sec:orgc9dc767}
+Prvky se spojitým chováním vs prvky s diskrétním chováním
+\subsubsection{Klasifikace 2}
+\label{sec:orgbc00676}
+Prvky s deterministickým chováním vs prvky s nedeterministickým chováním
+
+\subsection{Klasifikace systémů}
+\label{sec:orgd4ae8a6}
+Typ systému závisí na typu jeho prvků
+\subsubsection{Klasifikace 1}
+\label{sec:org32b469d}
+Spojité, Diskrétní, Kombinované
+\subsubsection{Klasifikace 2}
+\label{sec:org1c2b8c6}
+Deterministické, nedeterministické
+
+\subsection{Simulace}
+\label{sec:org4e63120}
+Cílem simulace je získat nové informace o chování systému v závislosti na
+vstupních veličinách a na hodnotách parametrů.
+
+Opakovaně vyhodnocujeme model, tak dlouho, dokud nezískáme dostatek informací o
+chování systému nebo dokud nenalezneme takové hodnoty parametrů, pro něž má
+systém žádané chování.
+
+\subsection{Typy simulace podle modelu}
+\label{sec:org6e1555d}
+Spojitá, diskrétní, kombinovaná. Kvalitativní, kvantitativní.
+
+\subsection{Typy simulace podle simulátoru}
+\label{sec:orga727fa6}
+Na počítači, real-time, paralelní a distribuovaná
+
+\subsection{Verifikace modelu}
+\label{sec:orgdcf035a}
+Měla by předcházet simulaci. Ověťujeme, zda simulační model odpovídá 1:1
+(izomorfně) abstraktnímu modelu.
+
+\subsection{Validace modelu}
+\label{sec:org6d51eaf}
+Jedná se o jeden z nejobtížnějších problémů modelování. Vyžaduje neustálou
+konfrontaci informací a modelovaném systému a dat ze simulovaného systému.
+
+Nelze absolutně dokázat přesnost modelu. Pokud chování modelu neodpovídá
+předpokládanému chování systému, musíme model modifikovat.
+
+\section{Modely}
+\label{sec:orgdd4e12b}
+\subsection{Abstraktní model}
+\label{sec:org1a8d714}
+Nepostihuje reálný svět v celé komplikovanosti. Zajímá se jen o ohraničené,
+vhodně zvolené části. Identifikuje vhodné sloky systému.
+
+Pro sestavení abstraktního modelu potřebujeme studovat systém pro určitá
+kritéria a závislosti, predikovat chování systému za určirých podmínek,
+analyzovat faktory, které jsou pro činnost systému nejvýznamnější a nalézt
+takové kombinace parametrů, které vedou k nejlepší odezvě systému.
+
+\subsection{Simulační model}
+\label{sec:orgcd26dbe}
+Jedná se o abstraktní model zapsaný formou programu v nějakém programovacím
+jazyce.
+
+\subsection{Konceptuální modely}
+\label{sec:orgfb58cfc}
+Jejich komponenty zatím nebyly přesně popsány. Používají se v počáteční fázi
+modelování pro ujasnění souvislostí a komunikaci v týmu.
+
+Má formu textu nebo obrázků.
+
+\subsection{Deklarativní modely}
+\label{sec:org0dbf712}
+Popisuje přechody mezi stavy systému.
+
+Je definován stavy a událostmi, které způsobí přechod z jednoho stavu do
+druhého.
+
+Je vhodný především pro diskrétní modely.
+
+Například konečné automaty, petriho sítě.
+
+\subsection{Funkcionální modely}
+\label{sec:org6fedb80}
+Grafy zobrazující funkce a proměnné. Uzel grafu je funkce nebo proměnná.
+
+Například systémy hromadné obsluhy, bloková schemata, grafy signálových toků.
+
+\subsection{Modely popsané rovnicemi}
+\label{sec:org5639dd6}
+Používají se algebraické, diferenciální, diferenční rovnice.
+
+Mívají podobu neorientovaných grafů.
+
+Například elektrická schemata, systémy dravec kořist, kyvadla, logistické
+systémy, chaos.
+
+\subsection{Prostorové modely}
+\label{sec:orge30362d}
+Rozdělují systém na prostorově menší ohraničené podsystémy.
+
+Například parciální diferenciální rovnice difuze nebo proudění, celulární
+automaty, mechanické modely těles.
+
+\subsection{Multimodely}
+\label{sec:org07bd3a8}
+Složeny z různých typů modelů, obvykle heterogenních.
+
+Například kombinované modely, fuzzy modely, propojené simulační systémy.
+\section{Simulační nástroje}
+\label{sec:org3b4330c}
+Mohou používat klasické programovací jazyky samy o sobě, nebo s využitím
+knihoven. Existují specializované simulační jazyky (Simula67, Modellica\ldots{})
+
+\subsection{Simulační jazyky}
+\label{sec:org7e78be1}
+Poskytují prostředky usnadňující efektivní popis struktury a chování modelů a
+také popis simulačních experimentů.
+
+Výhodou je jednodušší popis modelu a možnost automatické kontroly popisu modelu.
+
+Nevýhodami jsou náklady na vytvoření překladače, údržbu, výuku\ldots{}
+
+Celkově nejsou příliš používány.
+
+\section{Modelování náhodných procesů}
+\label{sec:orgdef9d6c}
+\subsection{Náhodná proměnná}
+\label{sec:orgbf929cb}
+Náhodná proměnná je taková veličina, která jako výsledek pokusů může nabýt
+nějakou hodnotu, přičemž předem nevíme jakou.
+
+Rozlišujeme diskrétní a spojité
+
+Náhodné veličiny můžeme zadat distribuční funkcí nebo rozdělením
+pravděpodobnosti.
+
+\subsection{Diskrétní rozdělení pravděpodobnosti}
+\label{sec:orgcc202f7}
+Určuje vztah mezi možnými hodnotami náhodné veličiny \(x_i\) a jim příslušejícími
+pravděpodobnostmi \(p_i = P(X = x_i)\).
+
+Obecně platí vztah:
+\begin{equation}
+    \sum_{i=1}^\infty p_i = 1
+\end{equation}
+
+\section{Diskrétní simulace}
+\label{sec:orgf4f0dc8}
+\subsection{Úvod}
+\label{sec:orgbecf5a4}
+\subsection{Petriho sítě}
+\label{sec:orge545f6e}
+\subsection{Systémy hromadné obsluhy}
+\label{sec:orgc31d431}
+\subsection{SIMLIB}
+\label{sec:orgb0fc8d5}
+
+\section{Spojitá simulace}
+\label{sec:org22d01e9}
+\subsection{Úvod}
+\label{sec:orgbc7abbf}
+\subsection{Numerické metody}
+\label{sec:org037f883}
+\subsection{SIMLIB}
+\label{sec:org6897213}
+
+\section{Kombinovaná simulace}
+\label{sec:orga689c73}
+\subsection{Úvod}
+\label{sec:org6d4c4aa}
+\subsection{SIMLIB}
+\label{sec:org2ddd9d8}
+\end{document}

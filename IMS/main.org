@@ -45,7 +45,7 @@ Rozlišujeme tři typy času:
 3. Strojový čas
    Čas spotřebovaný na výpočet programu
 
-** Časová množína
+** Časová množina
 Množina všech časových okamžiků, ve kterých jsou definovány hodnoty vstupních,
 stavových a výstupních proměnných prvku systému
 
@@ -108,6 +108,91 @@ konfrontaci informací a modelovaném systému a dat ze simulovaného systému.
 Nelze absolutně dokázat přesnost modelu. Pokud chování modelu neodpovídá
 předpokládanému chování systému, musíme model modifikovat.
 
+* Modely
+** Abstraktní model
+Nepostihuje reálný svět v celé komplikovanosti. Zajímá se jen o ohraničené,
+vhodně zvolené části. Identifikuje vhodné sloky systému.
+
+Pro sestavení abstraktního modelu potřebujeme studovat systém pro určitá
+kritéria a závislosti, predikovat chování systému za určirých podmínek,
+analyzovat faktory, které jsou pro činnost systému nejvýznamnější a nalézt
+takové kombinace parametrů, které vedou k nejlepší odezvě systému.
+
+** Simulační model
+Jedná se o abstraktní model zapsaný formou programu v nějakém programovacím
+jazyce.
+
+** Konceptuální modely
+Jejich komponenty zatím nebyly přesně popsány. Používají se v počáteční fázi
+modelování pro ujasnění souvislostí a komunikaci v týmu.
+
+Má formu textu nebo obrázků.
+
+** Deklarativní modely
+Popisuje přechody mezi stavy systému.
+
+Je definován stavy a událostmi, které způsobí přechod z jednoho stavu do
+druhého.
+
+Je vhodný především pro diskrétní modely.
+
+Například konečné automaty, petriho sítě.
+
+** Funkcionální modely
+Grafy zobrazující funkce a proměnné. Uzel grafu je funkce nebo proměnná.
+
+Například systémy hromadné obsluhy, bloková schemata, grafy signálových toků.
+
+** Modely popsané rovnicemi
+Používají se algebraické, diferenciální, diferenční rovnice.
+
+Mívají podobu neorientovaných grafů.
+
+Například elektrická schemata, systémy dravec kořist, kyvadla, logistické
+systémy, chaos.
+
+** Prostorové modely
+Rozdělují systém na prostorově menší ohraničené podsystémy.
+
+Například parciální diferenciální rovnice difuze nebo proudění, celulární
+automaty, mechanické modely těles.
+
+** Multimodely
+Složeny z různých typů modelů, obvykle heterogenních.
+
+Například kombinované modely, fuzzy modely, propojené simulační systémy.
+* Simulační nástroje
+Mohou používat klasické programovací jazyky samy o sobě, nebo s využitím
+knihoven. Existují specializované simulační jazyky (Simula67, Modellica...)
+
+** Simulační jazyky
+Poskytují prostředky usnadňující efektivní popis struktury a chování modelů a
+také popis simulačních experimentů.
+
+Výhodou je jednodušší popis modelu a možnost automatické kontroly popisu modelu.
+
+Nevýhodami jsou náklady na vytvoření překladače, údržbu, výuku...
+
+Celkově nejsou příliš používány.
+
+* Modelování náhodných procesů
+** Náhodná proměnná
+Náhodná proměnná je taková veličina, která jako výsledek pokusů může nabýt
+nějakou hodnotu, přičemž předem nevíme jakou.
+
+Rozlišujeme diskrétní a spojité
+
+Náhodné veličiny můžeme zadat distribuční funkcí nebo rozdělením
+pravděpodobnosti.
+
+** Diskrétní rozdělení pravděpodobnosti
+Určuje vztah mezi možnými hodnotami náhodné veličiny $x_i$ a jim příslušejícími
+pravděpodobnostmi $p_i = P(X = x_i)$.
+
+Obecně platí vztah:
+\begin{equation}
+    \sum_{i=1}^\infty p_i = 1
+\end{equation}
 
 * Diskrétní simulace
 ** Úvod
