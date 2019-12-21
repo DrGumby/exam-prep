@@ -194,6 +194,60 @@ Obecně platí vztah:
     \sum_{i=1}^\infty p_i = 1
 \end{equation}
 
+Lze definovat například tabulkou pravděpodobnosti pro všechny možné hodnoty
+náhodné proměnné, suma všech pravděpodobností musí být 1.
+
+** Diskrétní distribuční funkce
+Distribuční funkce náhodné veličiny $X$ je funkce:
+\begin{equation}
+    F(x) = P(X \leq x)
+\end{equation}
+
+Kde $P(X \leq x) je pravděpodobnost toho, že náhodná veličina X nabude hodnoty
+menší nebo rovnu zvolenému x.
+
+Platí vztah:
+\begin{equation}
+    F(x) = \sum_{x_i \leq x} p_i
+\end{equation}
+
+Kraf distribuční funkce pro diskrétní náhodné proměnné je po částech konstantní.
+
+** Distribuční funkce spojité náhodné proměnné
+\begin{equation}
+    F(x) = P(X \leq x) = \int_{-\infty}^x f(x) dx
+\end{equation}
+
+Distribuční fuknce je neklasající. Roste od 0 do \infty
+
+Pravděpodobnost hodnoty $x$ pro $a \leq x$ a $x \leq b$ je rozdíl hodnot
+distribuční funkce v bodech $b$ a $a$. Vyjádřeno vzorcem:
+\begin{equation}
+    P(a \leq X \leq b) = F(b) - F(a)
+\end{equation}
+
+** Hustota pravděpodobnosti spojité náhodné proměnné
++ Vždy větší než 0
++ Vyjádřena jako derivace distribuční funkce
++ Integrál funkce hustoty pravděpodobnosti je vždy 1
++ Hodnota pravděpodobnosti pro $x$ mezi $a$ a $b$ je dána jako intergrál hustota
+  pravděpodobnosti mezi $a$ a $b$
+
+** Poissonovo rozložení
+Diskrétní rozložení udávající počet nějakých událostí za jednotku času. Vzorec:
+\begin{equation}
+p_i = \frac{\lambda^i}{i!} e^{-\lambda}, \lambda > 0, i \in {0, 1, 2,\dots}
+\end{equation}
+Kde $E(x) = \lambda, D(x) = \lambda$
+
+** Rovnoměrné rozložení
+Označujeme $R(a, b)$
+
+Hodnota distribuční funkce lineárně roste mezi body $a$ a $b$. Hodnota funkce
+hustoty pravděpodobnosti je konstatní.
+
+** Exponenciální rozložení
+Používá se pro dobu mezi dvěma událostmí.
 * Diskrétní simulace
 ** Úvod
 ** Petriho sítě

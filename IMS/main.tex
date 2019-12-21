@@ -1,4 +1,4 @@
-% Created 2019-12-21 Sat 14:27
+% Created 2019-12-21 Sat 14:59
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -30,24 +30,24 @@
 \tableofcontents
 
 \section{Úvod}
-\label{sec:orgd762b9f}
+\label{sec:org7c899c6}
 \subsection{Základní pojmy}
-\label{sec:orga5ed381}
+\label{sec:org6010b3b}
 \subsubsection{Systém}
-\label{sec:org2d91471}
+\label{sec:org04e1638}
 Je soubor elementárních částí, které mají mezi sebou určíté vazby.
 \subsubsection{Model}
-\label{sec:org8a16c2f}
+\label{sec:org0f9109f}
 Napodobenina systému jiným systémem
 \subsubsection{Modelování}
-\label{sec:orgb8768c7}
+\label{sec:org5b4882e}
 Vyrváření modelů systémů
 \subsubsection{Simulace}
-\label{sec:org17d9fc4}
+\label{sec:org776599c}
 Získávání nových znalostí o systémz experimentováním s jeho modelech
 
 \subsection{Základní etapy modelování a simulace}
-\label{sec:org60746fe}
+\label{sec:org8120356}
 \begin{enumerate}
 \item Vytvoření abstraktního modelu
 \item Vytvoření simulačního modelu
@@ -57,34 +57,34 @@ Získávání nových znalostí o systémz experimentováním s jeho modelech
 \end{enumerate}
 
 \subsection{Formální definice systému}
-\label{sec:orgc78cdb8}
+\label{sec:orgd2bc696}
 Systém \(S\) je dvojice
 \[S = (U, R)\]
 
 kde:
 \subsubsection{\(U\) je konečná množina prvků systému:}
-\label{sec:orgda291ef}
+\label{sec:orga1e0e41}
 \[U = \{u_1, u_2, \dots, u_N\}\]
 
 \subsubsection{Prvek systému \(u = (X, Y)\):}
-\label{sec:orgff82b24}
+\label{sec:org913f7b5}
 \begin{enumerate}
 \item \(X\) je množina všech vstupních proměnných
-\label{sec:orgb126f38}
+\label{sec:org2e06c6d}
 \item \(Y\) je množina všech výstupních proměnných
-\label{sec:orgc59f790}
+\label{sec:org784c23c}
 \end{enumerate}
 
 \subsubsection{Charakteristika systému \(R\) je množina všech propojení}
-\label{sec:org6212db6}
+\label{sec:org39f3d77}
 \[R = \bigcup^{N}_{i,j=1} R_{ij}\]
 
 \subsubsection{Propojení prvku \(u_i\) s prvkem \(u_j\):}
-\label{sec:orgd1da6ac}
+\label{sec:org23b5178}
 \[R_{ij} \subseteq Y_i \times X_j\]
 
 \subsection{Čas}
-\label{sec:org2bc4f11}
+\label{sec:org8edafa0}
 Rozlišujeme tři typy času:
 \begin{enumerate}
 \item Reálný času
@@ -96,14 +96,14 @@ Probíháý skutečný děj v reálném systému
 \end{enumerate}
 
 \subsection{Časová množina}
-\label{sec:orga8fd394}
+\label{sec:org97e4b41}
 Množina všech časových okamžiků, ve kterých jsou definovány hodnoty vstupních,
 stavových a výstupních proměnných prvku systému
 
 Může být diskrétní nebo spojitá\footnote{Na číslicovém počítači se vždy diskretizuje}
 
 \subsection{Chování systému}
-\label{sec:orgc320c3b}
+\label{sec:org7d926d1}
 Každému časovému průběhu vstupu přiřazuje časový průběh výstupu. Lze definovat
 jako zobrazení.
 
@@ -116,7 +116,7 @@ Homomorfní systémy jsou systémy, kde prvky systémů navzájem můžeme při�
 ale ne naopak.
 
 \subsection{Okolí systému}
-\label{sec:org94b95fa}
+\label{sec:orgabb5218}
 Okolí systému zahrnuje vše, co má vliv na chování systému, ale není jeho
 součástí.
 
@@ -124,26 +124,26 @@ Systémy můžeme rozdělit na uzavřené (nekomunikují s okolím nebo jej zane
 a otevřene (mají definované vstupy a výstupy).
 
 \subsection{Klasifikace prvků systémů}
-\label{sec:org6bd1aea}
+\label{sec:org926e6a0}
 \subsubsection{Klasifikace 1}
-\label{sec:orgc9dc767}
+\label{sec:orgbffac87}
 Prvky se spojitým chováním vs prvky s diskrétním chováním
 \subsubsection{Klasifikace 2}
-\label{sec:orgbc00676}
+\label{sec:org991a254}
 Prvky s deterministickým chováním vs prvky s nedeterministickým chováním
 
 \subsection{Klasifikace systémů}
-\label{sec:orgd4ae8a6}
+\label{sec:orgac56ac7}
 Typ systému závisí na typu jeho prvků
 \subsubsection{Klasifikace 1}
-\label{sec:org32b469d}
+\label{sec:org50f6995}
 Spojité, Diskrétní, Kombinované
 \subsubsection{Klasifikace 2}
-\label{sec:org1c2b8c6}
+\label{sec:orge6d7110}
 Deterministické, nedeterministické
 
 \subsection{Simulace}
-\label{sec:org4e63120}
+\label{sec:org89a95a7}
 Cílem simulace je získat nové informace o chování systému v závislosti na
 vstupních veličinách a na hodnotách parametrů.
 
@@ -152,20 +152,20 @@ chování systému nebo dokud nenalezneme takové hodnoty parametrů, pro něž 
 systém žádané chování.
 
 \subsection{Typy simulace podle modelu}
-\label{sec:org6e1555d}
+\label{sec:orgc012bc4}
 Spojitá, diskrétní, kombinovaná. Kvalitativní, kvantitativní.
 
 \subsection{Typy simulace podle simulátoru}
-\label{sec:orga727fa6}
+\label{sec:orgc85885b}
 Na počítači, real-time, paralelní a distribuovaná
 
 \subsection{Verifikace modelu}
-\label{sec:orgdcf035a}
+\label{sec:orgfd59ab0}
 Měla by předcházet simulaci. Ověťujeme, zda simulační model odpovídá 1:1
 (izomorfně) abstraktnímu modelu.
 
 \subsection{Validace modelu}
-\label{sec:org6d51eaf}
+\label{sec:org08bfb94}
 Jedná se o jeden z nejobtížnějších problémů modelování. Vyžaduje neustálou
 konfrontaci informací a modelovaném systému a dat ze simulovaného systému.
 
@@ -173,9 +173,9 @@ Nelze absolutně dokázat přesnost modelu. Pokud chování modelu neodpovídá
 předpokládanému chování systému, musíme model modifikovat.
 
 \section{Modely}
-\label{sec:orgdd4e12b}
+\label{sec:orgfa8fcf7}
 \subsection{Abstraktní model}
-\label{sec:org1a8d714}
+\label{sec:org9d2a4cc}
 Nepostihuje reálný svět v celé komplikovanosti. Zajímá se jen o ohraničené,
 vhodně zvolené části. Identifikuje vhodné sloky systému.
 
@@ -185,19 +185,19 @@ analyzovat faktory, které jsou pro činnost systému nejvýznamnější a nalé
 takové kombinace parametrů, které vedou k nejlepší odezvě systému.
 
 \subsection{Simulační model}
-\label{sec:orgcd26dbe}
+\label{sec:org9e82f0b}
 Jedná se o abstraktní model zapsaný formou programu v nějakém programovacím
 jazyce.
 
 \subsection{Konceptuální modely}
-\label{sec:orgfb58cfc}
+\label{sec:org5571070}
 Jejich komponenty zatím nebyly přesně popsány. Používají se v počáteční fázi
 modelování pro ujasnění souvislostí a komunikaci v týmu.
 
 Má formu textu nebo obrázků.
 
 \subsection{Deklarativní modely}
-\label{sec:org0dbf712}
+\label{sec:org075d155}
 Popisuje přechody mezi stavy systému.
 
 Je definován stavy a událostmi, které způsobí přechod z jednoho stavu do
@@ -208,13 +208,13 @@ Je vhodný především pro diskrétní modely.
 Například konečné automaty, petriho sítě.
 
 \subsection{Funkcionální modely}
-\label{sec:org6fedb80}
+\label{sec:org98377c2}
 Grafy zobrazující funkce a proměnné. Uzel grafu je funkce nebo proměnná.
 
 Například systémy hromadné obsluhy, bloková schemata, grafy signálových toků.
 
 \subsection{Modely popsané rovnicemi}
-\label{sec:org5639dd6}
+\label{sec:org9b01199}
 Používají se algebraické, diferenciální, diferenční rovnice.
 
 Mívají podobu neorientovaných grafů.
@@ -223,24 +223,24 @@ Například elektrická schemata, systémy dravec kořist, kyvadla, logistické
 systémy, chaos.
 
 \subsection{Prostorové modely}
-\label{sec:orge30362d}
+\label{sec:org7ff923a}
 Rozdělují systém na prostorově menší ohraničené podsystémy.
 
 Například parciální diferenciální rovnice difuze nebo proudění, celulární
 automaty, mechanické modely těles.
 
 \subsection{Multimodely}
-\label{sec:org07bd3a8}
+\label{sec:orge31f870}
 Složeny z různých typů modelů, obvykle heterogenních.
 
 Například kombinované modely, fuzzy modely, propojené simulační systémy.
 \section{Simulační nástroje}
-\label{sec:org3b4330c}
+\label{sec:orgfc9b30f}
 Mohou používat klasické programovací jazyky samy o sobě, nebo s využitím
 knihoven. Existují specializované simulační jazyky (Simula67, Modellica\ldots{})
 
 \subsection{Simulační jazyky}
-\label{sec:org7e78be1}
+\label{sec:org785e86d}
 Poskytují prostředky usnadňující efektivní popis struktury a chování modelů a
 také popis simulačních experimentů.
 
@@ -251,9 +251,9 @@ Nevýhodami jsou náklady na vytvoření překladače, údržbu, výuku\ldots{}
 Celkově nejsou příliš používány.
 
 \section{Modelování náhodných procesů}
-\label{sec:orgdef9d6c}
+\label{sec:orgb5c09a2}
 \subsection{Náhodná proměnná}
-\label{sec:orgbf929cb}
+\label{sec:orgf9a2294}
 Náhodná proměnná je taková veličina, která jako výsledek pokusů může nabýt
 nějakou hodnotu, přičemž předem nevíme jakou.
 
@@ -263,7 +263,7 @@ Náhodné veličiny můžeme zadat distribuční funkcí nebo rozdělením
 pravděpodobnosti.
 
 \subsection{Diskrétní rozdělení pravděpodobnosti}
-\label{sec:orgcc202f7}
+\label{sec:orge2c187b}
 Určuje vztah mezi možnými hodnotami náhodné veličiny \(x_i\) a jim příslušejícími
 pravděpodobnostmi \(p_i = P(X = x_i)\).
 
@@ -272,30 +272,92 @@ Obecně platí vztah:
     \sum_{i=1}^\infty p_i = 1
 \end{equation}
 
+Lze definovat například tabulkou pravděpodobnosti pro všechny možné hodnoty
+náhodné proměnné, suma všech pravděpodobností musí být 1.
+
+\subsection{Diskrétní distribuční funkce}
+\label{sec:org45694d5}
+Distribuční funkce náhodné veličiny \(X\) je funkce:
+\begin{equation}
+    F(x) = P(X \leq x)
+\end{equation}
+
+Kde \$P(X \(\le\) x) je pravděpodobnost toho, že náhodná veličina X nabude hodnoty
+menší nebo rovnu zvolenému x.
+
+Platí vztah:
+\begin{equation}
+    F(x) = \sum_{x_i \leq x} p_i
+\end{equation}
+
+Kraf distribuční funkce pro diskrétní náhodné proměnné je po částech konstantní.
+
+\subsection{Distribuční funkce spojité náhodné proměnné}
+\label{sec:orgd1bf09b}
+\begin{equation}
+    F(x) = P(X \leq x) = \int_{-\infty}^x f(x) dx
+\end{equation}
+
+Distribuční fuknce je neklasající. Roste od 0 do \(\infty\)
+
+Pravděpodobnost hodnoty \(x\) pro \(a \leq x\) a \(x \leq b\) je rozdíl hodnot
+distribuční funkce v bodech \(b\) a \(a\). Vyjádřeno vzorcem:
+\begin{equation}
+    P(a \leq X \leq b) = F(b) - F(a)
+\end{equation}
+
+\subsection{Hustota pravděpodobnosti spojité náhodné proměnné}
+\label{sec:org1da2fcd}
+\begin{itemize}
+\item Vždy větší než 0
+\item Vyjádřena jako derivace distribuční funkce
+\item Integrál funkce hustoty pravděpodobnosti je vždy 1
+\item Hodnota pravděpodobnosti pro \(x\) mezi \(a\) a \(b\) je dána jako intergrál hustota
+pravděpodobnosti mezi \(a\) a \(b\)
+\end{itemize}
+
+\subsection{Poissonovo rozložení}
+\label{sec:orgd954f00}
+Diskrétní rozložení udávající počet nějakých událostí za jednotku času. Vzorec:
+\begin{equation}
+p_i = \frac{\lambda^i}{i!} e^{-\lambda}, \lambda > 0, i \in {0, 1, 2,\dots}
+\end{equation}
+Kde \(E(x) = \lambda, D(x) = \lambda\)
+
+\subsection{Rovnoměrné rozložení}
+\label{sec:orgf57cd50}
+Označujeme \(R(a, b)\)
+
+Hodnota distribuční funkce lineárně roste mezi body \(a\) a \(b\). Hodnota funkce
+hustoty pravděpodobnosti je konstatní.
+
+\subsection{Exponenciální rozložení}
+\label{sec:orga338bfe}
+Používá se pro dobu mezi dvěma událostmí.
 \section{Diskrétní simulace}
-\label{sec:orgf4f0dc8}
+\label{sec:org791c61b}
 \subsection{Úvod}
-\label{sec:orgbecf5a4}
+\label{sec:orgf9d3306}
 \subsection{Petriho sítě}
-\label{sec:orge545f6e}
+\label{sec:org4538d76}
 \subsection{Systémy hromadné obsluhy}
-\label{sec:orgc31d431}
+\label{sec:orgd63702c}
 \subsection{SIMLIB}
-\label{sec:orgb0fc8d5}
+\label{sec:orge43e6a1}
 
 \section{Spojitá simulace}
-\label{sec:org22d01e9}
+\label{sec:org5bf3891}
 \subsection{Úvod}
-\label{sec:orgbc7abbf}
+\label{sec:org0481c6b}
 \subsection{Numerické metody}
-\label{sec:org037f883}
+\label{sec:orgfcc31ff}
 \subsection{SIMLIB}
-\label{sec:org6897213}
+\label{sec:org8aba027}
 
 \section{Kombinovaná simulace}
-\label{sec:orga689c73}
+\label{sec:org184a42c}
 \subsection{Úvod}
-\label{sec:org6d4c4aa}
+\label{sec:org0b27a8f}
 \subsection{SIMLIB}
-\label{sec:org2ddd9d8}
+\label{sec:org417509e}
 \end{document}
