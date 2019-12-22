@@ -369,6 +369,93 @@ Podle kapacity linek rozlišujeme:
 Modelujeme-li více zařízení stejného typu, pak každé zařízení má vlastní frontu,
 nebo k zařízením vede jedna fronta.
 ** SIMLIB
+V knihovně simlib definujeme následující prostředky pro diskrétní modelování:
++ Process -- Modelování procesů
++ Event -- Modelování událostí
++ Facility -- Obslužná linka s výlučným přístupem
++ Store -- Obslužná linka s kapacitou
++ Queue -- Fronta
++ Statistiky
+
+Při modelování je ve funkci main potřeba zavolat funkci \texttt{Init},
+která inicializuje simulátora a nastaví počáteční a koncový modelový čas.
+
+Pro zahájení simulace se využívá funkce Run.
+
+Modelový čas programu reprezenutjeme globální proměnnou \texttt{double Time},
+která je ovládána výhradně jádrem simulátoru a nelze do ní zapisovat.
+
+SIMLIB poskytuje generátory pseudonáhodných čísel:
++ double Random() -- Rovnoměrné rozdělení mezi 0, 1
++ double Uniform(double L, double H) -- Rovnoměrné rozdělení mezi L a H
++ double Exponential(double E) -- Exponenciální rozdělení se středem E
++ double Normal(double M, double S) -- Normální rozložení se středem M
+  a rozptylem S.
+
+Použití událostí je provedeno následovně:
+
+#+BEGIN_SRC c++
+class Udalost : public Event {
+        void Behavior() {
+            // Příkazy události
+            Activate(Time + e); // Periodicky aktivovat po čase e
+        }
+}
+(new Udalost)->Activate(); // Naplánuje na čas Time (okamžitě)
+(new Udalost)->Activate(t); // Naplánuje na čas Time + t
+#+END_SRC
+
+Generování transakcí se provádí vytvořením události generátoru, která ve svém
+těle aktivuje nové procesy. Například takto:
+
+#+BEGIN_SRC c++
+class Generator : public Event {
+        void Behavior() {
+                (new Proc)->Activate(); // Vytvoří a aktivuje nový proces
+                Activate(Time+Exponential(2)); // Znovu se aktivuje za čas udaný exponenciálním rozložením
+        }
+}
+#+END_SRC
+
+Procesy jsou odvozeny za abstraktní třídy Process:
+
+#+BEGIN_SRC c++
+class Transakce : public Process {
+        public:
+        Transakce (parametry) { // Konstruktor
+                // Inicializace
+        }
+
+        void Behavior() {
+                // Popis chování programu
+        }
+}
+#+END_SRC
+
+Po aktivaci procesu se volá metoda Behavior. Provádění je přerušeno při čekání
+ve frontě (funkce Seize, Enter) nebo při explicitním volání funkce Wait(dt), kde
+dt je doba čekání.
+
+*** Algoritmus next event a kalendář událostí
+Kalendář je uspořádaná datová struktura uchovávající aktivační záznamy budoucích
+událostí. Každá naplánovaná budoucí událost má v kalendáři záznam obsahující
+aktivační čas, prioritu a samotnou událost.
+Kalendář umožňuje výběr prvního záznamu s nejmenším aktivačním časem a
+vkládání/rušení aktivačních záznamů.
+
+Pseudokód:
+
+#+BEGIN_SRC c++
+// Inicializace času, kalendáře, modelu
+while ( !empty(kalendar) ) {  // Dokud je kalendář neprázdný
+    item_t item = kalendar.pop();  // Vybere první prvek kalendáře
+    if ( item.aktivacni_cas > T_END ) {  // Prvek by se měl aktivovat po konci simulace
+        End();  // Ukončení
+    }
+    SetTime(item.aktivacni_cas);  // Nastaví čas na aktivační čas události
+    Execute(item);  // Provede popis chování události.
+}
+#+END_SRC
 
 * Spojitá simulace
 ** Úvod

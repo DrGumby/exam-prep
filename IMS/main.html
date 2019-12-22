@@ -4,7 +4,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-12-22 Sun 13:18 -->
+<!-- 2019-12-22 Sun 19:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Modelování a simulace</title>
@@ -276,149 +276,153 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org05b3abc">1. Úvod</a>
+<li><a href="#org0260262">1. Úvod</a>
 <ul>
-<li><a href="#org33ff4d1">1.1. Základní pojmy</a>
+<li><a href="#org324b474">1.1. Základní pojmy</a>
 <ul>
-<li><a href="#org528649c">1.1.1. Systém</a></li>
-<li><a href="#org9ab7a53">1.1.2. Model</a></li>
-<li><a href="#orgb020ce0">1.1.3. Modelování</a></li>
-<li><a href="#org6b352f6">1.1.4. Simulace</a></li>
+<li><a href="#org4778e49">1.1.1. Systém</a></li>
+<li><a href="#orgff9d2ce">1.1.2. Model</a></li>
+<li><a href="#org6841dc6">1.1.3. Modelování</a></li>
+<li><a href="#org013d71c">1.1.4. Simulace</a></li>
 </ul>
 </li>
-<li><a href="#orgbd5f77e">1.2. Základní etapy modelování a simulace</a></li>
-<li><a href="#org185d97b">1.3. Formální definice systému</a>
+<li><a href="#orgb5920ce">1.2. Základní etapy modelování a simulace</a></li>
+<li><a href="#org72f88e9">1.3. Formální definice systému</a>
 <ul>
-<li><a href="#orge602a7c">1.3.1. \(U\) je konečná množina prvků systému:</a></li>
-<li><a href="#orgdb6b1c4">1.3.2. Prvek systému \(u = (X, Y)\):</a></li>
-<li><a href="#orgd5ba6ae">1.3.3. Charakteristika systému \(R\) je množina všech propojení</a></li>
-<li><a href="#orgcca716c">1.3.4. Propojení prvku \(u_i\) s prvkem \(u_j\):</a></li>
+<li><a href="#orgacb8417">1.3.1. \(U\) je konečná množina prvků systému:</a></li>
+<li><a href="#org2647b38">1.3.2. Prvek systému \(u = (X, Y)\):</a></li>
+<li><a href="#org1baf687">1.3.3. Charakteristika systému \(R\) je množina všech propojení</a></li>
+<li><a href="#org424a4a8">1.3.4. Propojení prvku \(u_i\) s prvkem \(u_j\):</a></li>
 </ul>
 </li>
-<li><a href="#orga54b880">1.4. Čas</a></li>
-<li><a href="#org8bc5473">1.5. Časová množina</a></li>
-<li><a href="#orgc0d0eea">1.6. Chování systému</a></li>
-<li><a href="#org995969e">1.7. Okolí systému</a></li>
-<li><a href="#orgafbc947">1.8. Klasifikace prvků systémů</a>
+<li><a href="#org6f5bb6f">1.4. Čas</a></li>
+<li><a href="#orga25b265">1.5. Časová množina</a></li>
+<li><a href="#orgc7fbc03">1.6. Chování systému</a></li>
+<li><a href="#orga76c56f">1.7. Okolí systému</a></li>
+<li><a href="#orgb686414">1.8. Klasifikace prvků systémů</a>
 <ul>
-<li><a href="#orgae03d78">1.8.1. Klasifikace 1</a></li>
-<li><a href="#org3dba360">1.8.2. Klasifikace 2</a></li>
+<li><a href="#org40d1d75">1.8.1. Klasifikace 1</a></li>
+<li><a href="#org814b60f">1.8.2. Klasifikace 2</a></li>
 </ul>
 </li>
-<li><a href="#org4e147e9">1.9. Klasifikace systémů</a>
+<li><a href="#org50c795c">1.9. Klasifikace systémů</a>
 <ul>
-<li><a href="#org15c88b3">1.9.1. Klasifikace 1</a></li>
-<li><a href="#org9456b53">1.9.2. Klasifikace 2</a></li>
+<li><a href="#orgf481014">1.9.1. Klasifikace 1</a></li>
+<li><a href="#org174eace">1.9.2. Klasifikace 2</a></li>
 </ul>
 </li>
-<li><a href="#orgc5e3179">1.10. Simulace</a></li>
-<li><a href="#orgcaef2e5">1.11. Typy simulace podle modelu</a></li>
-<li><a href="#org2415ea1">1.12. Typy simulace podle simulátoru</a></li>
-<li><a href="#orgf0c8370">1.13. Verifikace modelu</a></li>
-<li><a href="#org8c611eb">1.14. Validace modelu</a></li>
+<li><a href="#orgc948288">1.10. Simulace</a></li>
+<li><a href="#orgdba0eec">1.11. Typy simulace podle modelu</a></li>
+<li><a href="#orgcdd2676">1.12. Typy simulace podle simulátoru</a></li>
+<li><a href="#org45bcaa6">1.13. Verifikace modelu</a></li>
+<li><a href="#org79c5c70">1.14. Validace modelu</a></li>
 </ul>
 </li>
-<li><a href="#orgf9f2794">2. Modely</a>
+<li><a href="#org4988b32">2. Modely</a>
 <ul>
-<li><a href="#orgb51429f">2.1. Abstraktní model</a></li>
-<li><a href="#orga0ec570">2.2. Simulační model</a></li>
-<li><a href="#orgcef427e">2.3. Konceptuální modely</a></li>
-<li><a href="#orgc87d176">2.4. Deklarativní modely</a></li>
-<li><a href="#org22a6554">2.5. Funkcionální modely</a></li>
-<li><a href="#orgdc46a97">2.6. Modely popsané rovnicemi</a></li>
-<li><a href="#orgfdf67e0">2.7. Prostorové modely</a></li>
-<li><a href="#orgfe140a6">2.8. Multimodely</a></li>
+<li><a href="#org7c3e39f">2.1. Abstraktní model</a></li>
+<li><a href="#org0f7947e">2.2. Simulační model</a></li>
+<li><a href="#org0cbe5a7">2.3. Konceptuální modely</a></li>
+<li><a href="#org4b96ae7">2.4. Deklarativní modely</a></li>
+<li><a href="#orgaed336a">2.5. Funkcionální modely</a></li>
+<li><a href="#org8605939">2.6. Modely popsané rovnicemi</a></li>
+<li><a href="#org5dc3e02">2.7. Prostorové modely</a></li>
+<li><a href="#orgf1d49b8">2.8. Multimodely</a></li>
 </ul>
 </li>
-<li><a href="#orgd1d66a7">3. Simulační nástroje</a>
+<li><a href="#orgc886bca">3. Simulační nástroje</a>
 <ul>
-<li><a href="#org1de5970">3.1. Simulační jazyky</a></li>
+<li><a href="#org2a804ee">3.1. Simulační jazyky</a></li>
 </ul>
 </li>
-<li><a href="#org6bb6080">4. Modelování náhodných procesů</a>
+<li><a href="#org52dda5e">4. Modelování náhodných procesů</a>
 <ul>
-<li><a href="#orga978ed6">4.1. Náhodná proměnná</a></li>
-<li><a href="#orgdd74a19">4.2. Diskrétní rozdělení pravděpodobnosti</a></li>
-<li><a href="#orgdd4d05e">4.3. Diskrétní distribuční funkce</a></li>
-<li><a href="#org72e6c03">4.4. Distribuční funkce spojité náhodné proměnné</a></li>
-<li><a href="#orgffbd14a">4.5. Hustota pravděpodobnosti spojité náhodné proměnné</a></li>
-<li><a href="#orgd85f135">4.6. Poissonovo rozložení</a></li>
-<li><a href="#orgcc0a2f2">4.7. Rovnoměrné rozložení</a></li>
-<li><a href="#orgc23d8d8">4.8. Exponenciální rozložení</a></li>
+<li><a href="#org1ac5bd9">4.1. Náhodná proměnná</a></li>
+<li><a href="#orgc4a4282">4.2. Diskrétní rozdělení pravděpodobnosti</a></li>
+<li><a href="#orgfd5090c">4.3. Diskrétní distribuční funkce</a></li>
+<li><a href="#org623fea5">4.4. Distribuční funkce spojité náhodné proměnné</a></li>
+<li><a href="#orgc30c098">4.5. Hustota pravděpodobnosti spojité náhodné proměnné</a></li>
+<li><a href="#org08c8c65">4.6. Poissonovo rozložení</a></li>
+<li><a href="#org3bb85ce">4.7. Rovnoměrné rozložení</a></li>
+<li><a href="#orgac52dad">4.8. Exponenciální rozložení</a></li>
 </ul>
 </li>
-<li><a href="#org71634c0">5. Diskrétní simulace</a>
+<li><a href="#orgc45ac2b">5. Diskrétní simulace</a>
 <ul>
-<li><a href="#orgfab6a4d">5.1. Úvod</a></li>
-<li><a href="#org359fc3e">5.2. Procesy</a>
+<li><a href="#orgf9f6182">5.1. Úvod</a></li>
+<li><a href="#org0341cd3">5.2. Procesy</a>
 <ul>
-<li><a href="#orga4cdb64">5.2.1. Paralelismus</a></li>
+<li><a href="#orgf2cdcc4">5.2.1. Paralelismus</a></li>
 </ul>
 </li>
-<li><a href="#orge84cce8">5.3. Petriho sítě</a></li>
-<li><a href="#orgfed3797">5.4. Systémy hromadné obsluhy</a>
+<li><a href="#org2ee124a">5.3. Petriho sítě</a></li>
+<li><a href="#orgf2b4a7c">5.4. Systémy hromadné obsluhy</a>
 <ul>
-<li><a href="#org93e0b01">5.4.1. Vstupní tok požadavků</a></li>
-<li><a href="#orge76ea6f">5.4.2. Fronty čekajících požadavků</a></li>
-<li><a href="#org883591b">5.4.3. Prioritní fronty, priorita obsluhy</a></li>
-<li><a href="#org2c386ef">5.4.4. Obslužná síť</a></li>
-<li><a href="#org6077418">5.4.5. Klasifikace SHO</a></li>
-<li><a href="#org8e2da05">5.4.6. Modelování SHO</a></li>
+<li><a href="#org41903f1">5.4.1. Vstupní tok požadavků</a></li>
+<li><a href="#orgb50976e">5.4.2. Fronty čekajících požadavků</a></li>
+<li><a href="#orga2c327a">5.4.3. Prioritní fronty, priorita obsluhy</a></li>
+<li><a href="#orgfef5a7e">5.4.4. Obslužná síť</a></li>
+<li><a href="#org8532375">5.4.5. Klasifikace SHO</a></li>
+<li><a href="#org324dbe5">5.4.6. Modelování SHO</a></li>
 </ul>
 </li>
-<li><a href="#orgd01a6a2">5.5. SIMLIB</a></li>
+<li><a href="#orgd1578bc">5.5. SIMLIB</a>
+<ul>
+<li><a href="#orgdb02289">5.5.1. Algoritmus next event a kalendář událostí</a></li>
 </ul>
 </li>
-<li><a href="#org586e5be">6. Spojitá simulace</a>
-<ul>
-<li><a href="#org535c878">6.1. Úvod</a></li>
-<li><a href="#org002ea19">6.2. Numerické metody</a></li>
-<li><a href="#orgce5eb65">6.3. SIMLIB</a></li>
 </ul>
 </li>
-<li><a href="#orgca0e0d5">7. Kombinovaná simulace</a>
+<li><a href="#org1ebf924">6. Spojitá simulace</a>
 <ul>
-<li><a href="#orgc8b0961">7.1. Úvod</a></li>
-<li><a href="#org99db4d5">7.2. SIMLIB</a></li>
+<li><a href="#orgccc0e39">6.1. Úvod</a></li>
+<li><a href="#orgcd65f86">6.2. Numerické metody</a></li>
+<li><a href="#orgae77acd">6.3. SIMLIB</a></li>
+</ul>
+</li>
+<li><a href="#orgc09963a">7. Kombinovaná simulace</a>
+<ul>
+<li><a href="#orgd934f87">7.1. Úvod</a></li>
+<li><a href="#org6a64974">7.2. SIMLIB</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org05b3abc" class="outline-2">
-<h2 id="org05b3abc"><span class="section-number-2">1</span> Úvod</h2>
+<div id="outline-container-org0260262" class="outline-2">
+<h2 id="org0260262"><span class="section-number-2">1</span> Úvod</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org33ff4d1" class="outline-3">
-<h3 id="org33ff4d1"><span class="section-number-3">1.1</span> Základní pojmy</h3>
+<div id="outline-container-org324b474" class="outline-3">
+<h3 id="org324b474"><span class="section-number-3">1.1</span> Základní pojmy</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org528649c" class="outline-4">
-<h4 id="org528649c"><span class="section-number-4">1.1.1</span> Systém</h4>
+<div id="outline-container-org4778e49" class="outline-4">
+<h4 id="org4778e49"><span class="section-number-4">1.1.1</span> Systém</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 Je soubor elementárních částí, které mají mezi sebou určíté vazby.
 </p>
 </div>
 </div>
-<div id="outline-container-org9ab7a53" class="outline-4">
-<h4 id="org9ab7a53"><span class="section-number-4">1.1.2</span> Model</h4>
+<div id="outline-container-orgff9d2ce" class="outline-4">
+<h4 id="orgff9d2ce"><span class="section-number-4">1.1.2</span> Model</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 Napodobenina systému jiným systémem
 </p>
 </div>
 </div>
-<div id="outline-container-orgb020ce0" class="outline-4">
-<h4 id="orgb020ce0"><span class="section-number-4">1.1.3</span> Modelování</h4>
+<div id="outline-container-org6841dc6" class="outline-4">
+<h4 id="org6841dc6"><span class="section-number-4">1.1.3</span> Modelování</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <p>
 Vyrváření modelů systémů
 </p>
 </div>
 </div>
-<div id="outline-container-org6b352f6" class="outline-4">
-<h4 id="org6b352f6"><span class="section-number-4">1.1.4</span> Simulace</h4>
+<div id="outline-container-org013d71c" class="outline-4">
+<h4 id="org013d71c"><span class="section-number-4">1.1.4</span> Simulace</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <p>
 Získávání nových znalostí o systémz experimentováním s jeho modelech
@@ -427,8 +431,8 @@ Získávání nových znalostí o systémz experimentováním s jeho modelech
 </div>
 </div>
 
-<div id="outline-container-orgbd5f77e" class="outline-3">
-<h3 id="orgbd5f77e"><span class="section-number-3">1.2</span> Základní etapy modelování a simulace</h3>
+<div id="outline-container-orgb5920ce" class="outline-3">
+<h3 id="orgb5920ce"><span class="section-number-3">1.2</span> Základní etapy modelování a simulace</h3>
 <div class="outline-text-3" id="text-1-2">
 <ol class="org-ol">
 <li>Vytvoření abstraktního modelu</li>
@@ -440,8 +444,8 @@ Získávání nových znalostí o systémz experimentováním s jeho modelech
 </div>
 </div>
 
-<div id="outline-container-org185d97b" class="outline-3">
-<h3 id="org185d97b"><span class="section-number-3">1.3</span> Formální definice systému</h3>
+<div id="outline-container-org72f88e9" class="outline-3">
+<h3 id="org72f88e9"><span class="section-number-3">1.3</span> Formální definice systému</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Systém \(S\) je dvojice
@@ -452,8 +456,8 @@ Systém \(S\) je dvojice
 kde:
 </p>
 </div>
-<div id="outline-container-orge602a7c" class="outline-4">
-<h4 id="orge602a7c"><span class="section-number-4">1.3.1</span> \(U\) je konečná množina prvků systému:</h4>
+<div id="outline-container-orgacb8417" class="outline-4">
+<h4 id="orgacb8417"><span class="section-number-4">1.3.1</span> \(U\) je konečná množina prvků systému:</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 \[U = \{u_1, u_2, \dots, u_N\}\]
@@ -461,18 +465,18 @@ kde:
 </div>
 </div>
 
-<div id="outline-container-orgdb6b1c4" class="outline-4">
-<h4 id="orgdb6b1c4"><span class="section-number-4">1.3.2</span> Prvek systému \(u = (X, Y)\):</h4>
+<div id="outline-container-org2647b38" class="outline-4">
+<h4 id="org2647b38"><span class="section-number-4">1.3.2</span> Prvek systému \(u = (X, Y)\):</h4>
 <div class="outline-text-4" id="text-1-3-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgc8be297"></a>\(X\) je množina všech vstupních proměnných<br /></li>
-<li><a id="orgadb712c"></a>\(Y\) je množina všech výstupních proměnných<br /></li>
+<li><a id="org056f165"></a>\(X\) je množina všech vstupních proměnných<br /></li>
+<li><a id="org486df59"></a>\(Y\) je množina všech výstupních proměnných<br /></li>
 </ol>
 </div>
 
-<div id="outline-container-orgd5ba6ae" class="outline-4">
-<h4 id="orgd5ba6ae"><span class="section-number-4">1.3.3</span> Charakteristika systému \(R\) je množina všech propojení</h4>
+<div id="outline-container-org1baf687" class="outline-4">
+<h4 id="org1baf687"><span class="section-number-4">1.3.3</span> Charakteristika systému \(R\) je množina všech propojení</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <p>
 \[R = \bigcup^{N}_{i,j=1} R_{ij}\]
@@ -480,8 +484,8 @@ kde:
 </div>
 </div>
 
-<div id="outline-container-orgcca716c" class="outline-4">
-<h4 id="orgcca716c"><span class="section-number-4">1.3.4</span> Propojení prvku \(u_i\) s prvkem \(u_j\):</h4>
+<div id="outline-container-org424a4a8" class="outline-4">
+<h4 id="org424a4a8"><span class="section-number-4">1.3.4</span> Propojení prvku \(u_i\) s prvkem \(u_j\):</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <p>
 \[R_{ij} \subseteq Y_i \times X_j\]
@@ -490,8 +494,8 @@ kde:
 </div>
 </div>
 
-<div id="outline-container-orga54b880" class="outline-3">
-<h3 id="orga54b880"><span class="section-number-3">1.4</span> Čas</h3>
+<div id="outline-container-org6f5bb6f" class="outline-3">
+<h3 id="org6f5bb6f"><span class="section-number-3">1.4</span> Čas</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Rozlišujeme tři typy času:
@@ -507,8 +511,8 @@ Probíháý skutečný děj v reálném systému</li>
 </div>
 </div>
 
-<div id="outline-container-org8bc5473" class="outline-3">
-<h3 id="org8bc5473"><span class="section-number-3">1.5</span> Časová množina</h3>
+<div id="outline-container-orga25b265" class="outline-3">
+<h3 id="orga25b265"><span class="section-number-3">1.5</span> Časová množina</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Množina všech časových okamžiků, ve kterých jsou definovány hodnoty vstupních,
@@ -521,8 +525,8 @@ Může být diskrétní nebo spojitá<sup><a id="fnr.1" class="footref" href="#f
 </div>
 </div>
 
-<div id="outline-container-orgc0d0eea" class="outline-3">
-<h3 id="orgc0d0eea"><span class="section-number-3">1.6</span> Chování systému</h3>
+<div id="outline-container-orgc7fbc03" class="outline-3">
+<h3 id="orgc7fbc03"><span class="section-number-3">1.6</span> Chování systému</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 Každému časovému průběhu vstupu přiřazuje časový průběh výstupu. Lze definovat
@@ -545,8 +549,8 @@ ale ne naopak.
 </div>
 </div>
 
-<div id="outline-container-org995969e" class="outline-3">
-<h3 id="org995969e"><span class="section-number-3">1.7</span> Okolí systému</h3>
+<div id="outline-container-orga76c56f" class="outline-3">
+<h3 id="orga76c56f"><span class="section-number-3">1.7</span> Okolí systému</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 Okolí systému zahrnuje vše, co má vliv na chování systému, ale není jeho
@@ -560,20 +564,20 @@ a otevřene (mají definované vstupy a výstupy).
 </div>
 </div>
 
-<div id="outline-container-orgafbc947" class="outline-3">
-<h3 id="orgafbc947"><span class="section-number-3">1.8</span> Klasifikace prvků systémů</h3>
+<div id="outline-container-orgb686414" class="outline-3">
+<h3 id="orgb686414"><span class="section-number-3">1.8</span> Klasifikace prvků systémů</h3>
 <div class="outline-text-3" id="text-1-8">
 </div>
-<div id="outline-container-orgae03d78" class="outline-4">
-<h4 id="orgae03d78"><span class="section-number-4">1.8.1</span> Klasifikace 1</h4>
+<div id="outline-container-org40d1d75" class="outline-4">
+<h4 id="org40d1d75"><span class="section-number-4">1.8.1</span> Klasifikace 1</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <p>
 Prvky se spojitým chováním vs prvky s diskrétním chováním
 </p>
 </div>
 </div>
-<div id="outline-container-org3dba360" class="outline-4">
-<h4 id="org3dba360"><span class="section-number-4">1.8.2</span> Klasifikace 2</h4>
+<div id="outline-container-org814b60f" class="outline-4">
+<h4 id="org814b60f"><span class="section-number-4">1.8.2</span> Klasifikace 2</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <p>
 Prvky s deterministickým chováním vs prvky s nedeterministickým chováním
@@ -582,23 +586,23 @@ Prvky s deterministickým chováním vs prvky s nedeterministickým chováním
 </div>
 </div>
 
-<div id="outline-container-org4e147e9" class="outline-3">
-<h3 id="org4e147e9"><span class="section-number-3">1.9</span> Klasifikace systémů</h3>
+<div id="outline-container-org50c795c" class="outline-3">
+<h3 id="org50c795c"><span class="section-number-3">1.9</span> Klasifikace systémů</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 Typ systému závisí na typu jeho prvků
 </p>
 </div>
-<div id="outline-container-org15c88b3" class="outline-4">
-<h4 id="org15c88b3"><span class="section-number-4">1.9.1</span> Klasifikace 1</h4>
+<div id="outline-container-orgf481014" class="outline-4">
+<h4 id="orgf481014"><span class="section-number-4">1.9.1</span> Klasifikace 1</h4>
 <div class="outline-text-4" id="text-1-9-1">
 <p>
 Spojité, Diskrétní, Kombinované
 </p>
 </div>
 </div>
-<div id="outline-container-org9456b53" class="outline-4">
-<h4 id="org9456b53"><span class="section-number-4">1.9.2</span> Klasifikace 2</h4>
+<div id="outline-container-org174eace" class="outline-4">
+<h4 id="org174eace"><span class="section-number-4">1.9.2</span> Klasifikace 2</h4>
 <div class="outline-text-4" id="text-1-9-2">
 <p>
 Deterministické, nedeterministické
@@ -607,8 +611,8 @@ Deterministické, nedeterministické
 </div>
 </div>
 
-<div id="outline-container-orgc5e3179" class="outline-3">
-<h3 id="orgc5e3179"><span class="section-number-3">1.10</span> Simulace</h3>
+<div id="outline-container-orgc948288" class="outline-3">
+<h3 id="orgc948288"><span class="section-number-3">1.10</span> Simulace</h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 Cílem simulace je získat nové informace o chování systému v závislosti na
@@ -623,8 +627,8 @@ systém žádané chování.
 </div>
 </div>
 
-<div id="outline-container-orgcaef2e5" class="outline-3">
-<h3 id="orgcaef2e5"><span class="section-number-3">1.11</span> Typy simulace podle modelu</h3>
+<div id="outline-container-orgdba0eec" class="outline-3">
+<h3 id="orgdba0eec"><span class="section-number-3">1.11</span> Typy simulace podle modelu</h3>
 <div class="outline-text-3" id="text-1-11">
 <p>
 Spojitá, diskrétní, kombinovaná. Kvalitativní, kvantitativní.
@@ -632,8 +636,8 @@ Spojitá, diskrétní, kombinovaná. Kvalitativní, kvantitativní.
 </div>
 </div>
 
-<div id="outline-container-org2415ea1" class="outline-3">
-<h3 id="org2415ea1"><span class="section-number-3">1.12</span> Typy simulace podle simulátoru</h3>
+<div id="outline-container-orgcdd2676" class="outline-3">
+<h3 id="orgcdd2676"><span class="section-number-3">1.12</span> Typy simulace podle simulátoru</h3>
 <div class="outline-text-3" id="text-1-12">
 <p>
 Na počítači, real-time, paralelní a distribuovaná
@@ -641,8 +645,8 @@ Na počítači, real-time, paralelní a distribuovaná
 </div>
 </div>
 
-<div id="outline-container-orgf0c8370" class="outline-3">
-<h3 id="orgf0c8370"><span class="section-number-3">1.13</span> Verifikace modelu</h3>
+<div id="outline-container-org45bcaa6" class="outline-3">
+<h3 id="org45bcaa6"><span class="section-number-3">1.13</span> Verifikace modelu</h3>
 <div class="outline-text-3" id="text-1-13">
 <p>
 Měla by předcházet simulaci. Ověťujeme, zda simulační model odpovídá 1:1
@@ -651,8 +655,8 @@ Měla by předcházet simulaci. Ověťujeme, zda simulační model odpovídá 1:
 </div>
 </div>
 
-<div id="outline-container-org8c611eb" class="outline-3">
-<h3 id="org8c611eb"><span class="section-number-3">1.14</span> Validace modelu</h3>
+<div id="outline-container-org79c5c70" class="outline-3">
+<h3 id="org79c5c70"><span class="section-number-3">1.14</span> Validace modelu</h3>
 <div class="outline-text-3" id="text-1-14">
 <p>
 Jedná se o jeden z nejobtížnějších problémů modelování. Vyžaduje neustálou
@@ -667,12 +671,12 @@ předpokládanému chování systému, musíme model modifikovat.
 </div>
 </div>
 
-<div id="outline-container-orgf9f2794" class="outline-2">
-<h2 id="orgf9f2794"><span class="section-number-2">2</span> Modely</h2>
+<div id="outline-container-org4988b32" class="outline-2">
+<h2 id="org4988b32"><span class="section-number-2">2</span> Modely</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgb51429f" class="outline-3">
-<h3 id="orgb51429f"><span class="section-number-3">2.1</span> Abstraktní model</h3>
+<div id="outline-container-org7c3e39f" class="outline-3">
+<h3 id="org7c3e39f"><span class="section-number-3">2.1</span> Abstraktní model</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Nepostihuje reálný svět v celé komplikovanosti. Zajímá se jen o ohraničené,
@@ -688,8 +692,8 @@ takové kombinace parametrů, které vedou k nejlepší odezvě systému.
 </div>
 </div>
 
-<div id="outline-container-orga0ec570" class="outline-3">
-<h3 id="orga0ec570"><span class="section-number-3">2.2</span> Simulační model</h3>
+<div id="outline-container-org0f7947e" class="outline-3">
+<h3 id="org0f7947e"><span class="section-number-3">2.2</span> Simulační model</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Jedná se o abstraktní model zapsaný formou programu v nějakém programovacím
@@ -698,8 +702,8 @@ jazyce.
 </div>
 </div>
 
-<div id="outline-container-orgcef427e" class="outline-3">
-<h3 id="orgcef427e"><span class="section-number-3">2.3</span> Konceptuální modely</h3>
+<div id="outline-container-org0cbe5a7" class="outline-3">
+<h3 id="org0cbe5a7"><span class="section-number-3">2.3</span> Konceptuální modely</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Jejich komponenty zatím nebyly přesně popsány. Používají se v počáteční fázi
@@ -712,8 +716,8 @@ Má formu textu nebo obrázků.
 </div>
 </div>
 
-<div id="outline-container-orgc87d176" class="outline-3">
-<h3 id="orgc87d176"><span class="section-number-3">2.4</span> Deklarativní modely</h3>
+<div id="outline-container-org4b96ae7" class="outline-3">
+<h3 id="org4b96ae7"><span class="section-number-3">2.4</span> Deklarativní modely</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Popisuje přechody mezi stavy systému.
@@ -734,8 +738,8 @@ Například konečné automaty, petriho sítě.
 </div>
 </div>
 
-<div id="outline-container-org22a6554" class="outline-3">
-<h3 id="org22a6554"><span class="section-number-3">2.5</span> Funkcionální modely</h3>
+<div id="outline-container-orgaed336a" class="outline-3">
+<h3 id="orgaed336a"><span class="section-number-3">2.5</span> Funkcionální modely</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Grafy zobrazující funkce a proměnné. Uzel grafu je funkce nebo proměnná.
@@ -747,8 +751,8 @@ Například systémy hromadné obsluhy, bloková schemata, grafy signálových t
 </div>
 </div>
 
-<div id="outline-container-orgdc46a97" class="outline-3">
-<h3 id="orgdc46a97"><span class="section-number-3">2.6</span> Modely popsané rovnicemi</h3>
+<div id="outline-container-org8605939" class="outline-3">
+<h3 id="org8605939"><span class="section-number-3">2.6</span> Modely popsané rovnicemi</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 Používají se algebraické, diferenciální, diferenční rovnice.
@@ -765,8 +769,8 @@ systémy, chaos.
 </div>
 </div>
 
-<div id="outline-container-orgfdf67e0" class="outline-3">
-<h3 id="orgfdf67e0"><span class="section-number-3">2.7</span> Prostorové modely</h3>
+<div id="outline-container-org5dc3e02" class="outline-3">
+<h3 id="org5dc3e02"><span class="section-number-3">2.7</span> Prostorové modely</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 Rozdělují systém na prostorově menší ohraničené podsystémy.
@@ -779,8 +783,8 @@ automaty, mechanické modely těles.
 </div>
 </div>
 
-<div id="outline-container-orgfe140a6" class="outline-3">
-<h3 id="orgfe140a6"><span class="section-number-3">2.8</span> Multimodely</h3>
+<div id="outline-container-orgf1d49b8" class="outline-3">
+<h3 id="orgf1d49b8"><span class="section-number-3">2.8</span> Multimodely</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 Složeny z různých typů modelů, obvykle heterogenních.
@@ -792,8 +796,8 @@ Například kombinované modely, fuzzy modely, propojené simulační systémy.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd1d66a7" class="outline-2">
-<h2 id="orgd1d66a7"><span class="section-number-2">3</span> Simulační nástroje</h2>
+<div id="outline-container-orgc886bca" class="outline-2">
+<h2 id="orgc886bca"><span class="section-number-2">3</span> Simulační nástroje</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Mohou používat klasické programovací jazyky samy o sobě, nebo s využitím
@@ -801,8 +805,8 @@ knihoven. Existují specializované simulační jazyky (Simula67, Modellica&#x20
 </p>
 </div>
 
-<div id="outline-container-org1de5970" class="outline-3">
-<h3 id="org1de5970"><span class="section-number-3">3.1</span> Simulační jazyky</h3>
+<div id="outline-container-org2a804ee" class="outline-3">
+<h3 id="org2a804ee"><span class="section-number-3">3.1</span> Simulační jazyky</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Poskytují prostředky usnadňující efektivní popis struktury a chování modelů a
@@ -824,12 +828,12 @@ Celkově nejsou příliš používány.
 </div>
 </div>
 
-<div id="outline-container-org6bb6080" class="outline-2">
-<h2 id="org6bb6080"><span class="section-number-2">4</span> Modelování náhodných procesů</h2>
+<div id="outline-container-org52dda5e" class="outline-2">
+<h2 id="org52dda5e"><span class="section-number-2">4</span> Modelování náhodných procesů</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orga978ed6" class="outline-3">
-<h3 id="orga978ed6"><span class="section-number-3">4.1</span> Náhodná proměnná</h3>
+<div id="outline-container-org1ac5bd9" class="outline-3">
+<h3 id="org1ac5bd9"><span class="section-number-3">4.1</span> Náhodná proměnná</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Náhodná proměnná je taková veličina, která jako výsledek pokusů může nabýt
@@ -847,8 +851,8 @@ pravděpodobnosti.
 </div>
 </div>
 
-<div id="outline-container-orgdd74a19" class="outline-3">
-<h3 id="orgdd74a19"><span class="section-number-3">4.2</span> Diskrétní rozdělení pravděpodobnosti</h3>
+<div id="outline-container-orgc4a4282" class="outline-3">
+<h3 id="orgc4a4282"><span class="section-number-3">4.2</span> Diskrétní rozdělení pravděpodobnosti</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Určuje vztah mezi možnými hodnotami náhodné veličiny \(x_i\) a jim příslušejícími
@@ -869,8 +873,8 @@ náhodné proměnné, suma všech pravděpodobností musí být 1.
 </div>
 </div>
 
-<div id="outline-container-orgdd4d05e" class="outline-3">
-<h3 id="orgdd4d05e"><span class="section-number-3">4.3</span> Diskrétní distribuční funkce</h3>
+<div id="outline-container-orgfd5090c" class="outline-3">
+<h3 id="orgfd5090c"><span class="section-number-3">4.3</span> Diskrétní distribuční funkce</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Distribuční funkce náhodné veličiny \(X\) je funkce:
@@ -897,8 +901,8 @@ Kraf distribuční funkce pro diskrétní náhodné proměnné je po částech k
 </div>
 </div>
 
-<div id="outline-container-org72e6c03" class="outline-3">
-<h3 id="org72e6c03"><span class="section-number-3">4.4</span> Distribuční funkce spojité náhodné proměnné</h3>
+<div id="outline-container-org623fea5" class="outline-3">
+<h3 id="org623fea5"><span class="section-number-3">4.4</span> Distribuční funkce spojité náhodné proměnné</h3>
 <div class="outline-text-3" id="text-4-4">
 \begin{equation}
     F(x) = P(X \leq x) = \int_{-\infty}^x f(x) dx
@@ -918,8 +922,8 @@ distribuční funkce v bodech \(b\) a \(a\). Vyjádřeno vzorcem:
 </div>
 </div>
 
-<div id="outline-container-orgffbd14a" class="outline-3">
-<h3 id="orgffbd14a"><span class="section-number-3">4.5</span> Hustota pravděpodobnosti spojité náhodné proměnné</h3>
+<div id="outline-container-orgc30c098" class="outline-3">
+<h3 id="orgc30c098"><span class="section-number-3">4.5</span> Hustota pravděpodobnosti spojité náhodné proměnné</h3>
 <div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li>Vždy větší než 0</li>
@@ -931,8 +935,8 @@ pravděpodobnosti mezi \(a\) a \(b\)</li>
 </div>
 </div>
 
-<div id="outline-container-orgd85f135" class="outline-3">
-<h3 id="orgd85f135"><span class="section-number-3">4.6</span> Poissonovo rozložení</h3>
+<div id="outline-container-org08c8c65" class="outline-3">
+<h3 id="org08c8c65"><span class="section-number-3">4.6</span> Poissonovo rozložení</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 Diskrétní rozložení udávající počet nějakých událostí za jednotku času. Vzorec:
@@ -946,8 +950,8 @@ Kde \(E(x) = \lambda, D(x) = \lambda\)
 </div>
 </div>
 
-<div id="outline-container-orgcc0a2f2" class="outline-3">
-<h3 id="orgcc0a2f2"><span class="section-number-3">4.7</span> Rovnoměrné rozložení</h3>
+<div id="outline-container-org3bb85ce" class="outline-3">
+<h3 id="org3bb85ce"><span class="section-number-3">4.7</span> Rovnoměrné rozložení</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 Označujeme \(R(a, b)\)
@@ -960,8 +964,8 @@ hustoty pravděpodobnosti je konstatní.
 </div>
 </div>
 
-<div id="outline-container-orgc23d8d8" class="outline-3">
-<h3 id="orgc23d8d8"><span class="section-number-3">4.8</span> Exponenciální rozložení</h3>
+<div id="outline-container-orgac52dad" class="outline-3">
+<h3 id="orgac52dad"><span class="section-number-3">4.8</span> Exponenciální rozložení</h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 Používá se pro dobu mezi dvěma událostmí.
@@ -969,12 +973,12 @@ Používá se pro dobu mezi dvěma událostmí.
 </div>
 </div>
 </div>
-<div id="outline-container-org71634c0" class="outline-2">
-<h2 id="org71634c0"><span class="section-number-2">5</span> Diskrétní simulace</h2>
+<div id="outline-container-orgc45ac2b" class="outline-2">
+<h2 id="orgc45ac2b"><span class="section-number-2">5</span> Diskrétní simulace</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgfab6a4d" class="outline-3">
-<h3 id="orgfab6a4d"><span class="section-number-3">5.1</span> Úvod</h3>
+<div id="outline-container-orgf9f6182" class="outline-3">
+<h3 id="orgf9f6182"><span class="section-number-3">5.1</span> Úvod</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Diskrétní systém můžeme popsat:
@@ -989,8 +993,8 @@ Diskrétní systém můžeme popsat:
 </div>
 </div>
 
-<div id="outline-container-org359fc3e" class="outline-3">
-<h3 id="org359fc3e"><span class="section-number-3">5.2</span> Procesy</h3>
+<div id="outline-container-org0341cd3" class="outline-3">
+<h3 id="org0341cd3"><span class="section-number-3">5.2</span> Procesy</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Proces je posloupnost událostí. Pokud jsou procesy prováděny současně, nazýváme
@@ -1004,8 +1008,8 @@ komunikujících procesů.
 </p>
 </div>
 
-<div id="outline-container-orga4cdb64" class="outline-4">
-<h4 id="orga4cdb64"><span class="section-number-4">5.2.1</span> Paralelismus</h4>
+<div id="outline-container-orgf2cdcc4" class="outline-4">
+<h4 id="orgf2cdcc4"><span class="section-number-4">5.2.1</span> Paralelismus</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <p>
 Pro zajištění paralelismu je třeba popsat jednotlivé procesy sekvencí kroků
@@ -1016,8 +1020,8 @@ nutné vyřešit synchronizace při používání sdílených prostředků.
 </div>
 </div>
 
-<div id="outline-container-orge84cce8" class="outline-3">
-<h3 id="orge84cce8"><span class="section-number-3">5.3</span> Petriho sítě</h3>
+<div id="outline-container-org2ee124a" class="outline-3">
+<h3 id="org2ee124a"><span class="section-number-3">5.3</span> Petriho sítě</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 Definice Petriho sítě:
@@ -1051,8 +1055,8 @@ Petriho sítě obvykle zadáváme formou grafu, kde:
 </div>
 </div>
 
-<div id="outline-container-orgfed3797" class="outline-3">
-<h3 id="orgfed3797"><span class="section-number-3">5.4</span> Systémy hromadné obsluhy</h3>
+<div id="outline-container-orgf2b4a7c" class="outline-3">
+<h3 id="orgf2b4a7c"><span class="section-number-3">5.4</span> Systémy hromadné obsluhy</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 SHO (Queueing systems) jsou systémy obsahující zařízení s frontami, která
@@ -1075,8 +1079,8 @@ zdržení, optimalizovat výkon &hellip;
 </p>
 </div>
 
-<div id="outline-container-org93e0b01" class="outline-4">
-<h4 id="org93e0b01"><span class="section-number-4">5.4.1</span> Vstupní tok požadavků</h4>
+<div id="outline-container-org41903f1" class="outline-4">
+<h4 id="org41903f1"><span class="section-number-4">5.4.1</span> Vstupní tok požadavků</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <p>
 Obvykle se jedná o proces příchodů do systému. Zadáváme buď střední dobu mezi
@@ -1086,8 +1090,8 @@ příchody (exponenciální rozdělení) nebo počet příchodů za jednotku ča
 </div>
 </div>
 
-<div id="outline-container-orge76ea6f" class="outline-4">
-<h4 id="orge76ea6f"><span class="section-number-4">5.4.2</span> Fronty čekajících požadavků</h4>
+<div id="outline-container-orgb50976e" class="outline-4">
+<h4 id="orgb50976e"><span class="section-number-4">5.4.2</span> Fronty čekajících požadavků</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <p>
 Vytvoří se, když požadavek chce být obsloužen již obsazeným zařízením. Pro
@@ -1111,8 +1115,8 @@ dojde-li k timeoutu.</li>
 </div>
 </div>
 
-<div id="outline-container-org883591b" class="outline-4">
-<h4 id="org883591b"><span class="section-number-4">5.4.3</span> Prioritní fronty, priorita obsluhy</h4>
+<div id="outline-container-orga2c327a" class="outline-4">
+<h4 id="orga2c327a"><span class="section-number-4">5.4.3</span> Prioritní fronty, priorita obsluhy</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <p>
 U jedné obslužné linky může být více front s různými prioritami, prioritních
@@ -1135,8 +1139,8 @@ linky, která se nejdříve uvolní.</li>
 </div>
 </div>
 
-<div id="outline-container-org2c386ef" class="outline-4">
-<h4 id="org2c386ef"><span class="section-number-4">5.4.4</span> Obslužná síť</h4>
+<div id="outline-container-orgfef5a7e" class="outline-4">
+<h4 id="orgfef5a7e"><span class="section-number-4">5.4.4</span> Obslužná síť</h4>
 <div class="outline-text-4" id="text-5-4-4">
 <p>
 Vzniká spojením několika obslužných linek. Může být:
@@ -1160,8 +1164,8 @@ linkách.
 </div>
 </div>
 
-<div id="outline-container-org6077418" class="outline-4">
-<h4 id="org6077418"><span class="section-number-4">5.4.5</span> Klasifikace SHO</h4>
+<div id="outline-container-org8532375" class="outline-4">
+<h4 id="org8532375"><span class="section-number-4">5.4.5</span> Klasifikace SHO</h4>
 <div class="outline-text-4" id="text-5-4-5">
 <p>
 Standard stučného a přehledného vyjádření typu SHO používá tři hlavní hlediska:
@@ -1179,8 +1183,8 @@ exponenciální dobu obsluhy a 1 obslužnou linku.
 </div>
 </div>
 
-<div id="outline-container-org8e2da05" class="outline-4">
-<h4 id="org8e2da05"><span class="section-number-4">5.4.6</span> Modelování SHO</h4>
+<div id="outline-container-org324dbe5" class="outline-4">
+<h4 id="org324dbe5"><span class="section-number-4">5.4.6</span> Modelování SHO</h4>
 <div class="outline-text-4" id="text-5-4-6">
 <p>
 Popisujeme procesy v systému, stav obslužných linek a front a průběh obsluhy
@@ -1202,35 +1206,158 @@ nebo k zařízením vede jedna fronta.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd01a6a2" class="outline-3">
-<h3 id="orgd01a6a2"><span class="section-number-3">5.5</span> SIMLIB</h3>
+<div id="outline-container-orgd1578bc" class="outline-3">
+<h3 id="orgd1578bc"><span class="section-number-3">5.5</span> SIMLIB</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+V knihovně simlib definujeme následující prostředky pro diskrétní modelování:
+</p>
+<ul class="org-ul">
+<li>Process &#x2013; Modelování procesů</li>
+<li>Event &#x2013; Modelování událostí</li>
+<li>Facility &#x2013; Obslužná linka s výlučným přístupem</li>
+<li>Store &#x2013; Obslužná linka s kapacitou</li>
+<li>Queue &#x2013; Fronta</li>
+<li>Statistiky</li>
+</ul>
+
+<p>
+Při modelování je ve funkci main potřeba zavolat funkci \texttt{Init},
+která inicializuje simulátora a nastaví počáteční a koncový modelový čas.
+</p>
+
+<p>
+Pro zahájení simulace se využívá funkce Run.
+</p>
+
+<p>
+Modelový čas programu reprezenutjeme globální proměnnou \texttt{double Time},
+která je ovládána výhradně jádrem simulátoru a nelze do ní zapisovat.
+</p>
+
+<p>
+SIMLIB poskytuje generátory pseudonáhodných čísel:
+</p>
+<ul class="org-ul">
+<li>double Random() &#x2013; Rovnoměrné rozdělení mezi 0, 1</li>
+<li>double Uniform(double L, double H) &#x2013; Rovnoměrné rozdělení mezi L a H</li>
+<li>double Exponential(double E) &#x2013; Exponenciální rozdělení se středem E</li>
+<li>double Normal(double M, double S) &#x2013; Normální rozložení se středem M
+a rozptylem S.</li>
+</ul>
+
+<p>
+Použití událostí je provedeno následovně:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Udalost</span> : <span style="color: #51afef;">public</span> <span style="color: #ECBE7B;">Event</span> <span style="color: #51afef;">{</span>
+        <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">Behavior</span><span style="color: #c678dd;">()</span> <span style="color: #c678dd;">{</span>
+            <span style="color: #5B6268;">// </span><span style="color: #5B6268;">P&#345;&#237;kazy ud&#225;losti</span>
+            Activate<span style="color: #98be65;">(</span>Time + e<span style="color: #98be65;">)</span>; <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Periodicky aktivovat po &#269;ase e</span>
+        <span style="color: #c678dd;">}</span>
+<span style="color: #51afef;">}</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">Udalost</span><span style="color: #51afef;">)</span>-&gt;Activate<span style="color: #51afef;">()</span>; <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Napl&#225;nuje na &#269;as Time (okam&#382;it&#283;)</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">Udalost</span><span style="color: #51afef;">)</span>-&gt;Activate<span style="color: #51afef;">(</span>t<span style="color: #51afef;">)</span>; <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Napl&#225;nuje na &#269;as Time + t</span>
+</pre>
+</div>
+
+<p>
+Generování transakcí se provádí vytvořením události generátoru, která ve svém
+těle aktivuje nové procesy. Například takto:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Generator</span> : <span style="color: #51afef;">public</span> <span style="color: #ECBE7B;">Event</span> <span style="color: #51afef;">{</span>
+        <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">Behavior</span><span style="color: #c678dd;">()</span> <span style="color: #c678dd;">{</span>
+                <span style="color: #98be65;">(</span><span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">Proc</span><span style="color: #98be65;">)</span>-&gt;Activate<span style="color: #98be65;">()</span>; <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Vytvo&#345;&#237; a aktivuje nov&#253; proces</span>
+                Activate<span style="color: #98be65;">(</span>Time+Exponential<span style="color: #51afef;">(</span><span style="color: #da8548; font-weight: bold;">2</span><span style="color: #51afef;">)</span><span style="color: #98be65;">)</span>; <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Znovu se aktivuje za &#269;as udan&#253; exponenci&#225;ln&#237;m rozlo&#382;en&#237;m</span>
+        <span style="color: #c678dd;">}</span>
+<span style="color: #51afef;">}</span>
+</pre>
+</div>
+
+<p>
+Procesy jsou odvozeny za abstraktní třídy Process:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Transakce</span> : <span style="color: #51afef;">public</span> <span style="color: #ECBE7B;">Process</span> <span style="color: #51afef;">{</span>
+        <span style="color: #51afef;">public</span>:
+        <span style="color: #c678dd;">Transakce</span> <span style="color: #c678dd;">(</span>parametry<span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span> <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Konstruktor</span>
+                <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Inicializace</span>
+        <span style="color: #c678dd;">}</span>
+
+        <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">Behavior</span><span style="color: #c678dd;">()</span> <span style="color: #c678dd;">{</span>
+                <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Popis chov&#225;n&#237; programu</span>
+        <span style="color: #c678dd;">}</span>
+<span style="color: #51afef;">}</span>
+</pre>
+</div>
+
+<p>
+Po aktivaci procesu se volá metoda Behavior. Provádění je přerušeno při čekání
+ve frontě (funkce Seize, Enter) nebo při explicitním volání funkce Wait(dt), kde
+dt je doba čekání.
+</p>
+</div>
+
+<div id="outline-container-orgdb02289" class="outline-4">
+<h4 id="orgdb02289"><span class="section-number-4">5.5.1</span> Algoritmus next event a kalendář událostí</h4>
+<div class="outline-text-4" id="text-5-5-1">
+<p>
+Kalendář je uspořádaná datová struktura uchovávající aktivační záznamy budoucích
+událostí. Každá naplánovaná budoucí událost má v kalendáři záznam obsahující
+aktivační čas, prioritu a samotnou událost.
+Kalendář umožňuje výběr prvního záznamu s nejmenším aktivačním časem a
+vkládání/rušení aktivačních záznamů.
+</p>
+
+<p>
+Pseudokód:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">Inicializace &#269;asu, kalend&#225;&#345;e, modelu</span>
+<span style="color: #51afef;">while</span> <span style="color: #51afef;">(</span> <span style="color: #51afef; font-weight: bold;">!</span>empty<span style="color: #c678dd;">(</span>kalendar<span style="color: #c678dd;">)</span> <span style="color: #51afef;">)</span> <span style="color: #51afef;">{</span>  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Dokud je kalend&#225;&#345; nepr&#225;zdn&#253;</span>
+    <span style="color: #ECBE7B;">item_t</span> <span style="color: #dcaeea;">item</span> = kalendar.pop<span style="color: #c678dd;">()</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Vybere prvn&#237; prvek kalend&#225;&#345;e</span>
+    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span> item.aktivacni_cas &gt; <span style="color: #a9a1e1;">T_END</span> <span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span>  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Prvek by se m&#283;l aktivovat po konci simulace</span>
+        End<span style="color: #98be65;">()</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Ukon&#269;en&#237;</span>
+    <span style="color: #c678dd;">}</span>
+    SetTime<span style="color: #c678dd;">(</span>item.aktivacni_cas<span style="color: #c678dd;">)</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Nastav&#237; &#269;as na aktiva&#269;n&#237; &#269;as ud&#225;losti</span>
+    Execute<span style="color: #c678dd;">(</span>item<span style="color: #c678dd;">)</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Provede popis chov&#225;n&#237; ud&#225;losti.</span>
+<span style="color: #51afef;">}</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org586e5be" class="outline-2">
-<h2 id="org586e5be"><span class="section-number-2">6</span> Spojitá simulace</h2>
+<div id="outline-container-org1ebf924" class="outline-2">
+<h2 id="org1ebf924"><span class="section-number-2">6</span> Spojitá simulace</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org535c878" class="outline-3">
-<h3 id="org535c878"><span class="section-number-3">6.1</span> Úvod</h3>
+<div id="outline-container-orgccc0e39" class="outline-3">
+<h3 id="orgccc0e39"><span class="section-number-3">6.1</span> Úvod</h3>
 </div>
-<div id="outline-container-org002ea19" class="outline-3">
-<h3 id="org002ea19"><span class="section-number-3">6.2</span> Numerické metody</h3>
+<div id="outline-container-orgcd65f86" class="outline-3">
+<h3 id="orgcd65f86"><span class="section-number-3">6.2</span> Numerické metody</h3>
 </div>
-<div id="outline-container-orgce5eb65" class="outline-3">
-<h3 id="orgce5eb65"><span class="section-number-3">6.3</span> SIMLIB</h3>
+<div id="outline-container-orgae77acd" class="outline-3">
+<h3 id="orgae77acd"><span class="section-number-3">6.3</span> SIMLIB</h3>
 </div>
 </div>
 
-<div id="outline-container-orgca0e0d5" class="outline-2">
-<h2 id="orgca0e0d5"><span class="section-number-2">7</span> Kombinovaná simulace</h2>
+<div id="outline-container-orgc09963a" class="outline-2">
+<h2 id="orgc09963a"><span class="section-number-2">7</span> Kombinovaná simulace</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-orgc8b0961" class="outline-3">
-<h3 id="orgc8b0961"><span class="section-number-3">7.1</span> Úvod</h3>
+<div id="outline-container-orgd934f87" class="outline-3">
+<h3 id="orgd934f87"><span class="section-number-3">7.1</span> Úvod</h3>
 </div>
-<div id="outline-container-org99db4d5" class="outline-3">
-<h3 id="org99db4d5"><span class="section-number-3">7.2</span> SIMLIB</h3>
+<div id="outline-container-org6a64974" class="outline-3">
+<h3 id="org6a64974"><span class="section-number-3">7.2</span> SIMLIB</h3>
 </div>
 </div>
 <div id="footnotes">
@@ -1246,7 +1373,7 @@ Na číslicovém počítači se vždy diskretizuje
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: John Doe</p>
-<p class="date">Created: 2019-12-22 Sun 13:18</p>
+<p class="date">Created: 2019-12-22 Sun 19:25</p>
 </div>
 </body>
 </html>
