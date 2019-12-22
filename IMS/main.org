@@ -325,6 +325,49 @@ Definujeme pojmy:
 *** Prioritní fronty, priorita obsluhy
 U jedné obslužné linky může být více front s různými prioritami, prioritních
 úrovní může být více. Přicházející požadavky nejsou rovnocenné.
+
+Při příchodu požadavku s vyšší prioritou se stane jedna ze 4 věcí:
+1. Započatá obsluha se ukončí
+2. Obsluha se přeruší a začne obsluha požadavku s vyšší prioritou. Požadavek,
+   jehož obsluha je přerušena buď opouští systém neobsloužen nebo se znovu vrací
+   do fronty a je obsloužen později.
+3. Jsou-li všechny linky obsazeny a u každé je fronta, požadavek se sám
+   rozhodne, do které se zařadí.
+4. Vytvářejí-li požadavky jednu společnou frontu, požadavek vstupuje do té
+   linky, která se nejdříve uvolní.
+
+*** Obslužná síť
+Vzniká spojením několika obslužných linek. Může být:
++ Otevřená -- Výměna požadavků mezi sítí a okolím
++ Uzavřená -- Nedochází k výměně požadavků s okolím
++ Smíšená -- Pro některé typy požadavků je otevřená, pro jiné uzavřená
+
+Statické vlastnosi obslužné sítě jsou definovány počtem a charakteristikou
+obslužných linek a topologií obslužné sítě.
+
+Dynamické vlastnosti jsou definovány charakteristikami procesů příchodů,
+obsluhy, přechodu mezi linkami a strategií obsluhy požadavků v obslužných
+linkách.
+
+*** Klasifikace SHO
+Standard stučného a přehledného vyjádření typu SHO používá tři hlavní hlediska:
++ X - Typ procesu popisujícího příchod požadavků k obsluze
++ Y - Zákon rozložení délky obsluhy
++ c - Počet dostupných obslužných linek.
+
+Například systém M/M/1 značí Poissonovo rozložení příchodu požadavků,
+exponenciální dobu obsluhy a 1 obslužnou linku.
+
+*** Modelování SHO
+Popisujeme procesy v systému, stav obslužných linek a front a průběh obsluhy
+transakcí v zařízeních.
+
+Podle kapacity linek rozlišujeme:
++ Zařízení -- kapacita 1
++ Sklady -- kapacita > 1
+
+Modelujeme-li více zařízení stejného typu, pak každé zařízení má vlastní frontu,
+nebo k zařízením vede jedna fronta.
 ** SIMLIB
 
 * Spojitá simulace
