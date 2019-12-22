@@ -250,8 +250,81 @@ hustoty pravděpodobnosti je konstatní.
 Používá se pro dobu mezi dvěma událostmí.
 * Diskrétní simulace
 ** Úvod
+Diskrétní systém můžeme popsat:
++ Programem v programovacím jazyce
++ Petriho sítí
++ Automaty nebo sítěmi automatů
++ Procesními algebrami
++ \dots
+
+** Procesy
+Proces je posloupnost událostí. Pokud jsou procesy prováděny současně, nazýváme
+je paralelní. Pokud paralelní procesy provádíme na jednoprocesorovém počítači,
+jedná se o kvaziparalelní procesy.
+
+V modelovaných systémech často existuje mnoho paralelně probíhajících a vzájemně
+komunikujících procesů.
+
+*** Paralelismus
+Pro zajištění paralelismu je třeba popsat jednotlivé procesy sekvencí kroků
+(napsat program). Dále je nutné popsat komunikace procesů -- zprávy. Rovněž je
+nutné vyřešit synchronizace při používání sdílených prostředků.
+
 ** Petriho sítě
+Definice Petriho sítě:
+
+\begin{equation}
+    \Sigma = (P, T, F, W, C, M_0)
+\end{equation}
+
+Kde:
++ $P$ je množina míst (stavů)
++ $T$ je množina přechodů, $P \cap T = \emptyset$
++ Incidenční relace $F \subseteq (P \times T) \cup (T \times P)$
++ Váhová funkce $W : F \rightarrow \{1, 2, \dots\}$
++ Kapacity míst $C : P \rightarrow N$
++ Počáteční značení $M_0 : P \rightarrow N$
+
+Petriho sítě obvykle zadáváme formou grafu, kde:
++ Místa = Kružnice
++ Přechody = Obdélníky
++ Incidenční relace = Šipky
++ Váhová funkce = ohodnocení hran
+
 ** Systémy hromadné obsluhy
+SHO (Queueing systems) jsou systémy obsahující zařízení s frontami, která
+poskytují obsluhu transakcím.
+
+Typický systém hromadné obsluhy obsahuje:
++ Transakce (procesy) a popis jejich příchodů
++ Obslužné linky a popis jejich obsluhy
++ Fronty různých typů, ve kterých transakce čekají
+
+Při simulaci sledujeme informace o čase stráveném v systému pro konkrétní
+transakci, doby čekání ve frontách, vytížení obslužných linek. Cílem je odhalit
+zdržení, optimalizovat výkon \dots
+
+*** Vstupní tok požadavků
+Obvykle se jedná o proces příchodů do systému. Zadáváme buď střední dobu mezi
+příchody (exponenciální rozdělení) nebo počet příchodů za jednotku času
+(Poissonovo rozdělení).
+
+*** Fronty čekajících požadavků
+Vytvoří se, když požadavek chce být obsloužen již obsazeným zařízením. Pro
+fronty jsou typické:
++ Způsob řazení požadavků (FIFO, LIFO, \dots)
++ Způsob výběru požadavků z fronty
++ Největší možná délka fronty
+
+Definujeme pojmy:
++ Nulová fronta - Požadavek nesmí vstoupit do fronty, jedná se o systém se ztrátami
++ Konečná fronta - Omezuje kapacitu fronty
++ Fronta s netrpělivými požadavky - Netrpělivý požadavek opouští systém,
+  dojde-li k timeoutu.
+
+*** Prioritní fronty, priorita obsluhy
+U jedné obslužné linky může být více front s různými prioritami, prioritních
+úrovní může být více. Přicházející požadavky nejsou rovnocenné.
 ** SIMLIB
 
 * Spojitá simulace
