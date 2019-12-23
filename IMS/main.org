@@ -370,26 +370,26 @@ Modelujeme-li více zařízení stejného typu, pak každé zařízení má vlas
 nebo k zařízením vede jedna fronta.
 ** SIMLIB
 V knihovně simlib definujeme následující prostředky pro diskrétní modelování:
-+ Process -- Modelování procesů
-+ Event -- Modelování událostí
-+ Facility -- Obslužná linka s výlučným přístupem
-+ Store -- Obslužná linka s kapacitou
-+ Queue -- Fronta
++ ~Process~ -- Modelování procesů
++ ~Event~ -- Modelování událostí
++ ~Facility~ -- Obslužná linka s výlučným přístupem
++ ~Store~ -- Obslužná linka s kapacitou
++ ~Queue~ -- Fronta
 + Statistiky
 
-Při modelování je ve funkci main potřeba zavolat funkci \texttt{Init},
+Při modelování je ve funkci main potřeba zavolat funkci ~Init~,
 která inicializuje simulátora a nastaví počáteční a koncový modelový čas.
 
-Pro zahájení simulace se využívá funkce Run.
+Pro zahájení simulace se využívá funkce ~Run~.
 
-Modelový čas programu reprezenutjeme globální proměnnou \texttt{double Time},
+Modelový čas programu reprezenutjeme globální proměnnou ~double Time~,
 která je ovládána výhradně jádrem simulátoru a nelze do ní zapisovat.
 
 SIMLIB poskytuje generátory pseudonáhodných čísel:
-+ double Random() -- Rovnoměrné rozdělení mezi 0, 1
-+ double Uniform(double L, double H) -- Rovnoměrné rozdělení mezi L a H
-+ double Exponential(double E) -- Exponenciální rozdělení se středem E
-+ double Normal(double M, double S) -- Normální rozložení se středem M
++ ~double Random()~ -- Rovnoměrné rozdělení mezi 0, 1
++ ~double Uniform(double L, double H)~ -- Rovnoměrné rozdělení mezi L a H
++ ~double Exponential(double E)~ -- Exponenciální rozdělení se středem E
++ ~double Normal(double M, double S)~ -- Normální rozložení se středem M
   a rozptylem S.
 
 Použití událostí je provedeno následovně:
@@ -459,8 +459,217 @@ while ( !empty(kalendar) ) {  // Dokud je kalendář neprázdný
 
 * Spojitá simulace
 ** Úvod
+Spojíté systémy jsou popsány:
++ Soustavami obyčejných diferenciálních rovnic
++ Soustavami algebraických rovnic
++ Algebraicko-diferenciálními rovnicemi
++ Blokovými schematy
++ Parciálními diferenciálními rovnicemi
++ Grafy signálových toků
++ Elektrickými schematy
++ ...
+
+Soustavy diferenciálních rovnic mogou být popsány maticově:
+
+\begin{align*}
+\frac{d}{dt}\vec{w}(t) &= A(t)\vec{w}(t) + B(t)\vec{x}(t) \\
+\vec{y}(t) &= C(t)\vec{w}(t) + D(t)\vec{x}(t)
+\end{align*}
+
+kde $\vec{x}$ je vektor vstupů, $\vec{w}$ je vektor stavových proměnných,
+$\vec{y}$ je vektor výstupů a A, B, C, D jsou matice koeficientů.
+
+Koeficienty mohou být nezávislé na čase (stacionární systémy), časové proměnné,
+konstanty (lineární systémy), nelineární funkce.
+
+** Převod rovnic vyššího řádu
+Rovnice vyššího řádu musíme převést na soustavu rovnic prvního řádu, pro které
+máme vhodné numerické metody.
+
+*** Metoda snižování řádu derivace
+1. Osamostatníme nejvyšší řád derivace
+2. Zapojíme všechny integrátory za sebe a ke vstupu prvního připojíme pravou
+   stranu
+
+Podmínka: nesmí být derivace vstupů
+
+*Příklad*
+\begin{align*}
+y'' - 2y' + y &= x \\
+y'' &= 2y' - y' + x \\
+y' &= \int y'' \\
+y &= \int y'
+\end{align*}
+
+Metoda snižování řádu derivace má typický tvar plokového schématu.
+
+Je nutné dát pozor na počáteční podmínky.
+
+*** Metoda postupné integrace
+Vhodná pro rovnice s derivacemi vstupů.
+
+1. Osamostatníme nejvyšší řád derivace
+2. Postupně integrujeme rovnice a zavádíme nové stavové podmínky
+3. Vypořítáváme nové počáteční podmínky
+
+*Příklad*
+\begin{align*}
+p^2y &= p^2x + p(3x-2y) + (2x-y) \\
+py   &= px + (3x-2y) + \frac{1}{p}(2x-y) \text{, proměnná $w_1 = \frac{1}{p}(2x-y)$} \\
+py   &= px + 3x-2y + w_1 \\
+y    &= x + \frac{1}{p}(3x - 2y + w_1) \text{, proměnná $w_2 = \frac{1}{p}(3x - 2y + w_1)$} \\
+y    &= x + w_2 \\
+\\
+w_1 &= \frac{1}{p}(2x-y) \text{, $w_1(0) = y'(0) - x'(0) - 3x(0) + 2y(0)$} \\
+w_2 &= \frac{1}{p}(3x-2y+w_1) \text{, $w_2(0) = y(0) - x(0)$} \\
+y &= x + w_2
+
+\end{align*}
+
 ** Numerické metody
+Potřebujeme metody pro řešení obyčejných diferenciálních rovnic prvního řádu a
+řešení algebraických rovnic (hledání kořenů, řešená rychlých smyček)
+
+Hledáme řešení rovnice:
+
+\begin{equation}
+y' = f(t,y)
+\end{equation}
+
+které má tvar:
+
+\begin{equation}
+y(T) = y_0 + \int_0^T f(t,y)dt
+\end{equation}
+
+Na počítači je řešení aproximováno v bodech $t_0, t_1, t_2,\dots$.
+
+Definujeme integrační krok $h_i = t_{i+1} - t_i$
+
+Rozlišujeme metody *jednokrokové* (vycházejí jen za aktuálního stavu) a
+*vícekrokové* (používají historii stavů a vstupů).
+
+Dále dělíme metody na *explicitní* (výsledek získán dosazením do vzorce) a
+*implicitní* (vyžaduje řešení algebraických rovnic v každém kroku).
+
+*** Runge-Kutta 2. řádu
+\begin{align*}
+k_1 &= hf(t,y(t)) \\
+k_2 &= hf(t + \frac{h}{2}, y(t) + \frac{k_1}{2}) \\
+y(t+h) &= y(t) + k_2
+\end{align*}
+
+#+BEGIN_SRC c
+#define SIZE 2
+
+// Popis spojitého systému
+// Vstupy: t = začátek kroku
+//         y = stavový vektor (výstupy integrátoru)
+// Výstup: yin = vektor derivací (vstupy integrátoru)
+void f(double t, double *y, double *yin);
+
+// Krok metody Runge-Kutta 2. řádu
+// Vstupy : t počáteční čas
+//          h délka kroku
+//          y stavový vektor
+// Výstup : y nový stavový vektor
+void RK2step(double t, double h, double *y) {
+    double yin[SIZE];  // Vstup integrátoru
+    double ystart[SIZE]; // Počáteční stav
+
+    double k1[SIZE];
+    double k2[SIZE];
+
+    int i;
+
+    for (i = 0; i < SIZE; i++) {
+        ystart[i] = y[i];
+    }
+
+    f(t, y, yin);  // yin = f(t, y(t))
+
+    for (i = 0; i < SIZE; i++) {
+        k1[i] = h * yin[i];  // k1 = h * f(t, y(t))
+        y[i] = ystart[i] + k1[i] / 2;  // y(t) + k1/2
+    }
+
+    f(t + h / 2, y, yin);  // yin = f(t+h/2, y(t)+k1/2)
+
+    for (i = 0; i < SIZE; i++) {
+        k2[i] = h * yin[i];  // k2 = h * f(ft+h/2, y(t)+k1/2)
+
+        // Result :
+        y[i] = ystart[i] + k2[i];
+    }
+}
+
+int main(void) {
+    double y[SIZE] = {0,1};
+    double stepsize = 0.1;
+
+    double t = 0;
+
+    while (t < 20) {
+        RK2step(t, stepsize, y);
+        t += stepsize;
+    }
+}
+#+END_SRC
+
+*** Runge-Kutta 4. řádu
+\begin{align*}
+k_1 &= hf(t, y(t)) \\
+k_2 &= hf(t + \frac{h}{2}, y(t) + \frac{k_1}{2}) \\
+k_3 &= hf(t + \frac{h}{2}, y(t) + \frac{k_2}{2}) \\
+k_4 &= hf(t + h, y(t) + k_3) \\
+y(t+h) &= y(t) + \frac{k_1}{6} + \frac{k_2}{3} + \frac{k_3}{3} + \frac{k_4}{6}
+\end{align*}
+
+** Vlastnosti integračních metod
+*** Chyba
+1. Lokální -- zaokrouhlovací (round-off) nebo chyba aproximace (truncation)
+2. Akumulovaná
+
+*** Stabilita
+Stabilita numerického řešení, vliv velikosti integračního kroku na stabilitu.
+Některé metody mají malou oblast stability.
+
+** Tuhé systémy
+Tuhé systémy mají problém velmi rozdílných časových konstant. Například:
+
+\begin{equation}
+y'' + 101y' + 100y = 0
+\end{equation}
+
+Pro tuhé systémy se používájí speciální integrační metody.
+
+Nelze použít zkrácení kroku, vede k akumulaci chyb a malé efektivitě výpočtu.
+
+** Výběr integrační metody
+Obvykle vyhovuje některá varianta metody Runge-Kutta 4. řádu. Nespojitosti ve
+funkci popisující systém snižují efektivitu vícekrokových metod. Pro ověření
+správosti je třeba vyzkoušet různé integrační metody a různé velikosti kroku.
+Existuje horní limit velikosti kroku.
+
+** Rychlé smyčky
+Cyklus v grafu závislosti funkčních bloků. Dá se řešit speciálním blokem, který
+(například iteračně řeší algebraické rovnice) nebo přepracováním na model bez
+smyček (například vložení integrátoru).
+
 ** SIMLIB
+SIMLIB definuje automatickou konstrukci výrazových stromu pmocí třídy
+~Expression~.
+
+*** Vybrané třídy a funkce v SIMLIB
++ ~Constant~
++ ~Parameter~
++ ~Variable~
++ ~Function~, ~Sin~, ~Exp~ ...
++ ~Integrator~
++ ~Sampler~
++ ~SetStep(minstep, maxstep~
++ ~SetAccuracy(abs, rel)~
++ ~SetMethod~
 
 * Kombinovaná simulace
 ** Úvod
