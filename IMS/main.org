@@ -673,8 +673,117 @@ SIMLIB definuje automatickou konstrukci výrazových stromu pmocí třídy
 
 * Kombinovaná simulace
 ** Úvod
-** SIMLIB
+Spojuje diskrétní a spojitou simulaci. Řeší problém kombinace událostí a
+numerické integrace. Detekuje změny stavových podmínek a na jejich základě
+způsobuje stavovou událost. Musí provádět zkracování kroku, aby došlo k
+dokročení na stavovou událost.
 
+*** Stavové podmínky
+Stavovou událost nelze naplánovat, stane se po dosažení zadané hodnoty spojité
+veličiny. Může nastat problém detekce stavové události na základě nepřesnosti
+výpočtu nebo při použití příliš dlouhého kroku (překročení).
+
+*** Algoritmus řízení simulace pro kombinovanou simulaci
+#+BEGIN_SRC c++
+// Inicializace stavu a podmínek
+// ...
+
+while (Time < t_end) {
+    state.save();  // Uložení stavu
+    time.save();  // Uložení času
+
+    IntegrateStep();  // Krok numerické integrace
+    time += t;  // Posun času
+
+    cond.check(); // Vyhodnocení podmínek
+
+    if ( cond.changed() ) {
+        if (step <= min_step) {
+            cond.confirm();  // Potvrzení změn podmínek
+            event();  // Stavová událost
+            step = step_standard;  // Nastavení velikosti kroku na běžnou velikosti
+        }
+        else {
+            state.restore();  // Obnovení stavu
+            time.restore();  // Obnovení času
+
+            step = step / 2;  // Zkrácení kroku
+            if ( step < min_step ) {
+                step = min_step;  // Dokročení
+            }
+        }
+    }
+}
+#+END_SRC
+
+Tento pseudokód patří do algoritmu next-event místo příkazu ~Time =
+next_event_time~.
+** SIMLIB
+Pro vyjádření stavových podmínek se používají speciální abstraktní třídy:
++ ~Condition~ -- Detekuje jakoukoli změnu
++ ~ConditionUp~ -- Detekuje změnu z false na true
++ ~ConditionDown~ -- Detekuje změnu z true na false
+
+Odvozené třídy definují metodu ~void Action()~ s popisem stavové události.
+
+** Simulace číslicových systémů
+Dle úrovně popisu můžeme dělit:
++ Elektrické -- Tranzistory, rezistory, kondenzátory
++ Logické -- Hradla, klopné obvody
++ Meziregistrové přenosy -- Čítače, řadiče, ALU
++ Systémové -- Procesory, paměti, periferie
+
+Modely signálů se dělí podle hodnot, kterých může signál nabývat. Nejčastěji se
+používají dvouhodnotové, třáhodnotové, pětihodnotové a devítihodnotové (VHDL
+std_logic).
+
+V číslicových systémech modelujeme zpoždění. Zpoždění může být nulové,
+jednotkové, přiřaditelné nebo přesné.
+
+Simulační algoritmus je řízen událostmi. Může nastat problém velkého množství
+událostí v kalendáři. Řešením je selektivní sledování pomocí dvoufázového
+algoritmu, který vyhodnocuje jen prvky, které jsou ovlivněny změnou na vstupu.
+
+*** Zjednodušený algoritmus řízení simulace číslicových obvodů
+Dokud jsou v kalendáři události, vybírej včechny plánované události na čas T.
+Aktualizuj hodnoty signálu, přidej všechny prvky připojené k signálu do množiny
+M. Následně pro všechny prvky v množině M vyhodnoť a pokud dojde ke změně jeho
+výstupu, naplánuj novou událost.
+
+* Celulární automaty
+** Úvod
+Celulární automat je typicky diskrétní systém, obsahující následující prvky:
++ Buňky (cell) -- Základní element, který může být v jednom z konečného množství stavů.
++ Pole buněk (lattice) -- N-rozměrné pole, které může být nekonečné.
++ Okolí (neighbourhood) -- Liší se počtem a pozicí okolních buněk, se kterými spolupracuje.
++ Pravidla (rules) -- Funkce stavu buňky a jejího okolí definující nový stav
+  buňky v čase.
+
+Mezi základní typy okolí patří Von Neumannovo 4-okolí, Mooreovo 8-okolí a
+Margolovo okolí.
+
+Celulární automat s konečným polem buněk musí definovat okrajové podmínky. Mezi
+typy okrajových podmínek patří periodické (na okraji je hodnota buňky na opačném
+okraji), pevné (na okraji je pevně zvolená hodnota), adiabatické (na okraji je
+hodnota vedlejší buňky) a reflektivní (na okraji je hodnota předposlední buňky).
+
+Celulární automaty se mohou implementovat několika způsoby:
+1. Přímá implementace -- Každá buňka uložena zvlášť v poli
+2. Implementace vyhledávací tabulkou -- Tabulka obsahuje jen nenulové buňky
+3. SIMD styl implementace -- Více buněk v jedné proměnné, použití bitových operací
+4. Hash life implementece -- Cachované, velmi optimalizované
+
+** Obecné vlastnosti CA
+Konfigurací CA rozumíme stav všech buněk. Stav se vyvíjí v čase a prostoru podle
+zadaných pravidel. Čas i prostor jsou diskretizovány. Počet stavů buňky je
+konečný. Buňky jsou identické. Následující stav buňky závisí pouze na aktuálním
+stavu.
+
+** Třídy CA
+1. Po konečném počtu kroků dosáhnou ustáleného stavu
+2. Dosáhnou periodického opakování nebo zůstanou stabilní
+3. Chaotické chování, výsledné posloupnosti konfigurací tvoří fraktální útvary
+4. Kombinace běžného a chaotického chování. Nejsou reverzibilní
 * Footnotes
 
 [fn:continuous] Na číslicovém počítači se vždy diskretizuje
