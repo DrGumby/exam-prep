@@ -103,3 +103,31 @@ Je závislé na konkrétní aplikaci. Příklady:
 + SNMP: 1.3.6.1.2.1.2.1 (ifNumber)
 + LDAP: cn=login, ou=Students, dc=vutbr, dc=cz
 + FTP: /public/index.txt
+
+* Základní nástroje pro konfiguraci
+** Výpis aktuálního síťového nastavení
++ ~ifconfig~, ~ip link~, ~ip address~ (Linux)
++ ~ipconfig~ (Windows)
+
+** Testování základní konektivity
++ ~ping~, ~pathping~
+
+** Kontrola směrování
++ ~netstat -r~, ~ip route~ : Vypíše směrovací tabulku
++ ~arp -a~, ~ip neigh~ : Vypíše tabulku ARP, respektive Neighbour Cache
+
+** Testování dosažitelnosti vzdáleného počítače
++ ~tracert~, ~traceroute~, ~tcptraceroute~
+
+** Testování dostupnosti služeb
++ ~telnet <addr> <port>~
+
+** Výpis otevřených spojení
++ ~sockstat~ (FreeBSD)
++ ~netstat -natu~ (Linux)
++ ~netstat -a~ (Windows)
+
+** Sledování komunikace na síťovém rozhraní
++ ~tcpdump~
++ ~tshark~
++ Wireshark (GUI1)
