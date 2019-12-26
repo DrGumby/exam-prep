@@ -131,3 +131,53 @@ Je závislé na konkrétní aplikaci. Příklady:
 + ~tcpdump~
 + ~tshark~
 + Wireshark (GUI1)
+* Programování sítí TCP/IP
+** Komunikace klient -- server
+Jedná se o standardní schema komunikace mezi dvěma procesy. Komunikace je
+popsána protokolem. Klient posílá požadavky na zpracování serveru, ten je
+zpracuje a pošle odpověď. Komunikace je obvykle zahájena klientem.
+
+Protokol je soubor syntaktických a sématnických pravidel určujících výměnu dat.
+Popisuje vytvoření spojení, adresování, přenos dat, řízení toku, zabezpečení.
+Formálně je protokol specifikován stavovými automaty, gramatikami, formálními
+jazyky, Petriho sítěmi, diagramy posloupnosti zpráv nebo algebraickými
+prostředky.
+
+** Prostředky pro meziprocesovou komunikaci
+Unixové roury, Unix to Unix copy, Remote Procedure Call, BSD sockets, Winsock.
+
+** Sockety
+Aplikační programové rozhraní pro komunikující procesy. Definují konečný
+komunikační bod. Implementovány jako abstraktní datové struktury obsahující
+údaje pro komunikaci. Jsou jednoznačně implementovány v síti pomocí IP adresy a
+čísla portu. Jsou implementovány ve většině programovacích jazyků.
+
+Vytvářejí rozhraní na vrstvě L4 (transportní). Rozlišujeme několik typů
+schránek. Základní typy jsou:
+
+1. ~SOCK_STREAM~ (TCP komunikace)
+2. ~SOCK_DGRAM~ (UDP datagramy)
+3. ~SOCK_RAW~ (Holá schránka bez žádného protokolu. Nutno vyplnit všechny
+   hlavičky ručně)
+
+*** Funkce v BSD socketech pro vytvoření konkurentního serveru TCP
+1. ~socket()~ -- Vytvoří schránku
+2. ~bind()~ -- Připojení schránky na lokální port
+3. ~listen()~ -- Vytrvoření fronty příchozích požadavků
+4. ~accept()~ -- Přijímání požadavků
+5. ~fork()~ -- Vytvoření synovského procesu
+6. ~read(), write()~ -- Výměna dat v rámci synovského procesu
+7. ~close()~ -- Zavření schránky synovského procesu
+8. ~exit()~ -- Ukončení synovského procesu
+9. ~close()~ -- Uzavření schránky rodičovského procesu
+
+*** UDP schránky
+Když neběží UDP server, klient pošle zprávu pomocí ~sendto()~, čeká na odpověď
+pomocí ~recvfrom()~. Dojde ale k uváznutí, protože UDP neposkytuje možnosti, jak
+oznámit nedostupný port. Možná řešení jsou použití timeoutu nebo spojovaných UDP
+schránek.
+
+Spojované UDP schránky používají funkci ~connect()~, nedochází ale k vytvoření
+TCP spojení, pouze se zpracovávají chyby. Funkce ~connect()~ zjistí aktuální
+stav serveru, v budoucnu však může dojít k ukončení činnosti UDP serveru a
+klient to nezjístí. Funkce ~connect()~ se tak může volat opakovaně.

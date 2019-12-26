@@ -4,7 +4,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-12-26 Thu 12:00 -->
+<!-- 2019-12-26 Thu 12:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Síťové aplikace a správa sítí</title>
@@ -254,48 +254,60 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge87ec0e">1. Architektura sítí</a>
+<li><a href="#orgc2f2f10">1. Architektura sítí</a>
 <ul>
-<li><a href="#org163f435">1.1. Model OSI</a></li>
-<li><a href="#orga0842bb">1.2. Model IEEE</a></li>
-<li><a href="#org9aba195">1.3. Model TCP/IP</a></li>
+<li><a href="#org2af95e3">1.1. Model OSI</a></li>
+<li><a href="#org0c93973">1.2. Model IEEE</a></li>
+<li><a href="#org1e638b2">1.3. Model TCP/IP</a></li>
 </ul>
 </li>
-<li><a href="#org41788b1">2. Adresování</a>
+<li><a href="#org3ac5cdd">2. Adresování</a>
 <ul>
-<li><a href="#org3555355">2.1. Adresa</a></li>
-<li><a href="#org130184b">2.2. Adresování a směrování v modelu TCP/IP</a></li>
-<li><a href="#org734b634">2.3. Adresování a směrování na fyzickém rozhraní (L2)</a>
+<li><a href="#orgb691d35">2.1. Adresa</a></li>
+<li><a href="#org89673da">2.2. Adresování a směrování v modelu TCP/IP</a></li>
+<li><a href="#org2f1ea35">2.3. Adresování a směrování na fyzickém rozhraní (L2)</a>
 <ul>
-<li><a href="#orgb7145e9">2.3.1. Speciální adresy L2 vrstvy</a></li>
+<li><a href="#orgf0515be">2.3.1. Speciální adresy L2 vrstvy</a></li>
 </ul>
 </li>
-<li><a href="#orgd39581a">2.4. Adresování a směrování na síťové (IP) vrstvě</a>
+<li><a href="#org37fcfe1">2.4. Adresování a směrování na síťové (IP) vrstvě</a>
 <ul>
-<li><a href="#org8337792">2.4.1. Přidělování adres</a></li>
+<li><a href="#org114999c">2.4.1. Přidělování adres</a></li>
 </ul>
 </li>
-<li><a href="#org8e42005">2.5. Adresování a směrování na transportní vrstvě</a></li>
-<li><a href="#orgec0f42c">2.6. Adresování na aplikační vrstvě</a></li>
+<li><a href="#org33cbc87">2.5. Adresování a směrování na transportní vrstvě</a></li>
+<li><a href="#orge41ca17">2.6. Adresování na aplikační vrstvě</a></li>
 </ul>
 </li>
-<li><a href="#org6faa9de">3. Základní nástroje pro konfiguraci</a>
+<li><a href="#orgafd67ab">3. Základní nástroje pro konfiguraci</a>
 <ul>
-<li><a href="#org64997d7">3.1. Výpis aktuálního síťového nastavení</a></li>
-<li><a href="#org64a4b58">3.2. Testování základní konektivity</a></li>
-<li><a href="#org7cf05e4">3.3. Kontrola směrování</a></li>
-<li><a href="#org6082fb8">3.4. Testování dosažitelnosti vzdáleného počítače</a></li>
-<li><a href="#org50d7545">3.5. Testování dostupnosti služeb</a></li>
-<li><a href="#org80b7907">3.6. Výpis otevřených spojení</a></li>
-<li><a href="#org833992a">3.7. Sledování komunikace na síťovém rozhraní</a></li>
+<li><a href="#orgdfbfa68">3.1. Výpis aktuálního síťového nastavení</a></li>
+<li><a href="#orga1ae8f1">3.2. Testování základní konektivity</a></li>
+<li><a href="#orge95b0ab">3.3. Kontrola směrování</a></li>
+<li><a href="#org3f55b2d">3.4. Testování dosažitelnosti vzdáleného počítače</a></li>
+<li><a href="#org9e3bbe1">3.5. Testování dostupnosti služeb</a></li>
+<li><a href="#org44308d4">3.6. Výpis otevřených spojení</a></li>
+<li><a href="#orgebc55cd">3.7. Sledování komunikace na síťovém rozhraní</a></li>
+</ul>
+</li>
+<li><a href="#org0aae977">4. Programování sítí TCP/IP</a>
+<ul>
+<li><a href="#org121a8fb">4.1. Komunikace klient &#x2013; server</a></li>
+<li><a href="#orgc5b2ee0">4.2. Prostředky pro meziprocesovou komunikaci</a></li>
+<li><a href="#orgc874a11">4.3. Sockety</a>
+<ul>
+<li><a href="#orge093dc0">4.3.1. Funkce v BSD socketech pro vytvoření konkurentního serveru TCP</a></li>
+<li><a href="#orgd0b0b0f">4.3.2. UDP schránky</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge87ec0e" class="outline-2">
-<h2 id="orge87ec0e"><span class="section-number-2">1</span> Architektura sítí</h2>
+<div id="outline-container-orgc2f2f10" class="outline-2">
+<h2 id="orgc2f2f10"><span class="section-number-2">1</span> Architektura sítí</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Vrstvový model definuje síťové vrstvy.
@@ -316,8 +328,8 @@ identifikovány IP adresou a číslem portu.
 </div>
 
 
-<div id="outline-container-org163f435" class="outline-3">
-<h3 id="org163f435"><span class="section-number-3">1.1</span> Model OSI</h3>
+<div id="outline-container-org2af95e3" class="outline-3">
+<h3 id="org2af95e3"><span class="section-number-3">1.1</span> Model OSI</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Model OSI definuje 7 vrstev:
@@ -335,8 +347,8 @@ Model OSI definuje 7 vrstev:
 </div>
 </div>
 
-<div id="outline-container-orga0842bb" class="outline-3">
-<h3 id="orga0842bb"><span class="section-number-3">1.2</span> Model IEEE</h3>
+<div id="outline-container-org0c93973" class="outline-3">
+<h3 id="org0c93973"><span class="section-number-3">1.2</span> Model IEEE</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Model IEEE definuje 2 vrstvy:
@@ -349,8 +361,8 @@ Model IEEE definuje 2 vrstvy:
 </div>
 </div>
 
-<div id="outline-container-org9aba195" class="outline-3">
-<h3 id="org9aba195"><span class="section-number-3">1.3</span> Model TCP/IP</h3>
+<div id="outline-container-org1e638b2" class="outline-3">
+<h3 id="org1e638b2"><span class="section-number-3">1.3</span> Model TCP/IP</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Definuje 4 vrstvy:
@@ -366,12 +378,12 @@ Definuje 4 vrstvy:
 </div>
 </div>
 
-<div id="outline-container-org41788b1" class="outline-2">
-<h2 id="org41788b1"><span class="section-number-2">2</span> Adresování</h2>
+<div id="outline-container-org3ac5cdd" class="outline-2">
+<h2 id="org3ac5cdd"><span class="section-number-2">2</span> Adresování</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org3555355" class="outline-3">
-<h3 id="org3555355"><span class="section-number-3">2.1</span> Adresa</h3>
+<div id="outline-container-orgb691d35" class="outline-3">
+<h3 id="orgb691d35"><span class="section-number-3">2.1</span> Adresa</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Adresa je způsob identifikace adresáta pomocí jednoznačné informace
@@ -379,8 +391,8 @@ Adresa je způsob identifikace adresáta pomocí jednoznačné informace
 </div>
 </div>
 
-<div id="outline-container-org130184b" class="outline-3">
-<h3 id="org130184b"><span class="section-number-3">2.2</span> Adresování a směrování v modelu TCP/IP</h3>
+<div id="outline-container-org89673da" class="outline-3">
+<h3 id="org89673da"><span class="section-number-3">2.2</span> Adresování a směrování v modelu TCP/IP</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Každá vrstva modelu TCP/IP definuje svoje adresování a zajišťuje určitou formu
@@ -389,8 +401,8 @@ směrování. Některé služby používají mapování adres mezi vrstvami.
 </div>
 </div>
 
-<div id="outline-container-org734b634" class="outline-3">
-<h3 id="org734b634"><span class="section-number-3">2.3</span> Adresování a směrování na fyzickém rozhraní (L2)</h3>
+<div id="outline-container-org2f1ea35" class="outline-3">
+<h3 id="org2f1ea35"><span class="section-number-3">2.3</span> Adresování a směrování na fyzickém rozhraní (L2)</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Adresuje se konkrétní síťové rozhraní počítače. To je identifikováno 48bitovou
@@ -408,8 +420,8 @@ přiděleného výrobcem karty. L2 rámec obsahuje:
 </ul>
 </div>
 
-<div id="outline-container-orgb7145e9" class="outline-4">
-<h4 id="orgb7145e9"><span class="section-number-4">2.3.1</span> Speciální adresy L2 vrstvy</h4>
+<div id="outline-container-orgf0515be" class="outline-4">
+<h4 id="orgf0515be"><span class="section-number-4">2.3.1</span> Speciální adresy L2 vrstvy</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>Broadcast: <code>FF FF FF FF FF FF</code></li>
@@ -420,8 +432,8 @@ přiděleného výrobcem karty. L2 rámec obsahuje:
 </div>
 </div>
 
-<div id="outline-container-orgd39581a" class="outline-3">
-<h3 id="orgd39581a"><span class="section-number-3">2.4</span> Adresování a směrování na síťové (IP) vrstvě</h3>
+<div id="outline-container-org37fcfe1" class="outline-3">
+<h3 id="org37fcfe1"><span class="section-number-3">2.4</span> Adresování a směrování na síťové (IP) vrstvě</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Používá se 32bitová IPv4 adresa nebo 128bitová IPv6 adresa. IP adresa
@@ -440,8 +452,8 @@ vytváří se podsítě (subnetting). Používá se beztřídní směrování.
 </p>
 </div>
 
-<div id="outline-container-org8337792" class="outline-4">
-<h4 id="org8337792"><span class="section-number-4">2.4.1</span> Přidělování adres</h4>
+<div id="outline-container-org114999c" class="outline-4">
+<h4 id="org114999c"><span class="section-number-4">2.4.1</span> Přidělování adres</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 Přidělení IP adres může být provedeno buď manuálně v operačním systému nebo
@@ -467,8 +479,8 @@ směrovač zprávou ICMPv6 RA. Typ konfigurace může být:
 </div>
 </div>
 
-<div id="outline-container-org8e42005" class="outline-3">
-<h3 id="org8e42005"><span class="section-number-3">2.5</span> Adresování a směrování na transportní vrstvě</h3>
+<div id="outline-container-org33cbc87" class="outline-3">
+<h3 id="org33cbc87"><span class="section-number-3">2.5</span> Adresování a směrování na transportní vrstvě</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Adresuje je konkrétní služba pomocí 16b čísla portu (uvedena v <code>/etc/services</code>).
@@ -478,8 +490,8 @@ spojované (TCP) a nespojované (UDP) služby.
 </div>
 </div>
 
-<div id="outline-container-orgec0f42c" class="outline-3">
-<h3 id="orgec0f42c"><span class="section-number-3">2.6</span> Adresování na aplikační vrstvě</h3>
+<div id="outline-container-orge41ca17" class="outline-3">
+<h3 id="orge41ca17"><span class="section-number-3">2.6</span> Adresování na aplikační vrstvě</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 Je závislé na konkrétní aplikaci. Příklady:
@@ -497,12 +509,12 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org6faa9de" class="outline-2">
-<h2 id="org6faa9de"><span class="section-number-2">3</span> Základní nástroje pro konfiguraci</h2>
+<div id="outline-container-orgafd67ab" class="outline-2">
+<h2 id="orgafd67ab"><span class="section-number-2">3</span> Základní nástroje pro konfiguraci</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org64997d7" class="outline-3">
-<h3 id="org64997d7"><span class="section-number-3">3.1</span> Výpis aktuálního síťového nastavení</h3>
+<div id="outline-container-orgdfbfa68" class="outline-3">
+<h3 id="orgdfbfa68"><span class="section-number-3">3.1</span> Výpis aktuálního síťového nastavení</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><code>ifconfig</code>, <code>ip link</code>, <code>ip address</code> (Linux)</li>
@@ -511,8 +523,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org64a4b58" class="outline-3">
-<h3 id="org64a4b58"><span class="section-number-3">3.2</span> Testování základní konektivity</h3>
+<div id="outline-container-orga1ae8f1" class="outline-3">
+<h3 id="orga1ae8f1"><span class="section-number-3">3.2</span> Testování základní konektivity</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><code>ping</code>, <code>pathping</code></li>
@@ -520,8 +532,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org7cf05e4" class="outline-3">
-<h3 id="org7cf05e4"><span class="section-number-3">3.3</span> Kontrola směrování</h3>
+<div id="outline-container-orge95b0ab" class="outline-3">
+<h3 id="orge95b0ab"><span class="section-number-3">3.3</span> Kontrola směrování</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li><code>netstat -r</code>, <code>ip route</code> : Vypíše směrovací tabulku</li>
@@ -530,8 +542,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org6082fb8" class="outline-3">
-<h3 id="org6082fb8"><span class="section-number-3">3.4</span> Testování dosažitelnosti vzdáleného počítače</h3>
+<div id="outline-container-org3f55b2d" class="outline-3">
+<h3 id="org3f55b2d"><span class="section-number-3">3.4</span> Testování dosažitelnosti vzdáleného počítače</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li><code>tracert</code>, <code>traceroute</code>, <code>tcptraceroute</code></li>
@@ -539,8 +551,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org50d7545" class="outline-3">
-<h3 id="org50d7545"><span class="section-number-3">3.5</span> Testování dostupnosti služeb</h3>
+<div id="outline-container-org9e3bbe1" class="outline-3">
+<h3 id="org9e3bbe1"><span class="section-number-3">3.5</span> Testování dostupnosti služeb</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li><code>telnet &lt;addr&gt; &lt;port&gt;</code></li>
@@ -548,8 +560,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org80b7907" class="outline-3">
-<h3 id="org80b7907"><span class="section-number-3">3.6</span> Výpis otevřených spojení</h3>
+<div id="outline-container-org44308d4" class="outline-3">
+<h3 id="org44308d4"><span class="section-number-3">3.6</span> Výpis otevřených spojení</h3>
 <div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
 <li><code>sockstat</code> (FreeBSD)</li>
@@ -559,8 +571,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org833992a" class="outline-3">
-<h3 id="org833992a"><span class="section-number-3">3.7</span> Sledování komunikace na síťovém rozhraní</h3>
+<div id="outline-container-orgebc55cd" class="outline-3">
+<h3 id="orgebc55cd"><span class="section-number-3">3.7</span> Sledování komunikace na síťovém rozhraní</h3>
 <div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li><code>tcpdump</code></li>
@@ -570,10 +582,102 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 </div>
+<div id="outline-container-org0aae977" class="outline-2">
+<h2 id="org0aae977"><span class="section-number-2">4</span> Programování sítí TCP/IP</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org121a8fb" class="outline-3">
+<h3 id="org121a8fb"><span class="section-number-3">4.1</span> Komunikace klient &#x2013; server</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Jedná se o standardní schema komunikace mezi dvěma procesy. Komunikace je
+popsána protokolem. Klient posílá požadavky na zpracování serveru, ten je
+zpracuje a pošle odpověď. Komunikace je obvykle zahájena klientem.
+</p>
+
+<p>
+Protokol je soubor syntaktických a sématnických pravidel určujících výměnu dat.
+Popisuje vytvoření spojení, adresování, přenos dat, řízení toku, zabezpečení.
+Formálně je protokol specifikován stavovými automaty, gramatikami, formálními
+jazyky, Petriho sítěmi, diagramy posloupnosti zpráv nebo algebraickými
+prostředky.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc5b2ee0" class="outline-3">
+<h3 id="orgc5b2ee0"><span class="section-number-3">4.2</span> Prostředky pro meziprocesovou komunikaci</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Unixové roury, Unix to Unix copy, Remote Procedure Call, BSD sockets, Winsock.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc874a11" class="outline-3">
+<h3 id="orgc874a11"><span class="section-number-3">4.3</span> Sockety</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Aplikační programové rozhraní pro komunikující procesy. Definují konečný
+komunikační bod. Implementovány jako abstraktní datové struktury obsahující
+údaje pro komunikaci. Jsou jednoznačně implementovány v síti pomocí IP adresy a
+čísla portu. Jsou implementovány ve většině programovacích jazyků.
+</p>
+
+<p>
+Vytvářejí rozhraní na vrstvě L4 (transportní). Rozlišujeme několik typů
+schránek. Základní typy jsou:
+</p>
+
+<ol class="org-ol">
+<li><code>SOCK_STREAM</code> (TCP komunikace)</li>
+<li><code>SOCK_DGRAM</code> (UDP datagramy)</li>
+<li><code>SOCK_RAW</code> (Holá schránka bez žádného protokolu. Nutno vyplnit všechny
+hlavičky ručně)</li>
+</ol>
+</div>
+
+<div id="outline-container-orge093dc0" class="outline-4">
+<h4 id="orge093dc0"><span class="section-number-4">4.3.1</span> Funkce v BSD socketech pro vytvoření konkurentního serveru TCP</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<ol class="org-ol">
+<li><code>socket()</code> &#x2013; Vytvoří schránku</li>
+<li><code>bind()</code> &#x2013; Připojení schránky na lokální port</li>
+<li><code>listen()</code> &#x2013; Vytrvoření fronty příchozích požadavků</li>
+<li><code>accept()</code> &#x2013; Přijímání požadavků</li>
+<li><code>fork()</code> &#x2013; Vytvoření synovského procesu</li>
+<li><code>read(), write()</code> &#x2013; Výměna dat v rámci synovského procesu</li>
+<li><code>close()</code> &#x2013; Zavření schránky synovského procesu</li>
+<li><code>exit()</code> &#x2013; Ukončení synovského procesu</li>
+<li><code>close()</code> &#x2013; Uzavření schránky rodičovského procesu</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgd0b0b0f" class="outline-4">
+<h4 id="orgd0b0b0f"><span class="section-number-4">4.3.2</span> UDP schránky</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+Když neběží UDP server, klient pošle zprávu pomocí <code>sendto()</code>, čeká na odpověď
+pomocí <code>recvfrom()</code>. Dojde ale k uváznutí, protože UDP neposkytuje možnosti, jak
+oznámit nedostupný port. Možná řešení jsou použití timeoutu nebo spojovaných UDP
+schránek.
+</p>
+
+<p>
+Spojované UDP schránky používají funkci <code>connect()</code>, nedochází ale k vytvoření
+TCP spojení, pouze se zpracovávají chyby. Funkce <code>connect()</code> zjistí aktuální
+stav serveru, v budoucnu však může dojít k ukončení činnosti UDP serveru a
+klient to nezjístí. Funkce <code>connect()</code> se tak může volat opakovaně.
+</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: John Doe</p>
-<p class="date">Created: 2019-12-26 Thu 12:00</p>
+<p class="date">Created: 2019-12-26 Thu 12:23</p>
 </div>
 </body>
 </html>
