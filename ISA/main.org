@@ -1,0 +1,105 @@
+#+TITLE: Síťové aplikace a správa sítí
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+* Architektura sítí
+Vrstvový model definuje síťové vrstvy.
+Každá vrstva určuje obecné funkce poskytované vyšším vrstvám.
+Funkce dané vrstvy jsou implementovány příslušnými protokoly dané vrstvy.
+Pro služby vyšší vrstvy je činnost nižších vrstev transparentní.
+
+Při komunikaci na vrstvách komunikující koncové body leží vždy ve stejné vrstvě
+a pro komunikaci se využívá služeb nižších vrstev.
+
+Procesy aplikační vrstvy komunikují pomocí socketů (schránek). Ty jsou
+identifikovány IP adresou a číslem portu.
+
+
+** Model OSI
+Model OSI definuje 7 vrstev:
+
+1. Fyzická vrstva
+2. Linková vrstva
+3. Síťová vrstva
+4. Transportní vrstva
+5. Vrstva sezení
+6. Prezentační vrstva
+7. Aplikační vrstva
+
+** Model IEEE
+Model IEEE definuje 2 vrstvy:
+
+1. MAC vrstva
+2. LLC vrstva
+
+** Model TCP/IP
+Definuje 4 vrstvy:
+
+1. Vrstva síťového rozhraní (fyzická a linková vrstva dle OSI)
+2. Internetová vrstva (síťová vrstva dle OSI)
+3. Transportní vrstva
+4. Aplikační vrstva
+
+* Adresování
+** Adresa
+Adresa je způsob identifikace adresáta pomocí jednoznačné informace
+
+** Adresování a směrování v modelu TCP/IP
+Každá vrstva modelu TCP/IP definuje svoje adresování a zajišťuje určitou formu
+směrování. Některé služby používají mapování adres mezi vrstvami.
+
+** Adresování a směrování na fyzickém rozhraní (L2)
+Adresuje se konkrétní síťové rozhraní počítače. To je identifikováno 48bitovou
+fyzickou adresou. Ta určuje adresování v lokální síti. Prvních 24 bitů je OUI
+(Organizational Unique Identifier), zbylých 24 bitů je číslo síťového rozhraní
+přiděleného výrobcem karty. L2 rámec obsahuje:
++ 7+1B preambule (synchronizace + typ)
++ 48b source address
++ 48b destination address
++ 16b ethertype
++ ... data ... (max 1500 B)
++ 32b checksum
+
+*** Speciální adresy L2 vrstvy
++ Broadcast: ~FF FF FF FF FF FF~
++ IPv4 multicast ~01 00 5e xx xx xx~
++ IPv6 multicast ~33 33 xx xx xx xx~
+
+** Adresování a směrování na síťové (IP) vrstvě
+Používá se 32bitová IPv4 adresa nebo 128bitová IPv6 adresa. IP adresa
+jednoznačně identifikuje síťové rozhraní počítače v síti. Je určena pro
+adresování i mimo lokální síť.
+
+IPv4 se může adresovat s využitím tříd (A, B, C, D, E). Používá se ~netid +
+hostid~. Délku části ~netid~ určuje pevná nebo proměnná maska.
+
+Při použití variabilní délky masky se prostor IPv4 adres dá efektivněji využít,
+vytváří se podsítě (subnetting). Používá se beztřídní směrování.
+
+*** Přidělování adres
+Přidělení IP adres může být provedeno buď manuálně v operačním systému nebo
+dynamicky pomocí DHCP.
+
+Pro IPv4 se používá protokol DHCPv4. Nové zařízení vyhledává DHCP server na
+lokální síti pomocí broadcastu.
+
+Pro IPv6 se používá více způsobů přidělování adres. Typ přidělení oznamuje
+směrovač zprávou ICMPv6 RA. Typ konfigurace může být:
+
+1. Bezstavová konfigurace pomocí SLAAC (Stateless Autoconfiguration)
+2. Bezstavová konfigurace pomocí SLAAC a DHCPv6
+3. Stavová konfigurace pomocí DHCPv6
+
+** Adresování a směrování na transportní vrstvě
+Adresuje je konkrétní služba pomocí 16b čísla portu (uvedena v ~/etc/services~).
+Číslo portu jednoznačně identifiuje službu na daném počítači. Rozlišujeme
+spojované (TCP) a nespojované (UDP) služby.
+
+** Adresování na aplikační vrstvě
+Je závislé na konkrétní aplikaci. Příklady:
++ Elektronická pošta: xlogin00@stud.fit.vutbr.cz
++ DNS: eva.fit.vutbr.cz
++ WWW: http://www.fit.vutbr.cz/index.html
++ IP telefonie: sip:login@cesnet.cz
++ SNMP: 1.3.6.1.2.1.2.1 (ifNumber)
++ LDAP: cn=login, ou=Students, dc=vutbr, dc=cz
++ FTP: /public/index.txt
