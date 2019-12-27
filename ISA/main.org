@@ -526,3 +526,186 @@ Protokol je zapouzdřen v IP. Využívá krypto hash MD5 a sdílený tajný klí
 Používá sekvenční číslo proti přehrání podepsaného paketu. Vstupem pro
 algoritmus MD5 je celý paket OSPF a tajný klíč. Pro OSPFv2 je použít pro
 autentizaci algoritmus HMAC-SHA
+
+* Domain Name System
+DNS je globální adresář názvů počítačů a dalších identifikátorů síťových
+zařízení a služeb
+
+DNS je tvořeno:
+1. Jmenným prostorem DNS adres a mapování adres na IP adresy
+2. Uložení prostoru jmen DNS a správa tohoto prostoru
+3. Přístup k datům v DNS a vyhledávání
+
+DNS je implementováno pomocí hierarchického rozdělení prostoru doménových jmen.
+Globální databáze DNS jmen je distribuována na servery. Pro DNS existuje
+stejnojmenný protokol, který přenáší data rezolucí DNS a přenosů zón.
+
+Hierarchické uspořádání je ve formě inverzního stromu.
+
+Pro vyhledání doménového jména dle IP adresy je vytvořena speciální doména
+~arpa~, která uchovává mapování.
+
+** Správa domén
+Globálně je DNS spravováno společností ICANN (Internet Corporation for Assigned
+Names and Numbers). ICANN akredituje registrátory dalších doménových jmen (Top
+Level Domain):
++ Národní: .cz, .uk, .de
++ Generické: .com, .edu, .org
+
+Domény první úrovně (TLD) spravuje IANA. Registrace národních domén spravuje
+národní správce domény. Za ČR je to CZ-NIC.
+
+Domény nižších úrovní spravuje vlastník domény (delegace domén).
+
+** Správa IP adres
+IP adresy jsou spravovány a registrovány regionálními registrátory (RIC). Pro
+Evropu a část Asie je to RIPE NCC. V jednotlívých státech spravují lokální
+registrátoři (LIR) a poskytovatelé připojení. V případě použití Provider
+Independent adres může koncový uživatel mít adresu přidělenou přímo od RIR,
+která je nezávislá na dalších registrátorech.
+
+** Whois
+Služba pro zjišťování vlastníka IP adresy.
+
+** DNS server
+Prostor doménových jmen fyzicky uložen na server DNS. Servery DNS obsahují
+informace o stromové struktuře i datech. Každý server spravuje jen část prostoru
+doménových jmen -- Zónu.
+
+Typy DNS serverů:
++ Primární (Master, primary) -- Obsahuje úplné (autoritativní) záznamy o
+  doménách. Pro každou doménu existuje pouze jeden primární nameserver
++ Sekundární (Slave, secondary) -- Uchovává autoritativní kopie dat od
+  primárních serverů (přenos zón)
++ Záložní (Caching-only) -- Pouze přijíma dotazy, které předává dalším serverům
+  DNS. Ukládá odpovědi do vyrovnávací paměti. Poskytuje neautoritativni
+  odpovědi.
+
+** Protokol DNS
+Aplikační protokol nad UDP, port 53.
+
+Struktura DNS zprávy je následující:
++ Header
++ Question
++ Answer
++ Authority
++ Additional
+
+** DNS rezoluce
+Komunikace DNS je typu klient -- server. Dotazy klienta vyřizuje systémová
+rutina OS: Resolver.
+
+Rezoluje je proces vyhledání odpovědi v systému DNS. Využívá stromovou strukturu
+jmen a kořenové DNS servery. Rezoluce začíná od kořenových serverů, těch je 13 a
+obsahují speciální kořenovou zónu ~hint~.
+
+*** Rekurzivní dotaz
+Pokud server nezná odpověď, přepošle dotaz dalším serverům. Rekurzivní dotaz si
+ukládá do paměti cache pro další použití.
+
+*** Iterativní dotaz
+Server vrátí nejlepší možnou odpověď. Pokud ale nezná přesnou odpověď, vrátí
+odkaz na server, který může znát odpověď.
+
+** Přenos zón
+Přenos zón je komunikace mezi servery DNS. Využívá se k aktualizaci záznamů na
+DNS serverech. Je možný celkový přenos zón (AXFR) nebo přírůstkový přenos
+(IXFR), kde sekundární server posílá s výzvou záznam SOA a primární server vrátí
+rozdílové změny.
+
+Mechanismus DNS notify upozorňuje o změně zóny.
+
+** Typy záznamů v DNS
+
+*** Start of Authority (SOA)
+Poskytuje základní informace o zóně. Každá zóna má právě jeden SOA.
+
+Obsahuje:
++ Název primárního serveru a emailovou adresu správce
++ Sériové číslo identifikující změnu záznamu
++ Interval pro zjišťování změny (na sekundárních serverech)
++ Doba, po které se server pokusí aktualizovat zónu v případě ne)spěšného přenosu
++ Doba platnosti dat na sekundátním serveru
++ Implicitní doba TTL záznamů v zónovém souboru dané zóny
+
+*** Name Server (NS)
+Určuje autoritativní servery pro danou zónu. Slouží k budování hierarchické
+struktury DNS systému. Pro TLD jsou autoritativní servery uvedeny v seznamu
+root.zone na IANA.
+
+*** A
+Přímé mapování doménových adres na IPv4 adresy.
+
+*** AAAA
+Přímé mapování doménových jmen na IPv6 adresy.
+
+*** Mail Exchange (MX)
+Mapuje adresy poštovních serverů. Přesměrovává poštu pro danou doménu na
+konkrétní poštovní server. Lze mít více serverů s různou prioritou.
+
+*** Canonical Name (CNAME)
+Mapuje alias zařízení na kanonické jméno počítače. Síťové zařízení smí mít více
+aliasů. Alias ale nesmí stát na pravé staně záznamu.
+
+*** Domain Name Pointer (PTR)
+Mapuje IPv4 a IPv6 adresu zpětně na doménovou adresu. Využívá speciální podstrom
+~in-addr.arpa~ a ~ip6.arpa~.
+
+*** Naming Autority Pointer (NAPTR)
+Mapuje řetězce na data. Podporuje dynamickou konfiguraci systému. Používá
+regulární výrazy pro dynamické záznamy v DNS. Příklad je lokaližace VoIP
+serveru.
+
+*** Service Record (SRV)
+Loaklizuje služby (například SIP, XMPP ...). Slouží také pro load balancing nebo
+zálohování.
+
+*** Text (TXT)
+Obsahuje textová data. Dodatečné informace o doméně, serveru, správci a podobně.
+Slouží také k ověření mailových serverů nebo ověření vlastnictví domény pro
+Google Apps.
+
+** Zabezpečení systému DNS
+DNS je distribuovaná veřejná služba, která je potřeba k jakékoliv komunikaci na
+internetu. Je potřeba zajistit zejména integritu dat a autentizaci zdroje dat.
+
+*** Bezpečnostní rizika
+Podvržené odpovědi mohou vracet neautorizované odpovědi na dotaz klienta.
+Podvržená data v paměti cache mohou zneplatnit data pro mnoho klientů. Při DoS
+útocích může dojít k blokování jakékoliv DNS rezoluce.
+
+*** DNSSEC
+Zajišťuje integritu a autentizaci dat v DNS. Zabezpečuje data DNS pomocí
+asymetrické kryptografie (podepisování). Záznamy v DNS zónách jsou podepsány
+pomocí Zone Signing Key (ZSK). Klíče pro podepisování záznamů jsou dále
+podepsány pomocí Key Signing Key (KSK).
+
+Při použíti DNSSEC nedochází k šifrování DNS provozu.
+
+DNSSEC definuje nové záznamy DNS:
++ DNSKEY: Veřejný klíč pro ověření podpisů
++ RRSIG: Podpis daného záznamu
++ NSEC, NSEC3: Odkaz na další záznam při dotazu na neexistující doménu
++ DS: Záznam pro ověření záznamu DNSKEY, uležen v nadřazené doméně.
+
+Při použití DNSSEC se využívá Chain of Trust. Jední se o mechanismus ověření
+pravosti klíče domény nadřazenou doménou. Pro každou zónu existuje pár klíčů
+(veřejný -- tajný). Zabezpečení významně zvyšuje velikost paketu DNS.
+
+** Monitorování provozu DNS
+Problémem DNS je velká míra informací vztahujících se k odesilateli. IP adresa
+lze lokalizovat. Podle meta informací lze zjistit lokální konfiguraci DNS
+serveru, podporu IPv6... Informace získané z dotazu DNS napovídají, co uživatel
+požaduje za služby, jaké stránky navštěvuje...
+
+DNS byl původně navržen jako veřejná služba přenášející otevřená data.
+
+Lze použít technologii DNS over TLS (DoT), kdy je DNS dotaz šifrován a je viditelný
+pouze vybranému DNS serveru. Problém je při výběru serveru a nastavéní
+šifrování.
+
+Další možností je DNS over HTTPS (DoH). Dotazy jsou posílány serveru DNS, kterů
+je předkonfigurován ve webovém prohlížeči.
+
+Ani jedna z těchto metod neřeší soukromí, pouze problém přesouvají. DNS server
+bude vždy vidět rozšifrované DNS dotazy (problém při použití například Google DNS).
