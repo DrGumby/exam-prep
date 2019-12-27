@@ -181,3 +181,348 @@ Spojované UDP schránky používají funkci ~connect()~, nedochází ale k vytv
 TCP spojení, pouze se zpracovávají chyby. Funkce ~connect()~ zjistí aktuální
 stav serveru, v budoucnu však může dojít k ukončení činnosti UDP serveru a
 klient to nezjístí. Funkce ~connect()~ se tak může volat opakovaně.
+* Komunikace typu multicast
+Jeden paket doručen skupině  uzlů v multicastové skupině. Používá se jedna
+cílová adresa typu multicast. Pro IPv4 tato adresa náleží do třídy D, tedy
+rozsah ~22.0.0.0~ -- ~239.255.255.255~. Pro IPv6 se jedná o adresy s prefixem
+~0xFF00::/8~.
+
+Multicastová komunikace umožňuje dynamické připojování uzlů do multicastové
+skupiny, speciální směrování multicastových adres a řízení dosahu multicastového
+vysílání.
+
+Pro výpis aktivních multicastových skupin existují příkazy:
++ ~ifmcstat~ (FreeBSD)
++ ~netstat -g~, ~netstat -gn~ (Linux)
++ ~netsh interface ip show joins~ (Windows)
+
+Směrování IP multicastu je implementováno pomocí protokolů DVMRP, PIM, MOSPF.
+Připojování uzlů do multicastových skupin probíhá pomocí protokolů IGMPv2,
+IGMPv3, MLD.
+
+** Mapování multicastové adresy IPv4 na MAC adresu
+Prefix multicastové MAC adresy je ~0x01 01 5e~. Z multicastové adresy se použije
+jen posledních 23b  do multicastové MAC adresy. Může docházet k překrývání
+adres.
+
+** Mapování multicastové adresy IPv6 na MAC adresu
+Nejnižších 32b IPv6 adresy je zkopírováno do MAC adresy, prefix multicastové
+adresy MAC je ~0x33 33~.
+
+** Vlastnosti multicastové komunikace
+Posílá pouze UDP pakety, negarantuje spolehlivé doručení, zachování pořadí...
+Multicastová adresa identifikuje skupinu síťových rozhraní. Členství ve skupině
+je dynamické. Počítače se připojují a odpojují.
+
+** Multicast a sockety
+Podporované schránky jsou třídy ~AF_INET~ nebo ~AF_INET6~, typu ~SOCK_DGRAM~
+nebo ~SOCK_RAW~. Multicastové datagramy mají implicitní TTL nastavenu na 1. Pro
+vynucení multicastu na socketu se využívá funkce ~setsockopt()~. Konkrétně se
+jedná o parametry ~IP_MULTICAST_IF~, ~IP_MULTICAST_TTL~, ~IP_MULTICAST_LOOP~.
+
+Na straně klienta je třeba inicializovat rozhraní pro multicast pomocí naplnění
+struktury ~struct ip_mreq~. Následně je možné se připojit do multicastové
+skupiny voláním funkce ~setsockopt()~ s parametrem ~IP_ADD_MEMBERSHIP~ a
+předáním vytvořené struktury. Pro odpojení od multicastové skupiny se používá
+parametr ~IP_DROP_MEMBERSHIP~.
+
+* Analýza paketů na linkové vrstvě
+Zahrnuje zachycení paketů z přenosového média, převod binárních dat do
+srozumitelné formy, rekonstrukci paketů, analýzu paketů, přenosů a konverzací.
+
+** Nástroje pro zpracování paketů na linkové vrstvě
++ Paketový filtr BPF (BSD Packet Filter)
++ Linuxová implementace schránekt typu ~SOCK_PACKET~, ~PF_PACKET~.
++ Knihovna ~libpcap~
++ Knihovna ~scapy~ pro Python.
+
+Tyto nástroje zajišťují přímý přístup k paketům na síťovém rozhraní. Aplikace
+běží jako uživatelský proces mimo jádro systému v privilegovaném režimu. Pracuje
+pouze s kopií paketu
+
+** BSD Packet Filter
+Řadič síťové karty zavolá BPF pokaždé, když je paket přijat nebo odeslán.
+Aplikace nad BPF může filtrovat příchozí pakety, ty jsou uloženy v BPF bufferu.
+Když je buffer plný nebo vyprší časovač, data jsou předána aplikaci.
+
+** Knihovna ~libpcap~
+Vytváří API pro zachytávání dat na síťpvém rozhraní. Čte data ze síťového
+rozhraní nebo ze souboru ve formátu PCAP. Implementuje funkce pro zpracování
+rámců a jejich analýzu. Původně určena pro jazyk C/C++, následně vytvořeny
+wrappery pro další jazyky.
+
+Čtení dat probíhá v následující posloupnosti:
+1. Připojení k síťovému rozhraní ~pcap_lookupdev()~.
+2. Otevření rozhraní pro čtení ~pcap_open_live()~, ~pcap_open_offline()~ (pro PCAP)
+3. Čtení paketů ~pcap_dispatch()~, ~pcap_loop()~, ~pcap_next()~
+4. Analýzu paketů provádí aplikace.
+
+
+* Zabezpečení počítačových sítí
+V počítačových sítích existují rizika:
++ Odposlech přenášených dat
++ Neautorizovaný přístup k zařízením
++ Podvržení zprávy
++ Falšování identity
++ Útok na systém (DoS)
++ Škodlivý software
+
+Exisutjí požadavky na bezpečnost:
++ Důvěrnost
++ Autentizace
++ Integrita dat
++ Neodmítnutelnost
++ Dostupnost, kontrola přístupu
+
+* Symetrické šifrování s tajným klíčem
+Slouží pro zajištění důvěrnosti. Pro šifrování a dešifrování se používá stejný
+klíč. Doporučená délka klíče je 112 -- 256 bitů.
+
+** Rovnice pro symetrické šifrování
+Pro šifrování platí vztah:
+
+\begin{equation}
+E_k(M) = C
+\end{equation}
+
+Kde $E_k$ je šifrovací funkce s klíčem $K$, $M$ je vstupní zpráva.
+
+Pro dešifrování platí vztah:
+
+\begin{equation}
+D_k(C) = M
+\end{equation}
+
+Kde $D_k$ je dešifrovací funkce s klíčem $K$.
+
+** Bezpečnost symetrického šifrování
+Bezpečnost symetrického šifrování spočívá v klíči, nikoliv v principu algoritmu
+(ten je většinou zveřejněný). Šifrují se buď jednotlivé bity zprávy (proudová
+šifra) nebo sekvence bitů o pevné velikosti (bloková šifra).
+
+** Výhody a nevýhody
+Symetrické šifrování má problém s nutností distribuce klíčů a rozšiřitelností.
+Naopak výhodou je rychlý výpočet.
+
+** Příklady symetrických šifrovacích algoritmů
+*** Blokové
++ DES
++ 3DES
++ AES
++ IDEA
++ RC2/4/5/6
++ Blowfish
+
+*** Proudové
++ DES
++ 3DES
++ RC4
++ SEAL
+
+** Nástroje pro symetrické šifrování
+Nejpoužívanější je nástroj ~openssl enc~. Obsahuje sadu šifrovacích a
+dešifrovacích algoritmů.
+
+* Asymetrické šifrování s veřejným klíčem
+Slouží pro zajištění důvěrnosti a autentizaci.
+
+** Princip
+Příjemce vygeneruje dva klíče:
+1. Veřejný klíč $KB_{pub}$ pro šifrování
+2. Soukromý klíč $KB_{sec}$ pro dešifrování
+
+Klíč pro šifrování se liší od klíče pro dešifrování. Doporučená dékla klíče je
+2048 -- 4096 bitů. Soukromý klíč se nedá odvodit z veřejného.
+
+** Rovnice pro asymetrické šifrování
+*** Šifrování
+\begin{equation}
+E_{KB_{pub}}(M) = C
+\end{equation}
+
+Může provést kdokoliv veřejným klíčem příjemce.
+
+*** Dešifrování
+\begin{equation}
+D_{KB_{sec}}(C) = M
+\end{equation}
+
+Může provést pouze příjemce svým soukromým klíčem.
+
+** Výhody a nevýhody
+Snadná rozšiřitelnost, protože veřejný klíč lze vystavit veřejně. Náročné na
+výpočet kvůli použití dlouhého klíče. Problém s ověřením pravosti veřejného
+klíče, vyžaduje certifikační autoritu.
+
+** Příklady asymetrických šifrovacích algoritmů
++ RSA
++ ElGamal
++ Eliptic curve
++ Diffie-Hellman
+
+** Nástroje pro asymetrické šifrování
+Používají se nástroje ~openssl genpkey~, ~openssl pkeyutl~, ~opoenssl rsa~.
+Soukromé klíče je možné ochránit symetrickou šifrou proti zneužití.
+
+* Zajíštění integrity dat pomocí kryptografického hashe
+Zajišťuje integritu zprávy pomocí tajného klíče. Využívá kryptografickou
+hashovací funkci, např. MD4/5/6, SHA1/2/3. Ta vytvoří kryptografický hash MAC
+(Message Authentication Code) o pevné délce. Mechanismus HMAC přidává navíc do
+výpočtu tajný klíč.
+
+V počítačových sítích se používá hashování pro autentizaci směrovacích zpráv,
+při použití TLS, PGP, SSH, IPSec nebo pro autentizaci zpráv SMMPv3.
+
+** Nástroje pro hashování
++ ~md5~
++ ~sha1~
++ ~sha256~
++ ~sha384~
++ ~sha512~
++ ~shasum~
++ ~openssl dgst~
+
+* Elektronický podpis
+Využívá asymetrické kryprografie pro ověření odesilatele pomocí jeho soukromého
+klíče.
+
+** Princip a rovnice
+Odesilatel A si vygeneruje dvojici klíčů $KA_{sec}$ a $KA_{pub}$.
+
+*** Podepsání
+
+\begin{equation}
+E_{KA_{sec}}(MD) = DS
+\end{equation}
+
+Kde $E$ je šifrovací funkce, $MD$ (Message Digest) je hash dokumentu a $DS$ je
+elektronický podpis.
+
+*** Ověření podpisu
+Příjemce vypočítá hash dokumentu $MD'$ a porovná s dešifrovaným podpisem:
+
+\begin{equation}
+E_{KA_{pub}}(DS) = MD
+\end{equation}
+
+** Příklady algoritmů
++ RSA
++ DSA
++ Elliptic Curve DSA
+
+** Používání elektronického podpisu
+Pro používání elektronických podpisů je zřízen systém /Public Key
+Infrastructure/, což je systém certifikačních autorit pro správu, uložení a
+ověření veřejných klíčů. CA generuje, podepisuje, ukládá a ověřuje certifikáty k
+veřejným klíčům. Ověřuje identitu uživatelů, aplikací nebo organizací a vytváří
+vazbu s veřejným klíčem.
+
+* Digitální certifikát X.509
+Dokument ověřující platnost pravého veřejného klíče a příslušnost k danému
+uživateli. Certifikát vydává a ověřuje certifikační autorita. Pro ověření
+podpisu CA se používá certifikát kořenové CA. K ověření slouží protokol OSCP
+(Online Certificate Status Protocol).
+
+** Obsah certifikátu X.509
++ Sériové číslo
++ Identifikace vydavatele (Distinguished Name: DN)
++ Datum platnosti
++ Identifikace majitele (DN)
++ Veřejný klíč majitele
++ Účel veřejného klíče (šifrování, ověřování podpisů)
++ Podpis certifikátu podepsaný soukromým klíčem CA
++ Algoritmus pro vytvoření podpisu
++ Otisk certifikátu (hash)
++ Algoritmus pro vytvoření hashe
++ Odkaz na seznam revokovaných certifikátů (CRL)
+
+** Použití digitálních certifikátů
++ Bezpečný transport SSL/TLS
++ Zapezpečení IPSec
++ HTTPS
++ S/MIME
++ Autentizace uživatelů pomocí 802.1x
+
+* Diffie-Hellman
+Asymetrický algoritmus pro vytvoření sdíleného tajného klíče přes nezabezpečený
+kanál založený na umocňování čísel, kde $(A^B)^C = (A^C)^B$. Nevyžaduje
+šifrování.
+
+** Postup
+1. Uzly A a B se veřejně dohodnou na použitém modulu $m$ a základu $z$.
+2. Uzel A si zvolí tajné číslo $a$.
+3. Uzel A pošle veřejně uzlu B hodnotu $x = z^a mod m$.
+4. Uzel B si zvolí tajné číslo $b$.
+5. Uzel B pošle uzlu A hodnotu $y = z^b mod m$.
+6. Uzel A určí klíč $k = y^a mod m$.
+7. Uzel B spočítá klíč $k = x^b mod m$.
+8. Klíč $k$ se v uzlech A a B rovná.
+
+* Zabezpečení komunikace na modelu TCP/IP
+Nezávislé zabezpečení dat na jednotlivých vrstvách TCP/IP. Každý mechanismus
+vyžaduje vytvoření a distribuci klíčů, jejich zabezpečení a ověření. Dosah
+zabezpečení závisí na typu vrstvy.
+
+* Transport Layer Security (TLS)
+Komunikuje nad transportní vrstvou v TCP paketech. Zapezpečuje přenos dat
+protokolů aplikační vrstvy. Zajišťuje důvěrnost, integritu dat a autentizaci
+klienta či serveru.
+
+** TLS Handshake
+1. Client Hello -- Klient posílá informace o podporovaných šifrách, verzi TLS
+2. Server Hello -- Server posílá informace
+3. Server Certificate -- Server sděluje informace o certifikátech
+4. Server Key Exchange -- Server zahajuje výměnu klíčů
+5. Client Certificate -- Klientský certifikát
+6. Client Key Exchange -- Klient opětuje výměnu klíčů
+7. Client Certificate Verify -- Klient verifikuje certifikát serveru
+8. Client Change Cipher Spec -- Klient mění používanou šifru
+9. Server Change Cipher Spec -- Server mění používanou šifru
+10. Encrypted application data -- Tok šifrovaných aplikačních dat
+
+Pro výměnu klíčů se používý asymetrická kryptografie (Diffie-Hellman, RSA,
+Elliptic Curve).
+
+Pro šifrování dat se využívá symetrická kryptografie (je rychlejší).
+
+** Vlastnosti
++ Šifrování: obě strany majá vygenerovaný tajný klíč
++ Autentizace: obě strany si navzájem  vyění a ověří certifikáty
++ Integrita dat: šifrovaná data obsahují hash
++ Šifrovaná data obsahují sekvenční číslo jako prevenci proti přehrání
++ Před zašifrováním mohou být data komprimována
+
+** Omezení TLS
+TLS vyžaduje ověřený certifikát serveru, jinak je možný útok Man in the middle.
+Nezajišťuje autentizaci odesilatele. Problematická implementace na zařízeních s
+omezenými prostředky (IoT). Problém při potřebě monitorovat provoz.
+
+* IPSec
+Zabezpečuje přenos pro IPv4 a IPv6. Zajišťuje autentizaci (RSA), šifrování a
+integritu dat. Využívá protokoly AH (Authentication Header) a ESP (Encapsulation
+Security Payload). Pracuje ve dvou režimech: tunelovacím a transtortním.
+Parametry spojení se ukládají do databáze VPN spojení SA (Security Association).
+
+** Protokol AH (Authentication Header)
+Chrání datagram IP pomocí kryptografického hashe HMAC-MD nebo HMAC-SHA. Hash se
+počítá nad položkami hlavičky, které se během cesty nemění. Zajišťuje
+autentizaci, integritu dat a chrání proti přehrání. Nezajišťuje důvěrnost dat.
+
+** Protokol ESP (Encapsulation Security Protocol)
+Zapouzdřuje a chrání data IP datagramu. Zajišťuje autentizaci, důvěrnost a
+integritu dat, chrání proti přehrátí. Nezajišťuje ochranu vnější hlavičky IP.
+Pro šifrování využívá DES, 3DES, AES. Pro autentizaci a integritu dat využívá
+HMAC.
+
+* Zabezpečení emailových zpráv pomocí PGP (Pretty Good Privacy)
+Zajišťuje integritu dat (MD5), autentizaci odesilatele (RSA) i šifrování (IDEA).
+Zpráva je podepsána soukromým klíčem odesilatele. Zpráva je zašifrována tajným
+klíčem. Tajný klíč je zašifrován veřejným klíčem příjemce a připojen ke zprávě.
+Odesilatel musí mít přístup k veřejnému klíči přijemce pro zašifrování zprávy.
+Příjemce musí mít přístup k veřejnému klíči odesilatele pro ověření identity.
+
+* Autentizace zpráv směrovacího protokolu OSPF
+Protokol je zapouzdřen v IP. Využívá krypto hash MD5 a sdílený tajný klíč.
+Používá sekvenční číslo proti přehrání podepsaného paketu. Vstupem pro
+algoritmus MD5 je celý paket OSPF a tajný klíč. Pro OSPFv2 je použít pro
+autentizaci algoritmus HMAC-SHA
