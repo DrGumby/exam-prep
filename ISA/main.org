@@ -851,3 +851,66 @@ se používá RTP Control Protocol (RTCP).
 Většinou mívají nestandardní protokoly. Bývají decentralizované (peer-to-peer).
 Využívají proprietární správu uživatelských účtů. Nejsou garantované. Mají
 omezené možnosti propojení s PTSN či klasickými VoIP.
+* Streaming multimédií
+Streamingem rozumíme přenos multimedíálních dat po síti v reálném čase rychlostí
+přehrávání. Vhodný mechanismus pro jednorázové doručení. Přijímajícímu stačí jen
+malá vyrovnávací paměť. Přehrávání začíná po načtení několika prvních sekund.
+
+Rozdělujeme:
+1. Živý přenos -- Všem přehrávačům jsou zasílána ve stejný okamžik stejná data.
+   Přehrávání nelze řídit.
+2. Streaming na vyžádání -- Klientovi je streamem zasílán předem vytvořený
+   multimediální obsah. Přehrávání lze řídit.
+
+** Problémy streamingu
++ Omezená šířka pásma
++ Zatížení sítě
++ Rozptyl paketů
++ Zpoždění
++ Ztráta paketů
++ Nekompatibilita protokolů, formátů dat.
+
+Často se pro řešení využívají vyrovnávací paměti. Ty mohou být buď po cestě mezi
+klientem a serverem nebo přímo na straně klienta. Před začátkem přehrávání je
+třeba počkat na načtení dat do vyrovnávací paměti.
+
+** Komprese
+Při streamingu obvykle dochází ke kompresi dat. Bez použití komprese by byl
+objem přenesených dat přílš velký. Například při rozlišení FullHD, barevné
+hloubce 24 bitů, 25 snímcích za sekundu by bylo potřeba přenášet cca 1200 Mb/s.
+
+Před odesláním audia a videa je tedy potřeba provést kompresi.
+
+*** Audio formáty
+G.711, G.726, G.728, MP3, WMA, AAC
+
+*** Video formáty
+H.261, H.263, H.263+, H.264 (MPEG-4 AVC), MPEG-1, MPEG-2, H.265
+
+** MPEG transport stream
+Standard, který popisuje, jakým způsobem jsou části multimediálního toku
+kombinovány do jednoho datového toku (multiplexing).
+
+Umožňuje v jednom datovém toku posílat i více multimediálních streamů.
+
+Je vhodný pro přenosy, při kterých může dojít ke ztrátě paketu nebo poškození
+dat. Datový tok se skládá z paketů pevné velikosti.
+
+Pakety mají obvykle 184 B dat a 4 B hlavičku. První B hlavičky obsahuje hodnotu
+0x47, jedná se o synchronizační byte. Klíčovou položkou hlavičky je 13b Packet
+Identifier, který odpovídá jednotlivým elementárním streamům.
+
+Při přijímání MPEG transport streamu musí příjemce určit, o které konkrétní
+pakety má zájem, tj. musí určit Packet Identifier. Pro usnadnění výběru jsou
+jako součást transport streamu zasílána metadata s informacemi o programu (PSI,
+Program Specific Information).
+
+** Real-Time Streaming Protocol, RTSP
+Signalizační protokol, který navazuje a ukončuje spojení a také řídí jeden nebo
+více časově synchornizovaných media streamů (síťový dálkový ovladač).
+
+Je určen pro on demand streamy.
+
+Textový protokol, syntaxe podobná HTTP. Data jsou součástí jiného protokolu,
+například RTP, MPEG-TS. Je stavový, uchovává si informaci o stavu relace a
+sekvenční číslo.
