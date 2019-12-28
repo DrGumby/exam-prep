@@ -914,3 +914,101 @@ Je určen pro on demand streamy.
 Textový protokol, syntaxe podobná HTTP. Data jsou součástí jiného protokolu,
 například RTP, MPEG-TS. Je stavový, uchovává si informaci o stavu relace a
 sekvenční číslo.
+* Elektronická pošta
+Poštovní služby musí zajišťovat adresování a směrování elektronické pošty,
+formát přenášených zpráv, protokol pro přenos elektronické pošty, přístup k
+emailovým schránkám, vyhledávání adresátů.
+
+Architektura elektronické pošty se zkládá z poštovního klienta, poštovního
+serveru a komunikačních protokolů.
+
+Formát zprávy byl původně 7b ASCII, následně byl rozšířen pomocí MIMe
+(Multipurpose Internet Mail Extension) o netextová data a přílohy.
+
+V současné době mohou být emaily kódovány následovně:
++ 7-bit -- Sedmibitové ASCII s řádky max 1000 znaků
++ 8-bit -- Osmibitové ASCII, porušuje definici SMTP
++ binary -- Porušuje definici SMTP, není zajištěno správné doručení
++ base64 -- Kódování osmibitových znaků do 6 bitů (binárně)
++ quoted-printable -- Kódování osmibitových znaků do 7 bitů (textová data)
+
+Quoted printable je uvozen znakem ~=~, následují dva znaky. Dle kódovací tabulky
+lze rozkódovat.
+
+** Simple Mail Transfer Protocol (SMTP)
+Aplikační protokol nad TCP pro posílání elektronické pošty. Využívá port 25.
+Definuje formát příkazů a odpovědí a způsob přenosu.
+
+** Post Office Protocol (POP3)
+Pouze jeden klient může přistupovat k INBOX schránce. Obsah je přenesen ke
+klientovi a aktualizován až při ukončení práce. Více schránek lze spravovat
+pouze lokálně u klienta.
+
+** Internet Message Access Protocol (IMAP)
+Vícenásobný přístup ke schránkám. Je možné pracovat s více schránkami, s
+hlavičkami i celou zprávou. Obsahuje atributy zpráv (seen, answered, recent,
+deleted, flagged).
+
+** Zabezpečení elektronické pošty
+Přenos emailových zpráv mezi servery je uskutečněn pomocí SMTP over SSL/TLS.
+Čtení emailových zpráv je zabezpečeno pomocí IMAP over SSL, HTTPS. Obsah
+emailových zpráv je zabezpečen pomocí PGP (Pretty Good Privacy) a S/MIME.
+Stejným způsobem je zajištěno i podepisování.
+
+** Pretty Good Privacy (PGP)
+Zajišťuje integritu dat pomocí MD5, autentizaci odesilatele pomocí RSA i
+šifrování pomocí IDEA.
+
+Zpráva je podepsána soukromým klíčem odesilatele. Zpráva je dále zašifrována
+tajným klíčem, ten je pak zašifrován veřejným klíčem příjemce a přidán ke
+zprávě.
+
+Odesilatel musí mít přístup k veřejnému klíčí příjemce pro zašifrování zprávy.
+Příjemce musí mít přístup k veřejnému klíčí odesilatele pro ověření jeho
+identity.
+
+* Adresářové služby
+Elektronická databáze pro vyhledání uživatelů. Navrženo jako podpora
+elektronické pošty. Je to globální distribuovaný systém s jednotným adresováním.
+Použivá se pro vyhledání uživatelů (email, IP telefonie), autentizaci a
+autorizaci (wev, unix, 802.1x), ukládání údajů (Active Directory).
+
+** Lightweight Directory Access Protocol (LDAP)
+Aplikační protokol nad TCP, port 389. Navržen jako zjednodušená alternativa
+systému X.500. Využívá jeho koncept pro uspořádání dat -- Directory Information
+Tree (DIT).
+
+DIT se zkládá ze 4 částí:
+1. Informační model
+2. Jmenný model
+3. Funkční model
+4. Bezpečnostní model
+
+*** Informační model
+Popisuje uložení dat. Záznam je popsán třídou objektů. Obsahuje seznam atributů
+ve tvaru dvojice typ-hodnota. Jednoznačným identifikátorem je /Distinguished
+Name, DN/.
+
+Adresářové schéma obsahuje:
+1. Definici třídy objektů pro daný záznam -- Typ třídy, seznam atributů
+2. Definici atributů dané třídy -- Typ atributu, operace
+3. Definici pravidel pro operace nad atributy -- Syntax, odkaz na metodu
+
+*** Jmenný model
+Popisuje uspořádání záznamů v adresáři. Definuje organizaci a identifikaci
+záznamů v adresáři. Tvoří strukturu DIT, která je grafová. Umožňuje záznamy typu
+alias a referrals, což jsou speciální URL typu LDAP.
+
+*** Funkční model
+Popisuje komunikační protokol LDAP. Provádí komunikaci typu klient server.
+Klient vytvoří zprávu a server odpovídá jednou či více zprávami, které obsahují
+odpověď.
+
+Definuje operace nad daty:
++ Bind/Unbind -- Vytvoření/ukončení spojení
++ Compare -- Porovnání hodnoty atributu u zadaných záznamů
++ Abandon -- Zrušení předchozí operace
++ Modify -- Změna konkrétního záznamu
++ Add -- Přídání nového záznamu
++ Delete -- Zrušení listového záznamu ve stromu
++ ModifyDN -- Změna nejlevější komponenty v DN
