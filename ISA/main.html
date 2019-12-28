@@ -4,7 +4,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-12-27 Fri 16:05 -->
+<!-- 2019-12-28 Sat 12:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Síťové aplikace a správa sítí</title>
@@ -276,185 +276,218 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4bdef42">1. Architektura sítí</a>
+<li><a href="#orgb005965">1. Architektura sítí</a>
 <ul>
-<li><a href="#org4b194f8">1.1. Model OSI</a></li>
-<li><a href="#orgb0e91fa">1.2. Model IEEE</a></li>
-<li><a href="#orgd8dce11">1.3. Model TCP/IP</a></li>
+<li><a href="#org650da73">1.1. Model OSI</a></li>
+<li><a href="#orge6d7deb">1.2. Model IEEE</a></li>
+<li><a href="#org00948ae">1.3. Model TCP/IP</a></li>
 </ul>
 </li>
-<li><a href="#orgfde7af2">2. Adresování</a>
+<li><a href="#org1349143">2. Adresování</a>
 <ul>
-<li><a href="#org855cf64">2.1. Adresa</a></li>
-<li><a href="#org633a8a3">2.2. Adresování a směrování v modelu TCP/IP</a></li>
-<li><a href="#orgdd7c8f1">2.3. Adresování a směrování na fyzickém rozhraní (L2)</a>
+<li><a href="#orgff731a0">2.1. Adresa</a></li>
+<li><a href="#org9fc0a71">2.2. Adresování a směrování v modelu TCP/IP</a></li>
+<li><a href="#org1751e0c">2.3. Adresování a směrování na fyzickém rozhraní (L2)</a>
 <ul>
-<li><a href="#orgf455dd9">2.3.1. Speciální adresy L2 vrstvy</a></li>
+<li><a href="#orge3f4448">2.3.1. Speciální adresy L2 vrstvy</a></li>
 </ul>
 </li>
-<li><a href="#org93c4a33">2.4. Adresování a směrování na síťové (IP) vrstvě</a>
+<li><a href="#orge828c6a">2.4. Adresování a směrování na síťové (IP) vrstvě</a>
 <ul>
-<li><a href="#orgc2ac3cd">2.4.1. Přidělování adres</a></li>
+<li><a href="#orgc1aa3d2">2.4.1. Přidělování adres</a></li>
 </ul>
 </li>
-<li><a href="#orgfb67005">2.5. Adresování a směrování na transportní vrstvě</a></li>
-<li><a href="#org1600e6e">2.6. Adresování na aplikační vrstvě</a></li>
+<li><a href="#org8a5f1f9">2.5. Adresování a směrování na transportní vrstvě</a></li>
+<li><a href="#orgf44b541">2.6. Adresování na aplikační vrstvě</a></li>
 </ul>
 </li>
-<li><a href="#orgf0178bf">3. Základní nástroje pro konfiguraci</a>
+<li><a href="#org5bd45ac">3. Základní nástroje pro konfiguraci</a>
 <ul>
-<li><a href="#orgbcd29f5">3.1. Výpis aktuálního síťového nastavení</a></li>
-<li><a href="#org186abaf">3.2. Testování základní konektivity</a></li>
-<li><a href="#org45a9cf3">3.3. Kontrola směrování</a></li>
-<li><a href="#orgec3a27f">3.4. Testování dosažitelnosti vzdáleného počítače</a></li>
-<li><a href="#org0719a3a">3.5. Testování dostupnosti služeb</a></li>
-<li><a href="#orgac107f2">3.6. Výpis otevřených spojení</a></li>
-<li><a href="#org62fce95">3.7. Sledování komunikace na síťovém rozhraní</a></li>
+<li><a href="#orgdad5bb7">3.1. Výpis aktuálního síťového nastavení</a></li>
+<li><a href="#orga15b05a">3.2. Testování základní konektivity</a></li>
+<li><a href="#orgcb6d370">3.3. Kontrola směrování</a></li>
+<li><a href="#org235e034">3.4. Testování dosažitelnosti vzdáleného počítače</a></li>
+<li><a href="#org2e52482">3.5. Testování dostupnosti služeb</a></li>
+<li><a href="#orge157462">3.6. Výpis otevřených spojení</a></li>
+<li><a href="#org9d3e03d">3.7. Sledování komunikace na síťovém rozhraní</a></li>
 </ul>
 </li>
-<li><a href="#org7bc427f">4. Programování sítí TCP/IP</a>
+<li><a href="#org5bb3a0b">4. Programování sítí TCP/IP</a>
 <ul>
-<li><a href="#org0b0c5dd">4.1. Komunikace klient &#x2013; server</a></li>
-<li><a href="#org83fab10">4.2. Prostředky pro meziprocesovou komunikaci</a></li>
-<li><a href="#org30d9884">4.3. Sockety</a>
+<li><a href="#org35ca895">4.1. Komunikace klient &#x2013; server</a></li>
+<li><a href="#org48bc0ca">4.2. Prostředky pro meziprocesovou komunikaci</a></li>
+<li><a href="#org3499983">4.3. Sockety</a>
 <ul>
-<li><a href="#org754c74c">4.3.1. Funkce v BSD socketech pro vytvoření konkurentního serveru TCP</a></li>
-<li><a href="#orgfeb0671">4.3.2. UDP schránky</a></li>
+<li><a href="#orgc84a16b">4.3.1. Funkce v BSD socketech pro vytvoření konkurentního serveru TCP</a></li>
+<li><a href="#org4a32181">4.3.2. UDP schránky</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org60ddafe">5. Komunikace typu multicast</a>
+<li><a href="#org571c18e">5. Komunikace typu multicast</a>
 <ul>
-<li><a href="#org88dc077">5.1. Mapování multicastové adresy IPv4 na MAC adresu</a></li>
-<li><a href="#org198d141">5.2. Mapování multicastové adresy IPv6 na MAC adresu</a></li>
-<li><a href="#org0c60a3d">5.3. Vlastnosti multicastové komunikace</a></li>
-<li><a href="#orgb048088">5.4. Multicast a sockety</a></li>
+<li><a href="#org6c99669">5.1. Mapování multicastové adresy IPv4 na MAC adresu</a></li>
+<li><a href="#orgaf84d4d">5.2. Mapování multicastové adresy IPv6 na MAC adresu</a></li>
+<li><a href="#org41147b3">5.3. Vlastnosti multicastové komunikace</a></li>
+<li><a href="#org778fd5b">5.4. Multicast a sockety</a></li>
 </ul>
 </li>
-<li><a href="#org8c38f89">6. Analýza paketů na linkové vrstvě</a>
+<li><a href="#orga93443c">6. Analýza paketů na linkové vrstvě</a>
 <ul>
-<li><a href="#org4bb4f40">6.1. Nástroje pro zpracování paketů na linkové vrstvě</a></li>
-<li><a href="#org43206c6">6.2. BSD Packet Filter</a></li>
-<li><a href="#org6f33d08">6.3. Knihovna <code>libpcap</code></a></li>
+<li><a href="#org3e13c19">6.1. Nástroje pro zpracování paketů na linkové vrstvě</a></li>
+<li><a href="#org3f963a8">6.2. BSD Packet Filter</a></li>
+<li><a href="#orgdaf472c">6.3. Knihovna <code>libpcap</code></a></li>
 </ul>
 </li>
-<li><a href="#orga11e807">7. Zabezpečení počítačových sítí</a></li>
-<li><a href="#org2f552c7">8. Symetrické šifrování s tajným klíčem</a>
+<li><a href="#orgdb5e5b1">7. Zabezpečení počítačových sítí</a></li>
+<li><a href="#org3495884">8. Symetrické šifrování s tajným klíčem</a>
 <ul>
-<li><a href="#orga528003">8.1. Rovnice pro symetrické šifrování</a></li>
-<li><a href="#org45d44f5">8.2. Bezpečnost symetrického šifrování</a></li>
-<li><a href="#org217549f">8.3. Výhody a nevýhody</a></li>
-<li><a href="#org95c0498">8.4. Příklady symetrických šifrovacích algoritmů</a>
+<li><a href="#org40b3ddb">8.1. Rovnice pro symetrické šifrování</a></li>
+<li><a href="#org84b710a">8.2. Bezpečnost symetrického šifrování</a></li>
+<li><a href="#org7e6c77b">8.3. Výhody a nevýhody</a></li>
+<li><a href="#orge5d2d13">8.4. Příklady symetrických šifrovacích algoritmů</a>
 <ul>
-<li><a href="#org2c65bd6">8.4.1. Blokové</a></li>
-<li><a href="#orga0bf812">8.4.2. Proudové</a></li>
+<li><a href="#org69641da">8.4.1. Blokové</a></li>
+<li><a href="#org83087e5">8.4.2. Proudové</a></li>
 </ul>
 </li>
-<li><a href="#org265a58a">8.5. Nástroje pro symetrické šifrování</a></li>
+<li><a href="#org214de02">8.5. Nástroje pro symetrické šifrování</a></li>
 </ul>
 </li>
-<li><a href="#orgad06679">9. Asymetrické šifrování s veřejným klíčem</a>
+<li><a href="#org4fe0b98">9. Asymetrické šifrování s veřejným klíčem</a>
 <ul>
-<li><a href="#orgb9f167a">9.1. Princip</a></li>
-<li><a href="#orgf8ec83d">9.2. Rovnice pro asymetrické šifrování</a>
+<li><a href="#org9d13d86">9.1. Princip</a></li>
+<li><a href="#orgdbd7213">9.2. Rovnice pro asymetrické šifrování</a>
 <ul>
-<li><a href="#orgd1644b4">9.2.1. Šifrování</a></li>
-<li><a href="#orgb88b64a">9.2.2. Dešifrování</a></li>
+<li><a href="#orgec49cb0">9.2.1. Šifrování</a></li>
+<li><a href="#org08a61c4">9.2.2. Dešifrování</a></li>
 </ul>
 </li>
-<li><a href="#org9e17e2e">9.3. Výhody a nevýhody</a></li>
-<li><a href="#org782f7d2">9.4. Příklady asymetrických šifrovacích algoritmů</a></li>
-<li><a href="#org2a5fe6c">9.5. Nástroje pro asymetrické šifrování</a></li>
+<li><a href="#org68b2be5">9.3. Výhody a nevýhody</a></li>
+<li><a href="#orgeab4431">9.4. Příklady asymetrických šifrovacích algoritmů</a></li>
+<li><a href="#orgbdf09f3">9.5. Nástroje pro asymetrické šifrování</a></li>
 </ul>
 </li>
-<li><a href="#org2946b99">10. Zajíštění integrity dat pomocí kryptografického hashe</a>
+<li><a href="#org33fb7c0">10. Zajíštění integrity dat pomocí kryptografického hashe</a>
 <ul>
-<li><a href="#org9d889ce">10.1. Nástroje pro hashování</a></li>
+<li><a href="#org80ac277">10.1. Nástroje pro hashování</a></li>
 </ul>
 </li>
-<li><a href="#orge904c5d">11. Elektronický podpis</a>
+<li><a href="#org15e9dc4">11. Elektronický podpis</a>
 <ul>
-<li><a href="#org0bb0773">11.1. Princip a rovnice</a>
+<li><a href="#org3a367d6">11.1. Princip a rovnice</a>
 <ul>
-<li><a href="#org96ca51e">11.1.1. Podepsání</a></li>
-<li><a href="#org153b863">11.1.2. Ověření podpisu</a></li>
+<li><a href="#org025cd24">11.1.1. Podepsání</a></li>
+<li><a href="#org21c67f5">11.1.2. Ověření podpisu</a></li>
 </ul>
 </li>
-<li><a href="#org5f17fe1">11.2. Příklady algoritmů</a></li>
-<li><a href="#org3300071">11.3. Používání elektronického podpisu</a></li>
+<li><a href="#org5dd549c">11.2. Příklady algoritmů</a></li>
+<li><a href="#orgd135e7d">11.3. Používání elektronického podpisu</a></li>
 </ul>
 </li>
-<li><a href="#org9118bc4">12. Digitální certifikát X.509</a>
+<li><a href="#orgf66935d">12. Digitální certifikát X.509</a>
 <ul>
-<li><a href="#org293b713">12.1. Obsah certifikátu X.509</a></li>
-<li><a href="#org2464270">12.2. Použití digitálních certifikátů</a></li>
+<li><a href="#org4231966">12.1. Obsah certifikátu X.509</a></li>
+<li><a href="#orgc409e61">12.2. Použití digitálních certifikátů</a></li>
 </ul>
 </li>
-<li><a href="#org3dc3b0e">13. Diffie-Hellman</a>
+<li><a href="#org941c96b">13. Diffie-Hellman</a>
 <ul>
-<li><a href="#orgebcb0e8">13.1. Postup</a></li>
+<li><a href="#org944b97b">13.1. Postup</a></li>
 </ul>
 </li>
-<li><a href="#org010b719">14. Zabezpečení komunikace na modelu TCP/IP</a></li>
-<li><a href="#orgc094fba">15. Transport Layer Security (TLS)</a>
+<li><a href="#org7490109">14. Zabezpečení komunikace na modelu TCP/IP</a></li>
+<li><a href="#orgcf03816">15. Transport Layer Security (TLS)</a>
 <ul>
-<li><a href="#org1988b78">15.1. TLS Handshake</a></li>
-<li><a href="#org8d28dde">15.2. Vlastnosti</a></li>
-<li><a href="#orgf8d244c">15.3. Omezení TLS</a></li>
+<li><a href="#org6e7c5aa">15.1. TLS Handshake</a></li>
+<li><a href="#org237d268">15.2. Vlastnosti</a></li>
+<li><a href="#org7b201ce">15.3. Omezení TLS</a></li>
 </ul>
 </li>
-<li><a href="#orgaa4fb83">16. IPSec</a>
+<li><a href="#orgaacea9f">16. IPSec</a>
 <ul>
-<li><a href="#orga8d9555">16.1. Protokol AH (Authentication Header)</a></li>
-<li><a href="#org13ff68a">16.2. Protokol ESP (Encapsulation Security Protocol)</a></li>
+<li><a href="#orgd2efee2">16.1. Protokol AH (Authentication Header)</a></li>
+<li><a href="#orge790b62">16.2. Protokol ESP (Encapsulation Security Protocol)</a></li>
 </ul>
 </li>
-<li><a href="#org94d7e60">17. Zabezpečení emailových zpráv pomocí PGP (Pretty Good Privacy)</a></li>
-<li><a href="#orgfa701b8">18. Autentizace zpráv směrovacího protokolu OSPF</a></li>
-<li><a href="#org9ac5b7c">19. Domain Name System</a>
+<li><a href="#org860cdcc">17. Zabezpečení emailových zpráv pomocí PGP (Pretty Good Privacy)</a></li>
+<li><a href="#org0f7bdbd">18. Autentizace zpráv směrovacího protokolu OSPF</a></li>
+<li><a href="#org4fbad85">19. Domain Name System</a>
 <ul>
-<li><a href="#org1daa7ed">19.1. Správa domén</a></li>
-<li><a href="#org1d62763">19.2. Správa IP adres</a></li>
-<li><a href="#org4087fa0">19.3. Whois</a></li>
-<li><a href="#org2db2a22">19.4. DNS server</a></li>
-<li><a href="#orgdfb9ddb">19.5. Protokol DNS</a></li>
-<li><a href="#org2ea3741">19.6. DNS rezoluce</a>
+<li><a href="#orgaa86633">19.1. Správa domén</a></li>
+<li><a href="#org0bf09c4">19.2. Správa IP adres</a></li>
+<li><a href="#orgbf1db6c">19.3. Whois</a></li>
+<li><a href="#org9bc8483">19.4. DNS server</a></li>
+<li><a href="#orgb99ff72">19.5. Protokol DNS</a></li>
+<li><a href="#org16f3aaf">19.6. DNS rezoluce</a>
 <ul>
-<li><a href="#org3b325c0">19.6.1. Rekurzivní dotaz</a></li>
-<li><a href="#org750a2cf">19.6.2. Iterativní dotaz</a></li>
+<li><a href="#orgd23e03e">19.6.1. Rekurzivní dotaz</a></li>
+<li><a href="#org12665ce">19.6.2. Iterativní dotaz</a></li>
 </ul>
 </li>
-<li><a href="#org9aae033">19.7. Přenos zón</a></li>
-<li><a href="#org37eed09">19.8. Typy záznamů v DNS</a>
+<li><a href="#org8f0e96f">19.7. Přenos zón</a></li>
+<li><a href="#orgf53820e">19.8. Typy záznamů v DNS</a>
 <ul>
-<li><a href="#org2605051">19.8.1. Start of Authority (SOA)</a></li>
-<li><a href="#org504f56a">19.8.2. Name Server (NS)</a></li>
-<li><a href="#org0e651ab">19.8.3. A</a></li>
-<li><a href="#orgeae4d79">19.8.4. AAAA</a></li>
-<li><a href="#orgc627d13">19.8.5. Mail Exchange (MX)</a></li>
-<li><a href="#orge510e8c">19.8.6. Canonical Name (CNAME)</a></li>
-<li><a href="#orgd64fffd">19.8.7. Domain Name Pointer (PTR)</a></li>
-<li><a href="#orgf4edd10">19.8.8. Naming Autority Pointer (NAPTR)</a></li>
-<li><a href="#orgd280324">19.8.9. Service Record (SRV)</a></li>
-<li><a href="#orgf239b42">19.8.10. Text (TXT)</a></li>
+<li><a href="#org667d6de">19.8.1. Start of Authority (SOA)</a></li>
+<li><a href="#org6a6a94d">19.8.2. Name Server (NS)</a></li>
+<li><a href="#org53b1eb4">19.8.3. A</a></li>
+<li><a href="#org0b152c3">19.8.4. AAAA</a></li>
+<li><a href="#orgb2b6a1c">19.8.5. Mail Exchange (MX)</a></li>
+<li><a href="#orgd719787">19.8.6. Canonical Name (CNAME)</a></li>
+<li><a href="#org615648c">19.8.7. Domain Name Pointer (PTR)</a></li>
+<li><a href="#orge173476">19.8.8. Naming Autority Pointer (NAPTR)</a></li>
+<li><a href="#org421758f">19.8.9. Service Record (SRV)</a></li>
+<li><a href="#org261e45e">19.8.10. Text (TXT)</a></li>
 </ul>
 </li>
-<li><a href="#orgaa9e5c0">19.9. Zabezpečení systému DNS</a>
+<li><a href="#org29b80bf">19.9. Zabezpečení systému DNS</a>
 <ul>
-<li><a href="#org8823ddb">19.9.1. Bezpečnostní rizika</a></li>
-<li><a href="#org4a74eb9">19.9.2. DNSSEC</a></li>
+<li><a href="#orge3a0320">19.9.1. Bezpečnostní rizika</a></li>
+<li><a href="#orgc1bc136">19.9.2. DNSSEC</a></li>
 </ul>
 </li>
-<li><a href="#orgef06a1c">19.10. Monitorování provozu DNS</a></li>
+<li><a href="#orge128bbc">19.10. Monitorování provozu DNS</a></li>
+</ul>
+</li>
+<li><a href="#org44773b4">20. Hlasové služby</a>
+<ul>
+<li><a href="#orgdc4ef76">20.1. Funkce IP telefonie</a></li>
+<li><a href="#org27e7e91">20.2. Kódování hlasu</a></li>
+<li><a href="#org80e5b01">20.3. Zapouzdření hlasu</a>
+<ul>
+<li><a href="#org5e9ef19">20.3.1. Příklad</a></li>
+</ul>
+</li>
+<li><a href="#orgb5e0463">20.4. Architektura systému SIP</a>
+<ul>
+<li><a href="#org88ce135">20.4.1. SIP server (User Agent Server)</a></li>
+</ul>
+</li>
+<li><a href="#org702ca3c">20.5. Adresování a směrování SIP</a></li>
+<li><a href="#orga296db4">20.6. Vytváření spojení</a>
+<ul>
+<li><a href="#orgd7f11ea">20.6.1. Registrace</a></li>
+<li><a href="#orga34dae2">20.6.2. Ustavení spojení</a></li>
+</ul>
+</li>
+<li><a href="#org3c00b13">20.7. Protokol SIP</a></li>
+<li><a href="#orgc989efe">20.8. Protokol SDP</a></li>
+<li><a href="#org129cc37">20.9. Protokol RTP</a></li>
+<li><a href="#org3f8926b">20.10. Zabezpečení VoIP</a>
+<ul>
+<li><a href="#org9c3e9ba">20.10.1. Bezpečnostní rizika</a></li>
+<li><a href="#org2f233ec">20.10.2. Způsoby zabezpečení</a></li>
+</ul>
+</li>
+<li><a href="#org50dc959">20.11. Komerční aplikace</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4bdef42" class="outline-2">
-<h2 id="org4bdef42"><span class="section-number-2">1</span> Architektura sítí</h2>
+<div id="outline-container-orgb005965" class="outline-2">
+<h2 id="orgb005965"><span class="section-number-2">1</span> Architektura sítí</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Vrstvový model definuje síťové vrstvy.
@@ -475,8 +508,8 @@ identifikovány IP adresou a číslem portu.
 </div>
 
 
-<div id="outline-container-org4b194f8" class="outline-3">
-<h3 id="org4b194f8"><span class="section-number-3">1.1</span> Model OSI</h3>
+<div id="outline-container-org650da73" class="outline-3">
+<h3 id="org650da73"><span class="section-number-3">1.1</span> Model OSI</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Model OSI definuje 7 vrstev:
@@ -494,8 +527,8 @@ Model OSI definuje 7 vrstev:
 </div>
 </div>
 
-<div id="outline-container-orgb0e91fa" class="outline-3">
-<h3 id="orgb0e91fa"><span class="section-number-3">1.2</span> Model IEEE</h3>
+<div id="outline-container-orge6d7deb" class="outline-3">
+<h3 id="orge6d7deb"><span class="section-number-3">1.2</span> Model IEEE</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Model IEEE definuje 2 vrstvy:
@@ -508,8 +541,8 @@ Model IEEE definuje 2 vrstvy:
 </div>
 </div>
 
-<div id="outline-container-orgd8dce11" class="outline-3">
-<h3 id="orgd8dce11"><span class="section-number-3">1.3</span> Model TCP/IP</h3>
+<div id="outline-container-org00948ae" class="outline-3">
+<h3 id="org00948ae"><span class="section-number-3">1.3</span> Model TCP/IP</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Definuje 4 vrstvy:
@@ -525,12 +558,12 @@ Definuje 4 vrstvy:
 </div>
 </div>
 
-<div id="outline-container-orgfde7af2" class="outline-2">
-<h2 id="orgfde7af2"><span class="section-number-2">2</span> Adresování</h2>
+<div id="outline-container-org1349143" class="outline-2">
+<h2 id="org1349143"><span class="section-number-2">2</span> Adresování</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org855cf64" class="outline-3">
-<h3 id="org855cf64"><span class="section-number-3">2.1</span> Adresa</h3>
+<div id="outline-container-orgff731a0" class="outline-3">
+<h3 id="orgff731a0"><span class="section-number-3">2.1</span> Adresa</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Adresa je způsob identifikace adresáta pomocí jednoznačné informace
@@ -538,8 +571,8 @@ Adresa je způsob identifikace adresáta pomocí jednoznačné informace
 </div>
 </div>
 
-<div id="outline-container-org633a8a3" class="outline-3">
-<h3 id="org633a8a3"><span class="section-number-3">2.2</span> Adresování a směrování v modelu TCP/IP</h3>
+<div id="outline-container-org9fc0a71" class="outline-3">
+<h3 id="org9fc0a71"><span class="section-number-3">2.2</span> Adresování a směrování v modelu TCP/IP</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Každá vrstva modelu TCP/IP definuje svoje adresování a zajišťuje určitou formu
@@ -548,8 +581,8 @@ směrování. Některé služby používají mapování adres mezi vrstvami.
 </div>
 </div>
 
-<div id="outline-container-orgdd7c8f1" class="outline-3">
-<h3 id="orgdd7c8f1"><span class="section-number-3">2.3</span> Adresování a směrování na fyzickém rozhraní (L2)</h3>
+<div id="outline-container-org1751e0c" class="outline-3">
+<h3 id="org1751e0c"><span class="section-number-3">2.3</span> Adresování a směrování na fyzickém rozhraní (L2)</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Adresuje se konkrétní síťové rozhraní počítače. To je identifikováno 48bitovou
@@ -567,8 +600,8 @@ přiděleného výrobcem karty. L2 rámec obsahuje:
 </ul>
 </div>
 
-<div id="outline-container-orgf455dd9" class="outline-4">
-<h4 id="orgf455dd9"><span class="section-number-4">2.3.1</span> Speciální adresy L2 vrstvy</h4>
+<div id="outline-container-orge3f4448" class="outline-4">
+<h4 id="orge3f4448"><span class="section-number-4">2.3.1</span> Speciální adresy L2 vrstvy</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>Broadcast: <code>FF FF FF FF FF FF</code></li>
@@ -579,8 +612,8 @@ přiděleného výrobcem karty. L2 rámec obsahuje:
 </div>
 </div>
 
-<div id="outline-container-org93c4a33" class="outline-3">
-<h3 id="org93c4a33"><span class="section-number-3">2.4</span> Adresování a směrování na síťové (IP) vrstvě</h3>
+<div id="outline-container-orge828c6a" class="outline-3">
+<h3 id="orge828c6a"><span class="section-number-3">2.4</span> Adresování a směrování na síťové (IP) vrstvě</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Používá se 32bitová IPv4 adresa nebo 128bitová IPv6 adresa. IP adresa
@@ -599,8 +632,8 @@ vytváří se podsítě (subnetting). Používá se beztřídní směrování.
 </p>
 </div>
 
-<div id="outline-container-orgc2ac3cd" class="outline-4">
-<h4 id="orgc2ac3cd"><span class="section-number-4">2.4.1</span> Přidělování adres</h4>
+<div id="outline-container-orgc1aa3d2" class="outline-4">
+<h4 id="orgc1aa3d2"><span class="section-number-4">2.4.1</span> Přidělování adres</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 Přidělení IP adres může být provedeno buď manuálně v operačním systému nebo
@@ -626,8 +659,8 @@ směrovač zprávou ICMPv6 RA. Typ konfigurace může být:
 </div>
 </div>
 
-<div id="outline-container-orgfb67005" class="outline-3">
-<h3 id="orgfb67005"><span class="section-number-3">2.5</span> Adresování a směrování na transportní vrstvě</h3>
+<div id="outline-container-org8a5f1f9" class="outline-3">
+<h3 id="org8a5f1f9"><span class="section-number-3">2.5</span> Adresování a směrování na transportní vrstvě</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Adresuje je konkrétní služba pomocí 16b čísla portu (uvedena v <code>/etc/services</code>).
@@ -637,8 +670,8 @@ spojované (TCP) a nespojované (UDP) služby.
 </div>
 </div>
 
-<div id="outline-container-org1600e6e" class="outline-3">
-<h3 id="org1600e6e"><span class="section-number-3">2.6</span> Adresování na aplikační vrstvě</h3>
+<div id="outline-container-orgf44b541" class="outline-3">
+<h3 id="orgf44b541"><span class="section-number-3">2.6</span> Adresování na aplikační vrstvě</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 Je závislé na konkrétní aplikaci. Příklady:
@@ -656,12 +689,12 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-orgf0178bf" class="outline-2">
-<h2 id="orgf0178bf"><span class="section-number-2">3</span> Základní nástroje pro konfiguraci</h2>
+<div id="outline-container-org5bd45ac" class="outline-2">
+<h2 id="org5bd45ac"><span class="section-number-2">3</span> Základní nástroje pro konfiguraci</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgbcd29f5" class="outline-3">
-<h3 id="orgbcd29f5"><span class="section-number-3">3.1</span> Výpis aktuálního síťového nastavení</h3>
+<div id="outline-container-orgdad5bb7" class="outline-3">
+<h3 id="orgdad5bb7"><span class="section-number-3">3.1</span> Výpis aktuálního síťového nastavení</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><code>ifconfig</code>, <code>ip link</code>, <code>ip address</code> (Linux)</li>
@@ -670,8 +703,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org186abaf" class="outline-3">
-<h3 id="org186abaf"><span class="section-number-3">3.2</span> Testování základní konektivity</h3>
+<div id="outline-container-orga15b05a" class="outline-3">
+<h3 id="orga15b05a"><span class="section-number-3">3.2</span> Testování základní konektivity</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><code>ping</code>, <code>pathping</code></li>
@@ -679,8 +712,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org45a9cf3" class="outline-3">
-<h3 id="org45a9cf3"><span class="section-number-3">3.3</span> Kontrola směrování</h3>
+<div id="outline-container-orgcb6d370" class="outline-3">
+<h3 id="orgcb6d370"><span class="section-number-3">3.3</span> Kontrola směrování</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li><code>netstat -r</code>, <code>ip route</code> : Vypíše směrovací tabulku</li>
@@ -689,8 +722,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-orgec3a27f" class="outline-3">
-<h3 id="orgec3a27f"><span class="section-number-3">3.4</span> Testování dosažitelnosti vzdáleného počítače</h3>
+<div id="outline-container-org235e034" class="outline-3">
+<h3 id="org235e034"><span class="section-number-3">3.4</span> Testování dosažitelnosti vzdáleného počítače</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li><code>tracert</code>, <code>traceroute</code>, <code>tcptraceroute</code></li>
@@ -698,8 +731,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org0719a3a" class="outline-3">
-<h3 id="org0719a3a"><span class="section-number-3">3.5</span> Testování dostupnosti služeb</h3>
+<div id="outline-container-org2e52482" class="outline-3">
+<h3 id="org2e52482"><span class="section-number-3">3.5</span> Testování dostupnosti služeb</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li><code>telnet &lt;addr&gt; &lt;port&gt;</code></li>
@@ -707,8 +740,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-orgac107f2" class="outline-3">
-<h3 id="orgac107f2"><span class="section-number-3">3.6</span> Výpis otevřených spojení</h3>
+<div id="outline-container-orge157462" class="outline-3">
+<h3 id="orge157462"><span class="section-number-3">3.6</span> Výpis otevřených spojení</h3>
 <div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
 <li><code>sockstat</code> (FreeBSD)</li>
@@ -718,8 +751,8 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 
-<div id="outline-container-org62fce95" class="outline-3">
-<h3 id="org62fce95"><span class="section-number-3">3.7</span> Sledování komunikace na síťovém rozhraní</h3>
+<div id="outline-container-org9d3e03d" class="outline-3">
+<h3 id="org9d3e03d"><span class="section-number-3">3.7</span> Sledování komunikace na síťovém rozhraní</h3>
 <div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li><code>tcpdump</code></li>
@@ -729,12 +762,12 @@ Je závislé na konkrétní aplikaci. Příklady:
 </div>
 </div>
 </div>
-<div id="outline-container-org7bc427f" class="outline-2">
-<h2 id="org7bc427f"><span class="section-number-2">4</span> Programování sítí TCP/IP</h2>
+<div id="outline-container-org5bb3a0b" class="outline-2">
+<h2 id="org5bb3a0b"><span class="section-number-2">4</span> Programování sítí TCP/IP</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org0b0c5dd" class="outline-3">
-<h3 id="org0b0c5dd"><span class="section-number-3">4.1</span> Komunikace klient &#x2013; server</h3>
+<div id="outline-container-org35ca895" class="outline-3">
+<h3 id="org35ca895"><span class="section-number-3">4.1</span> Komunikace klient &#x2013; server</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Jedná se o standardní schema komunikace mezi dvěma procesy. Komunikace je
@@ -752,8 +785,8 @@ prostředky.
 </div>
 </div>
 
-<div id="outline-container-org83fab10" class="outline-3">
-<h3 id="org83fab10"><span class="section-number-3">4.2</span> Prostředky pro meziprocesovou komunikaci</h3>
+<div id="outline-container-org48bc0ca" class="outline-3">
+<h3 id="org48bc0ca"><span class="section-number-3">4.2</span> Prostředky pro meziprocesovou komunikaci</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Unixové roury, Unix to Unix copy, Remote Procedure Call, BSD sockets, Winsock.
@@ -761,8 +794,8 @@ Unixové roury, Unix to Unix copy, Remote Procedure Call, BSD sockets, Winsock.
 </div>
 </div>
 
-<div id="outline-container-org30d9884" class="outline-3">
-<h3 id="org30d9884"><span class="section-number-3">4.3</span> Sockety</h3>
+<div id="outline-container-org3499983" class="outline-3">
+<h3 id="org3499983"><span class="section-number-3">4.3</span> Sockety</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Aplikační programové rozhraní pro komunikující procesy. Definují konečný
@@ -784,8 +817,8 @@ hlavičky ručně)</li>
 </ol>
 </div>
 
-<div id="outline-container-org754c74c" class="outline-4">
-<h4 id="org754c74c"><span class="section-number-4">4.3.1</span> Funkce v BSD socketech pro vytvoření konkurentního serveru TCP</h4>
+<div id="outline-container-orgc84a16b" class="outline-4">
+<h4 id="orgc84a16b"><span class="section-number-4">4.3.1</span> Funkce v BSD socketech pro vytvoření konkurentního serveru TCP</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <ol class="org-ol">
 <li><code>socket()</code> &#x2013; Vytvoří schránku</li>
@@ -801,8 +834,8 @@ hlavičky ručně)</li>
 </div>
 </div>
 
-<div id="outline-container-orgfeb0671" class="outline-4">
-<h4 id="orgfeb0671"><span class="section-number-4">4.3.2</span> UDP schránky</h4>
+<div id="outline-container-org4a32181" class="outline-4">
+<h4 id="org4a32181"><span class="section-number-4">4.3.2</span> UDP schránky</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 Když neběží UDP server, klient pošle zprávu pomocí <code>sendto()</code>, čeká na odpověď
@@ -821,8 +854,8 @@ klient to nezjístí. Funkce <code>connect()</code> se tak může volat opakovan
 </div>
 </div>
 </div>
-<div id="outline-container-org60ddafe" class="outline-2">
-<h2 id="org60ddafe"><span class="section-number-2">5</span> Komunikace typu multicast</h2>
+<div id="outline-container-org571c18e" class="outline-2">
+<h2 id="org571c18e"><span class="section-number-2">5</span> Komunikace typu multicast</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Jeden paket doručen skupině  uzlů v multicastové skupině. Používá se jedna
@@ -853,8 +886,8 @@ IGMPv3, MLD.
 </p>
 </div>
 
-<div id="outline-container-org88dc077" class="outline-3">
-<h3 id="org88dc077"><span class="section-number-3">5.1</span> Mapování multicastové adresy IPv4 na MAC adresu</h3>
+<div id="outline-container-org6c99669" class="outline-3">
+<h3 id="org6c99669"><span class="section-number-3">5.1</span> Mapování multicastové adresy IPv4 na MAC adresu</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Prefix multicastové MAC adresy je <code>0x01 01 5e</code>. Z multicastové adresy se použije
@@ -864,8 +897,8 @@ adres.
 </div>
 </div>
 
-<div id="outline-container-org198d141" class="outline-3">
-<h3 id="org198d141"><span class="section-number-3">5.2</span> Mapování multicastové adresy IPv6 na MAC adresu</h3>
+<div id="outline-container-orgaf84d4d" class="outline-3">
+<h3 id="orgaf84d4d"><span class="section-number-3">5.2</span> Mapování multicastové adresy IPv6 na MAC adresu</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Nejnižších 32b IPv6 adresy je zkopírováno do MAC adresy, prefix multicastové
@@ -874,8 +907,8 @@ adresy MAC je <code>0x33 33</code>.
 </div>
 </div>
 
-<div id="outline-container-org0c60a3d" class="outline-3">
-<h3 id="org0c60a3d"><span class="section-number-3">5.3</span> Vlastnosti multicastové komunikace</h3>
+<div id="outline-container-org41147b3" class="outline-3">
+<h3 id="org41147b3"><span class="section-number-3">5.3</span> Vlastnosti multicastové komunikace</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 Posílá pouze UDP pakety, negarantuje spolehlivé doručení, zachování pořadí&#x2026;
@@ -885,8 +918,8 @@ je dynamické. Počítače se připojují a odpojují.
 </div>
 </div>
 
-<div id="outline-container-orgb048088" class="outline-3">
-<h3 id="orgb048088"><span class="section-number-3">5.4</span> Multicast a sockety</h3>
+<div id="outline-container-org778fd5b" class="outline-3">
+<h3 id="org778fd5b"><span class="section-number-3">5.4</span> Multicast a sockety</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 Podporované schránky jsou třídy <code>AF_INET</code> nebo <code>AF_INET6</code>, typu <code>SOCK_DGRAM</code>
@@ -906,8 +939,8 @@ parametr <code>IP_DROP_MEMBERSHIP</code>.
 </div>
 </div>
 
-<div id="outline-container-org8c38f89" class="outline-2">
-<h2 id="org8c38f89"><span class="section-number-2">6</span> Analýza paketů na linkové vrstvě</h2>
+<div id="outline-container-orga93443c" class="outline-2">
+<h2 id="orga93443c"><span class="section-number-2">6</span> Analýza paketů na linkové vrstvě</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Zahrnuje zachycení paketů z přenosového média, převod binárních dat do
@@ -915,8 +948,8 @@ srozumitelné formy, rekonstrukci paketů, analýzu paketů, přenosů a konverz
 </p>
 </div>
 
-<div id="outline-container-org4bb4f40" class="outline-3">
-<h3 id="org4bb4f40"><span class="section-number-3">6.1</span> Nástroje pro zpracování paketů na linkové vrstvě</h3>
+<div id="outline-container-org3e13c19" class="outline-3">
+<h3 id="org3e13c19"><span class="section-number-3">6.1</span> Nástroje pro zpracování paketů na linkové vrstvě</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Paketový filtr BPF (BSD Packet Filter)</li>
@@ -933,8 +966,8 @@ pouze s kopií paketu
 </div>
 </div>
 
-<div id="outline-container-org43206c6" class="outline-3">
-<h3 id="org43206c6"><span class="section-number-3">6.2</span> BSD Packet Filter</h3>
+<div id="outline-container-org3f963a8" class="outline-3">
+<h3 id="org3f963a8"><span class="section-number-3">6.2</span> BSD Packet Filter</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 Řadič síťové karty zavolá BPF pokaždé, když je paket přijat nebo odeslán.
@@ -944,8 +977,8 @@ Když je buffer plný nebo vyprší časovač, data jsou předána aplikaci.
 </div>
 </div>
 
-<div id="outline-container-org6f33d08" class="outline-3">
-<h3 id="org6f33d08"><span class="section-number-3">6.3</span> Knihovna <code>libpcap</code></h3>
+<div id="outline-container-orgdaf472c" class="outline-3">
+<h3 id="orgdaf472c"><span class="section-number-3">6.3</span> Knihovna <code>libpcap</code></h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 Vytváří API pro zachytávání dat na síťpvém rozhraní. Čte data ze síťového
@@ -968,8 +1001,8 @@ wrappery pro další jazyky.
 </div>
 
 
-<div id="outline-container-orga11e807" class="outline-2">
-<h2 id="orga11e807"><span class="section-number-2">7</span> Zabezpečení počítačových sítí</h2>
+<div id="outline-container-orgdb5e5b1" class="outline-2">
+<h2 id="orgdb5e5b1"><span class="section-number-2">7</span> Zabezpečení počítačových sítí</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 V počítačových sítích existují rizika:
@@ -996,8 +1029,8 @@ Exisutjí požadavky na bezpečnost:
 </div>
 </div>
 
-<div id="outline-container-org2f552c7" class="outline-2">
-<h2 id="org2f552c7"><span class="section-number-2">8</span> Symetrické šifrování s tajným klíčem</h2>
+<div id="outline-container-org3495884" class="outline-2">
+<h2 id="org3495884"><span class="section-number-2">8</span> Symetrické šifrování s tajným klíčem</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Slouží pro zajištění důvěrnosti. Pro šifrování a dešifrování se používá stejný
@@ -1005,8 +1038,8 @@ klíč. Doporučená délka klíče je 112 &#x2013; 256 bitů.
 </p>
 </div>
 
-<div id="outline-container-orga528003" class="outline-3">
-<h3 id="orga528003"><span class="section-number-3">8.1</span> Rovnice pro symetrické šifrování</h3>
+<div id="outline-container-org40b3ddb" class="outline-3">
+<h3 id="org40b3ddb"><span class="section-number-3">8.1</span> Rovnice pro symetrické šifrování</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 Pro šifrování platí vztah:
@@ -1034,8 +1067,8 @@ Kde \(D_k\) je dešifrovací funkce s klíčem \(K\).
 </div>
 </div>
 
-<div id="outline-container-org45d44f5" class="outline-3">
-<h3 id="org45d44f5"><span class="section-number-3">8.2</span> Bezpečnost symetrického šifrování</h3>
+<div id="outline-container-org84b710a" class="outline-3">
+<h3 id="org84b710a"><span class="section-number-3">8.2</span> Bezpečnost symetrického šifrování</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 Bezpečnost symetrického šifrování spočívá v klíči, nikoliv v principu algoritmu
@@ -1045,8 +1078,8 @@ Bezpečnost symetrického šifrování spočívá v klíči, nikoliv v principu 
 </div>
 </div>
 
-<div id="outline-container-org217549f" class="outline-3">
-<h3 id="org217549f"><span class="section-number-3">8.3</span> Výhody a nevýhody</h3>
+<div id="outline-container-org7e6c77b" class="outline-3">
+<h3 id="org7e6c77b"><span class="section-number-3">8.3</span> Výhody a nevýhody</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 Symetrické šifrování má problém s nutností distribuce klíčů a rozšiřitelností.
@@ -1055,12 +1088,12 @@ Naopak výhodou je rychlý výpočet.
 </div>
 </div>
 
-<div id="outline-container-org95c0498" class="outline-3">
-<h3 id="org95c0498"><span class="section-number-3">8.4</span> Příklady symetrických šifrovacích algoritmů</h3>
+<div id="outline-container-orge5d2d13" class="outline-3">
+<h3 id="orge5d2d13"><span class="section-number-3">8.4</span> Příklady symetrických šifrovacích algoritmů</h3>
 <div class="outline-text-3" id="text-8-4">
 </div>
-<div id="outline-container-org2c65bd6" class="outline-4">
-<h4 id="org2c65bd6"><span class="section-number-4">8.4.1</span> Blokové</h4>
+<div id="outline-container-org69641da" class="outline-4">
+<h4 id="org69641da"><span class="section-number-4">8.4.1</span> Blokové</h4>
 <div class="outline-text-4" id="text-8-4-1">
 <ul class="org-ul">
 <li>DES</li>
@@ -1073,8 +1106,8 @@ Naopak výhodou je rychlý výpočet.
 </div>
 </div>
 
-<div id="outline-container-orga0bf812" class="outline-4">
-<h4 id="orga0bf812"><span class="section-number-4">8.4.2</span> Proudové</h4>
+<div id="outline-container-org83087e5" class="outline-4">
+<h4 id="org83087e5"><span class="section-number-4">8.4.2</span> Proudové</h4>
 <div class="outline-text-4" id="text-8-4-2">
 <ul class="org-ul">
 <li>DES</li>
@@ -1086,8 +1119,8 @@ Naopak výhodou je rychlý výpočet.
 </div>
 </div>
 
-<div id="outline-container-org265a58a" class="outline-3">
-<h3 id="org265a58a"><span class="section-number-3">8.5</span> Nástroje pro symetrické šifrování</h3>
+<div id="outline-container-org214de02" class="outline-3">
+<h3 id="org214de02"><span class="section-number-3">8.5</span> Nástroje pro symetrické šifrování</h3>
 <div class="outline-text-3" id="text-8-5">
 <p>
 Nejpoužívanější je nástroj <code>openssl enc</code>. Obsahuje sadu šifrovacích a
@@ -1097,16 +1130,16 @@ dešifrovacích algoritmů.
 </div>
 </div>
 
-<div id="outline-container-orgad06679" class="outline-2">
-<h2 id="orgad06679"><span class="section-number-2">9</span> Asymetrické šifrování s veřejným klíčem</h2>
+<div id="outline-container-org4fe0b98" class="outline-2">
+<h2 id="org4fe0b98"><span class="section-number-2">9</span> Asymetrické šifrování s veřejným klíčem</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Slouží pro zajištění důvěrnosti a autentizaci.
 </p>
 </div>
 
-<div id="outline-container-orgb9f167a" class="outline-3">
-<h3 id="orgb9f167a"><span class="section-number-3">9.1</span> Princip</h3>
+<div id="outline-container-org9d13d86" class="outline-3">
+<h3 id="org9d13d86"><span class="section-number-3">9.1</span> Princip</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 Příjemce vygeneruje dva klíče:
@@ -1123,12 +1156,12 @@ Klíč pro šifrování se liší od klíče pro dešifrování. Doporučená d�
 </div>
 </div>
 
-<div id="outline-container-orgf8ec83d" class="outline-3">
-<h3 id="orgf8ec83d"><span class="section-number-3">9.2</span> Rovnice pro asymetrické šifrování</h3>
+<div id="outline-container-orgdbd7213" class="outline-3">
+<h3 id="orgdbd7213"><span class="section-number-3">9.2</span> Rovnice pro asymetrické šifrování</h3>
 <div class="outline-text-3" id="text-9-2">
 </div>
-<div id="outline-container-orgd1644b4" class="outline-4">
-<h4 id="orgd1644b4"><span class="section-number-4">9.2.1</span> Šifrování</h4>
+<div id="outline-container-orgec49cb0" class="outline-4">
+<h4 id="orgec49cb0"><span class="section-number-4">9.2.1</span> Šifrování</h4>
 <div class="outline-text-4" id="text-9-2-1">
 \begin{equation}
 E_{KB_{pub}}(M) = C
@@ -1140,8 +1173,8 @@ Může provést kdokoliv veřejným klíčem příjemce.
 </div>
 </div>
 
-<div id="outline-container-orgb88b64a" class="outline-4">
-<h4 id="orgb88b64a"><span class="section-number-4">9.2.2</span> Dešifrování</h4>
+<div id="outline-container-org08a61c4" class="outline-4">
+<h4 id="org08a61c4"><span class="section-number-4">9.2.2</span> Dešifrování</h4>
 <div class="outline-text-4" id="text-9-2-2">
 \begin{equation}
 D_{KB_{sec}}(C) = M
@@ -1154,8 +1187,8 @@ Může provést pouze příjemce svým soukromým klíčem.
 </div>
 </div>
 
-<div id="outline-container-org9e17e2e" class="outline-3">
-<h3 id="org9e17e2e"><span class="section-number-3">9.3</span> Výhody a nevýhody</h3>
+<div id="outline-container-org68b2be5" class="outline-3">
+<h3 id="org68b2be5"><span class="section-number-3">9.3</span> Výhody a nevýhody</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
 Snadná rozšiřitelnost, protože veřejný klíč lze vystavit veřejně. Náročné na
@@ -1165,8 +1198,8 @@ klíče, vyžaduje certifikační autoritu.
 </div>
 </div>
 
-<div id="outline-container-org782f7d2" class="outline-3">
-<h3 id="org782f7d2"><span class="section-number-3">9.4</span> Příklady asymetrických šifrovacích algoritmů</h3>
+<div id="outline-container-orgeab4431" class="outline-3">
+<h3 id="orgeab4431"><span class="section-number-3">9.4</span> Příklady asymetrických šifrovacích algoritmů</h3>
 <div class="outline-text-3" id="text-9-4">
 <ul class="org-ul">
 <li>RSA</li>
@@ -1177,8 +1210,8 @@ klíče, vyžaduje certifikační autoritu.
 </div>
 </div>
 
-<div id="outline-container-org2a5fe6c" class="outline-3">
-<h3 id="org2a5fe6c"><span class="section-number-3">9.5</span> Nástroje pro asymetrické šifrování</h3>
+<div id="outline-container-orgbdf09f3" class="outline-3">
+<h3 id="orgbdf09f3"><span class="section-number-3">9.5</span> Nástroje pro asymetrické šifrování</h3>
 <div class="outline-text-3" id="text-9-5">
 <p>
 Používají se nástroje <code>openssl genpkey</code>, <code>openssl pkeyutl</code>, <code>opoenssl rsa</code>.
@@ -1188,8 +1221,8 @@ Soukromé klíče je možné ochránit symetrickou šifrou proti zneužití.
 </div>
 </div>
 
-<div id="outline-container-org2946b99" class="outline-2">
-<h2 id="org2946b99"><span class="section-number-2">10</span> Zajíštění integrity dat pomocí kryptografického hashe</h2>
+<div id="outline-container-org33fb7c0" class="outline-2">
+<h2 id="org33fb7c0"><span class="section-number-2">10</span> Zajíštění integrity dat pomocí kryptografického hashe</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 Zajišťuje integritu zprávy pomocí tajného klíče. Využívá kryptografickou
@@ -1204,8 +1237,8 @@ při použití TLS, PGP, SSH, IPSec nebo pro autentizaci zpráv SMMPv3.
 </p>
 </div>
 
-<div id="outline-container-org9d889ce" class="outline-3">
-<h3 id="org9d889ce"><span class="section-number-3">10.1</span> Nástroje pro hashování</h3>
+<div id="outline-container-org80ac277" class="outline-3">
+<h3 id="org80ac277"><span class="section-number-3">10.1</span> Nástroje pro hashování</h3>
 <div class="outline-text-3" id="text-10-1">
 <ul class="org-ul">
 <li><code>md5</code></li>
@@ -1220,8 +1253,8 @@ při použití TLS, PGP, SSH, IPSec nebo pro autentizaci zpráv SMMPv3.
 </div>
 </div>
 
-<div id="outline-container-orge904c5d" class="outline-2">
-<h2 id="orge904c5d"><span class="section-number-2">11</span> Elektronický podpis</h2>
+<div id="outline-container-org15e9dc4" class="outline-2">
+<h2 id="org15e9dc4"><span class="section-number-2">11</span> Elektronický podpis</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 Využívá asymetrické kryprografie pro ověření odesilatele pomocí jeho soukromého
@@ -1229,16 +1262,16 @@ klíče.
 </p>
 </div>
 
-<div id="outline-container-org0bb0773" class="outline-3">
-<h3 id="org0bb0773"><span class="section-number-3">11.1</span> Princip a rovnice</h3>
+<div id="outline-container-org3a367d6" class="outline-3">
+<h3 id="org3a367d6"><span class="section-number-3">11.1</span> Princip a rovnice</h3>
 <div class="outline-text-3" id="text-11-1">
 <p>
 Odesilatel A si vygeneruje dvojici klíčů \(KA_{sec}\) a \(KA_{pub}\).
 </p>
 </div>
 
-<div id="outline-container-org96ca51e" class="outline-4">
-<h4 id="org96ca51e"><span class="section-number-4">11.1.1</span> Podepsání</h4>
+<div id="outline-container-org025cd24" class="outline-4">
+<h4 id="org025cd24"><span class="section-number-4">11.1.1</span> Podepsání</h4>
 <div class="outline-text-4" id="text-11-1-1">
 \begin{equation}
 E_{KA_{sec}}(MD) = DS
@@ -1251,8 +1284,8 @@ elektronický podpis.
 </div>
 </div>
 
-<div id="outline-container-org153b863" class="outline-4">
-<h4 id="org153b863"><span class="section-number-4">11.1.2</span> Ověření podpisu</h4>
+<div id="outline-container-org21c67f5" class="outline-4">
+<h4 id="org21c67f5"><span class="section-number-4">11.1.2</span> Ověření podpisu</h4>
 <div class="outline-text-4" id="text-11-1-2">
 <p>
 Příjemce vypočítá hash dokumentu \(MD'\) a porovná s dešifrovaným podpisem:
@@ -1265,8 +1298,8 @@ E_{KA_{pub}}(DS) = MD
 </div>
 </div>
 
-<div id="outline-container-org5f17fe1" class="outline-3">
-<h3 id="org5f17fe1"><span class="section-number-3">11.2</span> Příklady algoritmů</h3>
+<div id="outline-container-org5dd549c" class="outline-3">
+<h3 id="org5dd549c"><span class="section-number-3">11.2</span> Příklady algoritmů</h3>
 <div class="outline-text-3" id="text-11-2">
 <ul class="org-ul">
 <li>RSA</li>
@@ -1276,8 +1309,8 @@ E_{KA_{pub}}(DS) = MD
 </div>
 </div>
 
-<div id="outline-container-org3300071" class="outline-3">
-<h3 id="org3300071"><span class="section-number-3">11.3</span> Používání elektronického podpisu</h3>
+<div id="outline-container-orgd135e7d" class="outline-3">
+<h3 id="orgd135e7d"><span class="section-number-3">11.3</span> Používání elektronického podpisu</h3>
 <div class="outline-text-3" id="text-11-3">
 <p>
 Pro používání elektronických podpisů je zřízen systém <i>Public Key
@@ -1290,8 +1323,8 @@ vazbu s veřejným klíčem.
 </div>
 </div>
 
-<div id="outline-container-org9118bc4" class="outline-2">
-<h2 id="org9118bc4"><span class="section-number-2">12</span> Digitální certifikát X.509</h2>
+<div id="outline-container-orgf66935d" class="outline-2">
+<h2 id="orgf66935d"><span class="section-number-2">12</span> Digitální certifikát X.509</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 Dokument ověřující platnost pravého veřejného klíče a příslušnost k danému
@@ -1301,8 +1334,8 @@ podpisu CA se používá certifikát kořenové CA. K ověření slouží protok
 </p>
 </div>
 
-<div id="outline-container-org293b713" class="outline-3">
-<h3 id="org293b713"><span class="section-number-3">12.1</span> Obsah certifikátu X.509</h3>
+<div id="outline-container-org4231966" class="outline-3">
+<h3 id="org4231966"><span class="section-number-3">12.1</span> Obsah certifikátu X.509</h3>
 <div class="outline-text-3" id="text-12-1">
 <ul class="org-ul">
 <li>Sériové číslo</li>
@@ -1320,8 +1353,8 @@ podpisu CA se používá certifikát kořenové CA. K ověření slouží protok
 </div>
 </div>
 
-<div id="outline-container-org2464270" class="outline-3">
-<h3 id="org2464270"><span class="section-number-3">12.2</span> Použití digitálních certifikátů</h3>
+<div id="outline-container-orgc409e61" class="outline-3">
+<h3 id="orgc409e61"><span class="section-number-3">12.2</span> Použití digitálních certifikátů</h3>
 <div class="outline-text-3" id="text-12-2">
 <ul class="org-ul">
 <li>Bezpečný transport SSL/TLS</li>
@@ -1334,8 +1367,8 @@ podpisu CA se používá certifikát kořenové CA. K ověření slouží protok
 </div>
 </div>
 
-<div id="outline-container-org3dc3b0e" class="outline-2">
-<h2 id="org3dc3b0e"><span class="section-number-2">13</span> Diffie-Hellman</h2>
+<div id="outline-container-org941c96b" class="outline-2">
+<h2 id="org941c96b"><span class="section-number-2">13</span> Diffie-Hellman</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 Asymetrický algoritmus pro vytvoření sdíleného tajného klíče přes nezabezpečený
@@ -1344,8 +1377,8 @@ kanál založený na umocňování čísel, kde \((A^B)^C = (A^C)^B\). Nevyžadu
 </p>
 </div>
 
-<div id="outline-container-orgebcb0e8" class="outline-3">
-<h3 id="orgebcb0e8"><span class="section-number-3">13.1</span> Postup</h3>
+<div id="outline-container-org944b97b" class="outline-3">
+<h3 id="org944b97b"><span class="section-number-3">13.1</span> Postup</h3>
 <div class="outline-text-3" id="text-13-1">
 <ol class="org-ol">
 <li>Uzly A a B se veřejně dohodnou na použitém modulu \(m\) a základu \(z\).</li>
@@ -1361,8 +1394,8 @@ kanál založený na umocňování čísel, kde \((A^B)^C = (A^C)^B\). Nevyžadu
 </div>
 </div>
 
-<div id="outline-container-org010b719" class="outline-2">
-<h2 id="org010b719"><span class="section-number-2">14</span> Zabezpečení komunikace na modelu TCP/IP</h2>
+<div id="outline-container-org7490109" class="outline-2">
+<h2 id="org7490109"><span class="section-number-2">14</span> Zabezpečení komunikace na modelu TCP/IP</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 Nezávislé zabezpečení dat na jednotlivých vrstvách TCP/IP. Každý mechanismus
@@ -1372,8 +1405,8 @@ zabezpečení závisí na typu vrstvy.
 </div>
 </div>
 
-<div id="outline-container-orgc094fba" class="outline-2">
-<h2 id="orgc094fba"><span class="section-number-2">15</span> Transport Layer Security (TLS)</h2>
+<div id="outline-container-orgcf03816" class="outline-2">
+<h2 id="orgcf03816"><span class="section-number-2">15</span> Transport Layer Security (TLS)</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 Komunikuje nad transportní vrstvou v TCP paketech. Zapezpečuje přenos dat
@@ -1382,8 +1415,8 @@ klienta či serveru.
 </p>
 </div>
 
-<div id="outline-container-org1988b78" class="outline-3">
-<h3 id="org1988b78"><span class="section-number-3">15.1</span> TLS Handshake</h3>
+<div id="outline-container-org6e7c5aa" class="outline-3">
+<h3 id="org6e7c5aa"><span class="section-number-3">15.1</span> TLS Handshake</h3>
 <div class="outline-text-3" id="text-15-1">
 <ol class="org-ol">
 <li>Client Hello &#x2013; Klient posílá informace o podporovaných šifrách, verzi TLS</li>
@@ -1409,8 +1442,8 @@ Pro šifrování dat se využívá symetrická kryptografie (je rychlejší).
 </div>
 </div>
 
-<div id="outline-container-org8d28dde" class="outline-3">
-<h3 id="org8d28dde"><span class="section-number-3">15.2</span> Vlastnosti</h3>
+<div id="outline-container-org237d268" class="outline-3">
+<h3 id="org237d268"><span class="section-number-3">15.2</span> Vlastnosti</h3>
 <div class="outline-text-3" id="text-15-2">
 <ul class="org-ul">
 <li>Šifrování: obě strany majá vygenerovaný tajný klíč</li>
@@ -1422,8 +1455,8 @@ Pro šifrování dat se využívá symetrická kryptografie (je rychlejší).
 </div>
 </div>
 
-<div id="outline-container-orgf8d244c" class="outline-3">
-<h3 id="orgf8d244c"><span class="section-number-3">15.3</span> Omezení TLS</h3>
+<div id="outline-container-org7b201ce" class="outline-3">
+<h3 id="org7b201ce"><span class="section-number-3">15.3</span> Omezení TLS</h3>
 <div class="outline-text-3" id="text-15-3">
 <p>
 TLS vyžaduje ověřený certifikát serveru, jinak je možný útok Man in the middle.
@@ -1434,8 +1467,8 @@ omezenými prostředky (IoT). Problém při potřebě monitorovat provoz.
 </div>
 </div>
 
-<div id="outline-container-orgaa4fb83" class="outline-2">
-<h2 id="orgaa4fb83"><span class="section-number-2">16</span> IPSec</h2>
+<div id="outline-container-orgaacea9f" class="outline-2">
+<h2 id="orgaacea9f"><span class="section-number-2">16</span> IPSec</h2>
 <div class="outline-text-2" id="text-16">
 <p>
 Zabezpečuje přenos pro IPv4 a IPv6. Zajišťuje autentizaci (RSA), šifrování a
@@ -1445,8 +1478,8 @@ Parametry spojení se ukládají do databáze VPN spojení SA (Security Associat
 </p>
 </div>
 
-<div id="outline-container-orga8d9555" class="outline-3">
-<h3 id="orga8d9555"><span class="section-number-3">16.1</span> Protokol AH (Authentication Header)</h3>
+<div id="outline-container-orgd2efee2" class="outline-3">
+<h3 id="orgd2efee2"><span class="section-number-3">16.1</span> Protokol AH (Authentication Header)</h3>
 <div class="outline-text-3" id="text-16-1">
 <p>
 Chrání datagram IP pomocí kryptografického hashe HMAC-MD nebo HMAC-SHA. Hash se
@@ -1456,8 +1489,8 @@ autentizaci, integritu dat a chrání proti přehrání. Nezajišťuje důvěrno
 </div>
 </div>
 
-<div id="outline-container-org13ff68a" class="outline-3">
-<h3 id="org13ff68a"><span class="section-number-3">16.2</span> Protokol ESP (Encapsulation Security Protocol)</h3>
+<div id="outline-container-orge790b62" class="outline-3">
+<h3 id="orge790b62"><span class="section-number-3">16.2</span> Protokol ESP (Encapsulation Security Protocol)</h3>
 <div class="outline-text-3" id="text-16-2">
 <p>
 Zapouzdřuje a chrání data IP datagramu. Zajišťuje autentizaci, důvěrnost a
@@ -1469,8 +1502,8 @@ HMAC.
 </div>
 </div>
 
-<div id="outline-container-org94d7e60" class="outline-2">
-<h2 id="org94d7e60"><span class="section-number-2">17</span> Zabezpečení emailových zpráv pomocí PGP (Pretty Good Privacy)</h2>
+<div id="outline-container-org860cdcc" class="outline-2">
+<h2 id="org860cdcc"><span class="section-number-2">17</span> Zabezpečení emailových zpráv pomocí PGP (Pretty Good Privacy)</h2>
 <div class="outline-text-2" id="text-17">
 <p>
 Zajišťuje integritu dat (MD5), autentizaci odesilatele (RSA) i šifrování (IDEA).
@@ -1482,8 +1515,8 @@ Příjemce musí mít přístup k veřejnému klíči odesilatele pro ověření
 </div>
 </div>
 
-<div id="outline-container-orgfa701b8" class="outline-2">
-<h2 id="orgfa701b8"><span class="section-number-2">18</span> Autentizace zpráv směrovacího protokolu OSPF</h2>
+<div id="outline-container-org0f7bdbd" class="outline-2">
+<h2 id="org0f7bdbd"><span class="section-number-2">18</span> Autentizace zpráv směrovacího protokolu OSPF</h2>
 <div class="outline-text-2" id="text-18">
 <p>
 Protokol je zapouzdřen v IP. Využívá krypto hash MD5 a sdílený tajný klíč.
@@ -1494,8 +1527,8 @@ autentizaci algoritmus HMAC-SHA
 </div>
 </div>
 
-<div id="outline-container-org9ac5b7c" class="outline-2">
-<h2 id="org9ac5b7c"><span class="section-number-2">19</span> Domain Name System</h2>
+<div id="outline-container-org4fbad85" class="outline-2">
+<h2 id="org4fbad85"><span class="section-number-2">19</span> Domain Name System</h2>
 <div class="outline-text-2" id="text-19">
 <p>
 DNS je globální adresář názvů počítačů a dalších identifikátorů síťových
@@ -1527,8 +1560,8 @@ Pro vyhledání doménového jména dle IP adresy je vytvořena speciální dom�
 </p>
 </div>
 
-<div id="outline-container-org1daa7ed" class="outline-3">
-<h3 id="org1daa7ed"><span class="section-number-3">19.1</span> Správa domén</h3>
+<div id="outline-container-orgaa86633" class="outline-3">
+<h3 id="orgaa86633"><span class="section-number-3">19.1</span> Správa domén</h3>
 <div class="outline-text-3" id="text-19-1">
 <p>
 Globálně je DNS spravováno společností ICANN (Internet Corporation for Assigned
@@ -1551,8 +1584,8 @@ Domény nižších úrovní spravuje vlastník domény (delegace domén).
 </div>
 </div>
 
-<div id="outline-container-org1d62763" class="outline-3">
-<h3 id="org1d62763"><span class="section-number-3">19.2</span> Správa IP adres</h3>
+<div id="outline-container-org0bf09c4" class="outline-3">
+<h3 id="org0bf09c4"><span class="section-number-3">19.2</span> Správa IP adres</h3>
 <div class="outline-text-3" id="text-19-2">
 <p>
 IP adresy jsou spravovány a registrovány regionálními registrátory (RIC). Pro
@@ -1564,8 +1597,8 @@ která je nezávislá na dalších registrátorech.
 </div>
 </div>
 
-<div id="outline-container-org4087fa0" class="outline-3">
-<h3 id="org4087fa0"><span class="section-number-3">19.3</span> Whois</h3>
+<div id="outline-container-orgbf1db6c" class="outline-3">
+<h3 id="orgbf1db6c"><span class="section-number-3">19.3</span> Whois</h3>
 <div class="outline-text-3" id="text-19-3">
 <p>
 Služba pro zjišťování vlastníka IP adresy.
@@ -1573,8 +1606,8 @@ Služba pro zjišťování vlastníka IP adresy.
 </div>
 </div>
 
-<div id="outline-container-org2db2a22" class="outline-3">
-<h3 id="org2db2a22"><span class="section-number-3">19.4</span> DNS server</h3>
+<div id="outline-container-org9bc8483" class="outline-3">
+<h3 id="org9bc8483"><span class="section-number-3">19.4</span> DNS server</h3>
 <div class="outline-text-3" id="text-19-4">
 <p>
 Prostor doménových jmen fyzicky uložen na server DNS. Servery DNS obsahují
@@ -1597,8 +1630,8 @@ odpovědi.</li>
 </div>
 </div>
 
-<div id="outline-container-orgdfb9ddb" class="outline-3">
-<h3 id="orgdfb9ddb"><span class="section-number-3">19.5</span> Protokol DNS</h3>
+<div id="outline-container-orgb99ff72" class="outline-3">
+<h3 id="orgb99ff72"><span class="section-number-3">19.5</span> Protokol DNS</h3>
 <div class="outline-text-3" id="text-19-5">
 <p>
 Aplikační protokol nad UDP, port 53.
@@ -1617,8 +1650,8 @@ Struktura DNS zprávy je následující:
 </div>
 </div>
 
-<div id="outline-container-org2ea3741" class="outline-3">
-<h3 id="org2ea3741"><span class="section-number-3">19.6</span> DNS rezoluce</h3>
+<div id="outline-container-org16f3aaf" class="outline-3">
+<h3 id="org16f3aaf"><span class="section-number-3">19.6</span> DNS rezoluce</h3>
 <div class="outline-text-3" id="text-19-6">
 <p>
 Komunikace DNS je typu klient &#x2013; server. Dotazy klienta vyřizuje systémová
@@ -1632,8 +1665,8 @@ obsahují speciální kořenovou zónu <code>hint</code>.
 </p>
 </div>
 
-<div id="outline-container-org3b325c0" class="outline-4">
-<h4 id="org3b325c0"><span class="section-number-4">19.6.1</span> Rekurzivní dotaz</h4>
+<div id="outline-container-orgd23e03e" class="outline-4">
+<h4 id="orgd23e03e"><span class="section-number-4">19.6.1</span> Rekurzivní dotaz</h4>
 <div class="outline-text-4" id="text-19-6-1">
 <p>
 Pokud server nezná odpověď, přepošle dotaz dalším serverům. Rekurzivní dotaz si
@@ -1642,8 +1675,8 @@ ukládá do paměti cache pro další použití.
 </div>
 </div>
 
-<div id="outline-container-org750a2cf" class="outline-4">
-<h4 id="org750a2cf"><span class="section-number-4">19.6.2</span> Iterativní dotaz</h4>
+<div id="outline-container-org12665ce" class="outline-4">
+<h4 id="org12665ce"><span class="section-number-4">19.6.2</span> Iterativní dotaz</h4>
 <div class="outline-text-4" id="text-19-6-2">
 <p>
 Server vrátí nejlepší možnou odpověď. Pokud ale nezná přesnou odpověď, vrátí
@@ -1653,8 +1686,8 @@ odkaz na server, který může znát odpověď.
 </div>
 </div>
 
-<div id="outline-container-org9aae033" class="outline-3">
-<h3 id="org9aae033"><span class="section-number-3">19.7</span> Přenos zón</h3>
+<div id="outline-container-org8f0e96f" class="outline-3">
+<h3 id="org8f0e96f"><span class="section-number-3">19.7</span> Přenos zón</h3>
 <div class="outline-text-3" id="text-19-7">
 <p>
 Přenos zón je komunikace mezi servery DNS. Využívá se k aktualizaci záznamů na
@@ -1669,12 +1702,12 @@ Mechanismus DNS notify upozorňuje o změně zóny.
 </div>
 </div>
 
-<div id="outline-container-org37eed09" class="outline-3">
-<h3 id="org37eed09"><span class="section-number-3">19.8</span> Typy záznamů v DNS</h3>
+<div id="outline-container-orgf53820e" class="outline-3">
+<h3 id="orgf53820e"><span class="section-number-3">19.8</span> Typy záznamů v DNS</h3>
 <div class="outline-text-3" id="text-19-8">
 </div>
-<div id="outline-container-org2605051" class="outline-4">
-<h4 id="org2605051"><span class="section-number-4">19.8.1</span> Start of Authority (SOA)</h4>
+<div id="outline-container-org667d6de" class="outline-4">
+<h4 id="org667d6de"><span class="section-number-4">19.8.1</span> Start of Authority (SOA)</h4>
 <div class="outline-text-4" id="text-19-8-1">
 <p>
 Poskytuje základní informace o zóně. Každá zóna má právě jeden SOA.
@@ -1694,8 +1727,8 @@ Obsahuje:
 </div>
 </div>
 
-<div id="outline-container-org504f56a" class="outline-4">
-<h4 id="org504f56a"><span class="section-number-4">19.8.2</span> Name Server (NS)</h4>
+<div id="outline-container-org6a6a94d" class="outline-4">
+<h4 id="org6a6a94d"><span class="section-number-4">19.8.2</span> Name Server (NS)</h4>
 <div class="outline-text-4" id="text-19-8-2">
 <p>
 Určuje autoritativní servery pro danou zónu. Slouží k budování hierarchické
@@ -1705,8 +1738,8 @@ root.zone na IANA.
 </div>
 </div>
 
-<div id="outline-container-org0e651ab" class="outline-4">
-<h4 id="org0e651ab"><span class="section-number-4">19.8.3</span> A</h4>
+<div id="outline-container-org53b1eb4" class="outline-4">
+<h4 id="org53b1eb4"><span class="section-number-4">19.8.3</span> A</h4>
 <div class="outline-text-4" id="text-19-8-3">
 <p>
 Přímé mapování doménových adres na IPv4 adresy.
@@ -1714,8 +1747,8 @@ Přímé mapování doménových adres na IPv4 adresy.
 </div>
 </div>
 
-<div id="outline-container-orgeae4d79" class="outline-4">
-<h4 id="orgeae4d79"><span class="section-number-4">19.8.4</span> AAAA</h4>
+<div id="outline-container-org0b152c3" class="outline-4">
+<h4 id="org0b152c3"><span class="section-number-4">19.8.4</span> AAAA</h4>
 <div class="outline-text-4" id="text-19-8-4">
 <p>
 Přímé mapování doménových jmen na IPv6 adresy.
@@ -1723,8 +1756,8 @@ Přímé mapování doménových jmen na IPv6 adresy.
 </div>
 </div>
 
-<div id="outline-container-orgc627d13" class="outline-4">
-<h4 id="orgc627d13"><span class="section-number-4">19.8.5</span> Mail Exchange (MX)</h4>
+<div id="outline-container-orgb2b6a1c" class="outline-4">
+<h4 id="orgb2b6a1c"><span class="section-number-4">19.8.5</span> Mail Exchange (MX)</h4>
 <div class="outline-text-4" id="text-19-8-5">
 <p>
 Mapuje adresy poštovních serverů. Přesměrovává poštu pro danou doménu na
@@ -1733,8 +1766,8 @@ konkrétní poštovní server. Lze mít více serverů s různou prioritou.
 </div>
 </div>
 
-<div id="outline-container-orge510e8c" class="outline-4">
-<h4 id="orge510e8c"><span class="section-number-4">19.8.6</span> Canonical Name (CNAME)</h4>
+<div id="outline-container-orgd719787" class="outline-4">
+<h4 id="orgd719787"><span class="section-number-4">19.8.6</span> Canonical Name (CNAME)</h4>
 <div class="outline-text-4" id="text-19-8-6">
 <p>
 Mapuje alias zařízení na kanonické jméno počítače. Síťové zařízení smí mít více
@@ -1743,8 +1776,8 @@ aliasů. Alias ale nesmí stát na pravé staně záznamu.
 </div>
 </div>
 
-<div id="outline-container-orgd64fffd" class="outline-4">
-<h4 id="orgd64fffd"><span class="section-number-4">19.8.7</span> Domain Name Pointer (PTR)</h4>
+<div id="outline-container-org615648c" class="outline-4">
+<h4 id="org615648c"><span class="section-number-4">19.8.7</span> Domain Name Pointer (PTR)</h4>
 <div class="outline-text-4" id="text-19-8-7">
 <p>
 Mapuje IPv4 a IPv6 adresu zpětně na doménovou adresu. Využívá speciální podstrom
@@ -1753,8 +1786,8 @@ Mapuje IPv4 a IPv6 adresu zpětně na doménovou adresu. Využívá speciální 
 </div>
 </div>
 
-<div id="outline-container-orgf4edd10" class="outline-4">
-<h4 id="orgf4edd10"><span class="section-number-4">19.8.8</span> Naming Autority Pointer (NAPTR)</h4>
+<div id="outline-container-orge173476" class="outline-4">
+<h4 id="orge173476"><span class="section-number-4">19.8.8</span> Naming Autority Pointer (NAPTR)</h4>
 <div class="outline-text-4" id="text-19-8-8">
 <p>
 Mapuje řetězce na data. Podporuje dynamickou konfiguraci systému. Používá
@@ -1764,8 +1797,8 @@ serveru.
 </div>
 </div>
 
-<div id="outline-container-orgd280324" class="outline-4">
-<h4 id="orgd280324"><span class="section-number-4">19.8.9</span> Service Record (SRV)</h4>
+<div id="outline-container-org421758f" class="outline-4">
+<h4 id="org421758f"><span class="section-number-4">19.8.9</span> Service Record (SRV)</h4>
 <div class="outline-text-4" id="text-19-8-9">
 <p>
 Loaklizuje služby (například SIP, XMPP &#x2026;). Slouží také pro load balancing nebo
@@ -1774,8 +1807,8 @@ zálohování.
 </div>
 </div>
 
-<div id="outline-container-orgf239b42" class="outline-4">
-<h4 id="orgf239b42"><span class="section-number-4">19.8.10</span> Text (TXT)</h4>
+<div id="outline-container-org261e45e" class="outline-4">
+<h4 id="org261e45e"><span class="section-number-4">19.8.10</span> Text (TXT)</h4>
 <div class="outline-text-4" id="text-19-8-10">
 <p>
 Obsahuje textová data. Dodatečné informace o doméně, serveru, správci a podobně.
@@ -1786,8 +1819,8 @@ Google Apps.
 </div>
 </div>
 
-<div id="outline-container-orgaa9e5c0" class="outline-3">
-<h3 id="orgaa9e5c0"><span class="section-number-3">19.9</span> Zabezpečení systému DNS</h3>
+<div id="outline-container-org29b80bf" class="outline-3">
+<h3 id="org29b80bf"><span class="section-number-3">19.9</span> Zabezpečení systému DNS</h3>
 <div class="outline-text-3" id="text-19-9">
 <p>
 DNS je distribuovaná veřejná služba, která je potřeba k jakékoliv komunikaci na
@@ -1795,8 +1828,8 @@ internetu. Je potřeba zajistit zejména integritu dat a autentizaci zdroje dat.
 </p>
 </div>
 
-<div id="outline-container-org8823ddb" class="outline-4">
-<h4 id="org8823ddb"><span class="section-number-4">19.9.1</span> Bezpečnostní rizika</h4>
+<div id="outline-container-orge3a0320" class="outline-4">
+<h4 id="orge3a0320"><span class="section-number-4">19.9.1</span> Bezpečnostní rizika</h4>
 <div class="outline-text-4" id="text-19-9-1">
 <p>
 Podvržené odpovědi mohou vracet neautorizované odpovědi na dotaz klienta.
@@ -1806,8 +1839,8 @@ Podvržená data v paměti cache mohou zneplatnit data pro mnoho klientů. Při 
 </div>
 </div>
 
-<div id="outline-container-org4a74eb9" class="outline-4">
-<h4 id="org4a74eb9"><span class="section-number-4">19.9.2</span> DNSSEC</h4>
+<div id="outline-container-orgc1bc136" class="outline-4">
+<h4 id="orgc1bc136"><span class="section-number-4">19.9.2</span> DNSSEC</h4>
 <div class="outline-text-4" id="text-19-9-2">
 <p>
 Zajišťuje integritu a autentizaci dat v DNS. Zabezpečuje data DNS pomocí
@@ -1839,8 +1872,8 @@ pravosti klíče domény nadřazenou doménou. Pro každou zónu existuje pár k
 </div>
 </div>
 
-<div id="outline-container-orgef06a1c" class="outline-3">
-<h3 id="orgef06a1c"><span class="section-number-3">19.10</span> Monitorování provozu DNS</h3>
+<div id="outline-container-orge128bbc" class="outline-3">
+<h3 id="orge128bbc"><span class="section-number-3">19.10</span> Monitorování provozu DNS</h3>
 <div class="outline-text-3" id="text-19-10">
 <p>
 Problémem DNS je velká míra informací vztahujících se k odesilateli. IP adresa
@@ -1866,7 +1899,287 @@ je předkonfigurován ve webovém prohlížeči.
 
 <p>
 Ani jedna z těchto metod neřeší soukromí, pouze problém přesouvají. DNS server
-bude vždy vidět rozšifrované DNS dotazy (problém při použití například Google DNS).
+bude vždy vidět rozšifrované DNS dotazy (problém při použití například Google
+DNS).
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org44773b4" class="outline-2">
+<h2 id="org44773b4"><span class="section-number-2">20</span> Hlasové služby</h2>
+<div class="outline-text-2" id="text-20">
+<p>
+Klasické telefonní sítě PTSN (Public Switched Telephone Networt) se skládá ze 4
+prvků:
+</p>
+<ol class="org-ol">
+<li>Koncové zařízení</li>
+<li>Lokální smyčka</li>
+<li>Ústředna</li>
+<li>Páteřní spoje</li>
+</ol>
+
+<p>
+Klasická telefonní síť garantuje šířku pásma a spolehlivý přenos. U digitálních
+ústředen je dobrá kvalita přenosu. Klasický telefon může být napájen z telefonní
+linky. Díky dedikovaným spojům jsou spolehlivé a bezchybné. Mají zavedené
+standardy a poskytují další služby.
+</p>
+
+<p>
+IP telefonie musí zajišťovat služby srovnatelné s PTSN a navíc musí být
+integrovaná a kompatibilní s PTSN.
+</p>
+</div>
+
+<div id="outline-container-orgdc4ef76" class="outline-3">
+<h3 id="orgdc4ef76"><span class="section-number-3">20.1</span> Funkce IP telefonie</h3>
+<div class="outline-text-3" id="text-20-1">
+<p>
+IP telefonie musí převádět hlas na IP datagramy. Musí řídit komunikaci přes
+ústřednu nebo mezi telefony. Musí umožňovat registraci účastníků, adresování
+hovorů (telefonní číslo, URI), směrování hovorů, vytváření hovorů, udržování
+spojení. Důležitou vlastností je možnost připojení do klasického telefonního
+systému PTSN.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org27e7e91" class="outline-3">
+<h3 id="org27e7e91"><span class="section-number-3">20.2</span> Kódování hlasu</h3>
+<div class="outline-text-3" id="text-20-2">
+<ol class="org-ol">
+<li>Vzorḱování analogového signálu</li>
+<li>Kvantifikace vzorků pomocí &mu; -law nebo &alpha; -law</li>
+<li>Kodování hodnot na binární čísla (PCM, ADPCM, CS-ACELP)</li>
+<li>Komprese dat</li>
+</ol>
+
+<p>
+Lidská řeč se pohybuje v rozsahu 200 Hz &#x2013; 9 kHz. Telefonní linky běžně
+přenášeji zvuk v rozsahu 300 Hz &#x2013; 4 kHz.
+</p>
+
+<p>
+Pro korektní kódování hlasu je potřeba vzorkovat dvojnásobnou frekvencí, než je
+frekvence zvuku. Například pro telefonní linku 4 kHz je třeba vzorkovat na
+frekvenci 8 kHz, tj. perioda 125 &mu; s.
+</p>
+
+<p>
+Různé protokoly a algoritmy mají odlišná přenosová pásma v závislosti na počtu
+bitů na vzorek. Například G.711 s algoritmem PCM využívá 8 bitů na vzorek,
+celkové přenosové pásmo je tedy \(2 \times 4 kHz \times 8 b/sample = 64 kb/s\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org80e5b01" class="outline-3">
+<h3 id="org80e5b01"><span class="section-number-3">20.3</span> Zapouzdření hlasu</h3>
+<div class="outline-text-3" id="text-20-3">
+<p>
+Hlasové vzorky o určité velikosti (časové délce), jsou uloženy do protokolu RTP.
+Ten je zapouzdřen do UDP, IP, Ethernetu. Běžná režie je tedy 58 B.
+</p>
+</div>
+
+<div id="outline-container-org5e9ef19" class="outline-4">
+<h4 id="org5e9ef19"><span class="section-number-4">20.3.1</span> Příklad</h4>
+<div class="outline-text-4" id="text-20-3-1">
+<p>
+Vypočtěte potřebnou šířku pásma pro jeden telefonní hovor při použítí kodeku
+G.711. Telefon posílá hlasové rámce každých 20 ms. Režie je běžná (58 B).
+</p>
+
+<p>
+G.711 vyžaduje pásmo 64 kb/s, tj. 8000 B/s. Hlasové rámce jsou posílány každých
+20 ms, tj. celkem 50 za sekundu.
+</p>
+
+<p>
+ŘEŠENÍ 1:
+</p>
+<ol class="org-ol">
+<li>Vypočteme, kolik bytů se v jednom rámci:
+<ul class="org-ul">
+<li>Hlasová data: \(8000 / 50 = 160 B\)</li>
+<li>Režie: 58 B</li>
+<li>Celkem&gt; \(160 + 58 = 218 B\)</li>
+</ul></li>
+<li>Dopočítáme, jaká je hodnota za 1 sekundu
+<ul class="org-ul">
+<li>\(218 \times 50 = 10900 B\)</li>
+</ul></li>
+<li>Řešení je tedy \(10900 B/s = 87200 b/s = 87.2 kb/s\).</li>
+</ol>
+
+<p>
+ŘEŠENÍ 2:
+</p>
+<ol class="org-ol">
+<li>Počítáme s hlasovým pásmem 8000 B/s, pouze roznásobíme nutnou režii:
+<ul class="org-ul">
+<li>\(58 \times 50 = 2900 B\)</li>
+</ul></li>
+<li>A přičteme hlasová data
+<ul class="org-ul">
+<li>\(2900 + 8000 = 10900 B\)</li>
+</ul></li>
+<li>Řešení je tedy \(10900 B/s = 87.2 kb/s\)</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb5e0463" class="outline-3">
+<h3 id="orgb5e0463"><span class="section-number-3">20.4</span> Architektura systému SIP</h3>
+<div class="outline-text-3" id="text-20-4">
+<p>
+SIP je zkratka pro Session Initiation Protocol. Jedná se o aplikační protokol
+nad UDP určený pro signalizaci VoIP. Provádí registraci uživatelů, navázaní
+spojení, směrování hovorů, adresování pomocí URI. Neprování správu relací po
+jejich vytvoření, nezajišťuje kvalitu přenosu, nezajišťuje přenos dat.
+</p>
+
+<p>
+SIP tvoří globální distribuovanou architekturu v celém internetu. Systém
+umožňuje vyhledat a směrovat hovor na libovolný SIP telefon.
+</p>
+</div>
+
+<div id="outline-container-org88ce135" class="outline-4">
+<h4 id="org88ce135"><span class="section-number-4">20.4.1</span> SIP server (User Agent Server)</h4>
+<div class="outline-text-4" id="text-20-4-1">
+<ul class="org-ul">
+<li>Proxy server: analyzuje zprávy, směruje hovory</li>
+<li>Lokalozační server: informace o umístění klientů</li>
+<li>Server pro směrování: next-hop u alternativního SIP serveru</li>
+<li>Registrační server: přijímá žádosti o registraci</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org702ca3c" class="outline-3">
+<h3 id="org702ca3c"><span class="section-number-3">20.5</span> Adresování a směrování SIP</h3>
+<div class="outline-text-3" id="text-20-5">
+<p>
+Adresování probíhá pomocí SIP uri ve tvaru <code>sip:user@domain</code>. Směrovací
+inforamce jsou uloženy v SIP hlavičce&gt; <code>Via</code>, <code>Route</code>, <code>Record-route</code>. Směrování
+provádějí servery SIP na cestě staticky nebo dynamicky pomocí DNS. Po výměně
+kontaktů v hlavičce <code>Contact</code> jsou zprávy přenášeny přímo mezi klienty.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga296db4" class="outline-3">
+<h3 id="orga296db4"><span class="section-number-3">20.6</span> Vytváření spojení</h3>
+<div class="outline-text-3" id="text-20-6">
+</div>
+<div id="outline-container-orgd7f11ea" class="outline-4">
+<h4 id="orgd7f11ea"><span class="section-number-4">20.6.1</span> Registrace</h4>
+<div class="outline-text-4" id="text-20-6-1">
+<p>
+Používá se metoda REGISTER. Ukládá se poloha klienta do lokalizační databáze.
+Klient posílá svou IP adresu a port SIP serveru ve své doméně. Klient mapuje ID
+uživatele na adresu zařízení. Registrační server udržuje pro svou doménu
+lokalizační údaje o všech aktivních klientech.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga34dae2" class="outline-4">
+<h4 id="orga34dae2"><span class="section-number-4">20.6.2</span> Ustavení spojení</h4>
+<div class="outline-text-4" id="text-20-6-2">
+<p>
+Používá se metoda INVITE. Pokud je volaný připravený, odpoví zprávou 200 OK,
+volající potvrdí přijetí a začne komunikace. Metoda INVITE může vyžadovat autorizaci.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3c00b13" class="outline-3">
+<h3 id="org3c00b13"><span class="section-number-3">20.7</span> Protokol SIP</h3>
+<div class="outline-text-3" id="text-20-7">
+<p>
+Obsahuje základní metody:
+</p>
+<ul class="org-ul">
+<li>REGISTER &#x2013; Žádost o registraci</li>
+<li>INVITE, ACK, CANCEL &#x2013; Vytváření spojení</li>
+<li>BYE &#x2013; Ukončení spojení</li>
+<li>OPTIONS &#x2013; Zjišťování možností přenosu</li>
+<li>INFO &#x2013; Přenos aplikačních informací</li>
+<li>MESSAGE &#x2013; Textové zprávy</li>
+<li>SUBSCRIBE, NOTIFY &#x2013; Zasílání upozornění na události</li>
+<li>PUBLISH &#x2013; Zveřejnění stavu událostí</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc989efe" class="outline-3">
+<h3 id="orgc989efe"><span class="section-number-3">20.8</span> Protokol SDP</h3>
+<div class="outline-text-3" id="text-20-8">
+<p>
+Session Description Protocol. Přenášen ve zprávách SIP typu INVITE a OK.
+Přenášejí se informace potřebné pro přijímání hlasového toku.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org129cc37" class="outline-3">
+<h3 id="org129cc37"><span class="section-number-3">20.9</span> Protokol RTP</h3>
+<div class="outline-text-3" id="text-20-9">
+<p>
+Real-Time Transport Protocol. Používá se pro přenost hlasových či obrazových
+dat. Obsahuje typ přenášených dat, sekvenční číslo, časovou značku. Pro každý
+směr a typ médií se otevírá samostatný tok RTP. Pro monitorování kvality přenosů
+se používá RTP Control Protocol (RTCP).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3f8926b" class="outline-3">
+<h3 id="org3f8926b"><span class="section-number-3">20.10</span> Zabezpečení VoIP</h3>
+<div class="outline-text-3" id="text-20-10">
+</div>
+<div id="outline-container-org9c3e9ba" class="outline-4">
+<h4 id="org9c3e9ba"><span class="section-number-4">20.10.1</span> Bezpečnostní rizika</h4>
+<div class="outline-text-4" id="text-20-10-1">
+<ul class="org-ul">
+<li>Odposlech</li>
+<li>Viry</li>
+<li>Spam over IP Telephony (SPIT)</li>
+<li>Phishing over IP Telephony (PHIT)</li>
+<li>Útoky DoS, DDoS</li>
+<li>Neautorizované použití služby</li>
+<li>Výpadky napájení</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2f233ec" class="outline-4">
+<h4 id="org2f233ec"><span class="section-number-4">20.10.2</span> Způsoby zabezpečení</h4>
+<div class="outline-text-4" id="text-20-10-2">
+<ul class="org-ul">
+<li>Řízení přístupu k síťovému médiu technologií 802.1x</li>
+<li>Oddělení hlasového provozu pomocí VLAN</li>
+<li>Zabezpečení spojení pomocí IPSec nebo Secure RTP</li>
+<li>Napájení Power over Ethernet</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org50dc959" class="outline-3">
+<h3 id="org50dc959"><span class="section-number-3">20.11</span> Komerční aplikace</h3>
+<div class="outline-text-3" id="text-20-11">
+<p>
+Většinou mívají nestandardní protokoly. Bývají decentralizované (peer-to-peer).
+Využívají proprietární správu uživatelských účtů. Nejsou garantované. Mají
+omezené možnosti propojení s PTSN či klasickými VoIP.
 </p>
 </div>
 </div>
@@ -1874,7 +2187,7 @@ bude vždy vidět rozšifrované DNS dotazy (problém při použití například
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: John Doe</p>
-<p class="date">Created: 2019-12-27 Fri 16:05</p>
+<p class="date">Created: 2019-12-28 Sat 12:09</p>
 </div>
 </body>
 </html>

@@ -708,4 +708,146 @@ Další možností je DNS over HTTPS (DoH). Dotazy jsou posílány serveru DNS, 
 je předkonfigurován ve webovém prohlížeči.
 
 Ani jedna z těchto metod neřeší soukromí, pouze problém přesouvají. DNS server
-bude vždy vidět rozšifrované DNS dotazy (problém při použití například Google DNS).
+bude vždy vidět rozšifrované DNS dotazy (problém při použití například Google
+DNS).
+
+* Hlasové služby
+Klasické telefonní sítě PTSN (Public Switched Telephone Networt) se skládá ze 4
+prvků:
+1. Koncové zařízení
+2. Lokální smyčka
+3. Ústředna
+4. Páteřní spoje
+
+Klasická telefonní síť garantuje šířku pásma a spolehlivý přenos. U digitálních
+ústředen je dobrá kvalita přenosu. Klasický telefon může být napájen z telefonní
+linky. Díky dedikovaným spojům jsou spolehlivé a bezchybné. Mají zavedené
+standardy a poskytují další služby.
+
+IP telefonie musí zajišťovat služby srovnatelné s PTSN a navíc musí být
+integrovaná a kompatibilní s PTSN.
+
+** Funkce IP telefonie
+IP telefonie musí převádět hlas na IP datagramy. Musí řídit komunikaci přes
+ústřednu nebo mezi telefony. Musí umožňovat registraci účastníků, adresování
+hovorů (telefonní číslo, URI), směrování hovorů, vytváření hovorů, udržování
+spojení. Důležitou vlastností je možnost připojení do klasického telefonního
+systému PTSN.
+
+** Kódování hlasu
+1. Vzorḱování analogového signálu
+2. Kvantifikace vzorků pomocí \mu -law nebo \alpha -law
+3. Kodování hodnot na binární čísla (PCM, ADPCM, CS-ACELP)
+4. Komprese dat
+
+Lidská řeč se pohybuje v rozsahu 200 Hz -- 9 kHz. Telefonní linky běžně
+přenášeji zvuk v rozsahu 300 Hz -- 4 kHz.
+
+Pro korektní kódování hlasu je potřeba vzorkovat dvojnásobnou frekvencí, než je
+frekvence zvuku. Například pro telefonní linku 4 kHz je třeba vzorkovat na
+frekvenci 8 kHz, tj. perioda 125 \mu s.
+
+Různé protokoly a algoritmy mají odlišná přenosová pásma v závislosti na počtu
+bitů na vzorek. Například G.711 s algoritmem PCM využívá 8 bitů na vzorek,
+celkové přenosové pásmo je tedy $2 \times 4 kHz \times 8 b/sample = 64 kb/s$.
+
+** Zapouzdření hlasu
+Hlasové vzorky o určité velikosti (časové délce), jsou uloženy do protokolu RTP.
+Ten je zapouzdřen do UDP, IP, Ethernetu. Běžná režie je tedy 58 B.
+
+*** Příklad
+Vypočtěte potřebnou šířku pásma pro jeden telefonní hovor při použítí kodeku
+G.711. Telefon posílá hlasové rámce každých 20 ms. Režie je běžná (58 B).
+
+G.711 vyžaduje pásmo 64 kb/s, tj. 8000 B/s. Hlasové rámce jsou posílány každých
+20 ms, tj. celkem 50 za sekundu.
+
+ŘEŠENÍ 1:
+1. Vypočteme, kolik bytů se v jednom rámci:
+   + Hlasová data: $8000 / 50 = 160 B$
+   + Režie: 58 B
+   + Celkem> $160 + 58 = 218 B$
+2. Dopočítáme, jaká je hodnota za 1 sekundu
+   + $218 \times 50 = 10900 B$
+3. Řešení je tedy $10900 B/s = 87200 b/s = 87.2 kb/s$.
+
+ŘEŠENÍ 2:
+1. Počítáme s hlasovým pásmem 8000 B/s, pouze roznásobíme nutnou režii:
+   + $58 \times 50 = 2900 B$
+2. A přičteme hlasová data
+   + $2900 + 8000 = 10900 B$
+3. Řešení je tedy $10900 B/s = 87.2 kb/s$
+
+** Architektura systému SIP
+SIP je zkratka pro Session Initiation Protocol. Jedná se o aplikační protokol
+nad UDP určený pro signalizaci VoIP. Provádí registraci uživatelů, navázaní
+spojení, směrování hovorů, adresování pomocí URI. Neprování správu relací po
+jejich vytvoření, nezajišťuje kvalitu přenosu, nezajišťuje přenos dat.
+
+SIP tvoří globální distribuovanou architekturu v celém internetu. Systém
+umožňuje vyhledat a směrovat hovor na libovolný SIP telefon.
+
+*** SIP server (User Agent Server)
++ Proxy server: analyzuje zprávy, směruje hovory
++ Lokalozační server: informace o umístění klientů
++ Server pro směrování: next-hop u alternativního SIP serveru
++ Registrační server: přijímá žádosti o registraci
+
+** Adresování a směrování SIP
+Adresování probíhá pomocí SIP uri ve tvaru ~sip:user@domain~. Směrovací
+inforamce jsou uloženy v SIP hlavičce> ~Via~, ~Route~, ~Record-route~. Směrování
+provádějí servery SIP na cestě staticky nebo dynamicky pomocí DNS. Po výměně
+kontaktů v hlavičce ~Contact~ jsou zprávy přenášeny přímo mezi klienty.
+
+** Vytváření spojení
+*** Registrace
+Používá se metoda REGISTER. Ukládá se poloha klienta do lokalizační databáze.
+Klient posílá svou IP adresu a port SIP serveru ve své doméně. Klient mapuje ID
+uživatele na adresu zařízení. Registrační server udržuje pro svou doménu
+lokalizační údaje o všech aktivních klientech.
+
+*** Ustavení spojení
+Používá se metoda INVITE. Pokud je volaný připravený, odpoví zprávou 200 OK,
+volající potvrdí přijetí a začne komunikace. Metoda INVITE může vyžadovat autorizaci.
+
+** Protokol SIP
+Obsahuje základní metody:
++ REGISTER -- Žádost o registraci
++ INVITE, ACK, CANCEL -- Vytváření spojení
++ BYE -- Ukončení spojení
++ OPTIONS -- Zjišťování možností přenosu
++ INFO -- Přenos aplikačních informací
++ MESSAGE -- Textové zprávy
++ SUBSCRIBE, NOTIFY -- Zasílání upozornění na události
++ PUBLISH -- Zveřejnění stavu událostí
+
+** Protokol SDP
+Session Description Protocol. Přenášen ve zprávách SIP typu INVITE a OK.
+Přenášejí se informace potřebné pro přijímání hlasového toku.
+
+** Protokol RTP
+Real-Time Transport Protocol. Používá se pro přenost hlasových či obrazových
+dat. Obsahuje typ přenášených dat, sekvenční číslo, časovou značku. Pro každý
+směr a typ médií se otevírá samostatný tok RTP. Pro monitorování kvality přenosů
+se používá RTP Control Protocol (RTCP).
+
+** Zabezpečení VoIP
+*** Bezpečnostní rizika
++ Odposlech
++ Viry
++ Spam over IP Telephony (SPIT)
++ Phishing over IP Telephony (PHIT)
++ Útoky DoS, DDoS
++ Neautorizované použití služby
++ Výpadky napájení
+
+*** Způsoby zabezpečení
++ Řízení přístupu k síťovému médiu technologií 802.1x
++ Oddělení hlasového provozu pomocí VLAN
++ Zabezpečení spojení pomocí IPSec nebo Secure RTP
++ Napájení Power over Ethernet
+
+** Komerční aplikace
+Většinou mívají nestandardní protokoly. Bývají decentralizované (peer-to-peer).
+Využívají proprietární správu uživatelských účtů. Nejsou garantované. Mají
+omezené možnosti propojení s PTSN či klasickými VoIP.
