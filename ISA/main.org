@@ -1012,3 +1012,352 @@ Definuje operace nad daty:
 + Add -- Přídání nového záznamu
 + Delete -- Zrušení listového záznamu ve stromu
 + ModifyDN -- Změna nejlevější komponenty v DN
+* Správa sítě pomocí ICMP (Internet Control Message Protocol)
+** Monitorování pomocí ICMP
+ICMP se posílá jako součást IP paketu.
+
+ICMP implementuje několik typů zpráv, například:
++ Destination Unreachable
++ Time Exceeded Message
++ Parameter Problem Message
++ Redirect Message
++ Echo
++ Echo Reply
++ Timestamp
++ Timestamp Reply
+
+*** Nástroje pro monitorování
++ Ping -- Posílá ICMP echo zprávy. Cíl odpovídá ICMP echo reply.
++ Traceroute -- Posílá ICMP pakety se zvyšujícím se TTL, očekává zprávy ICMP
+  time exceeded message
+
+** Bezpečnostní rizika ICMP
+Zprávy Echo mohou sloužit k prohledávání sítě. Pomocí ICMP Redirect message může
+dojít k podvržení implicitní brány.
+
+** Monitorování pomocí ICMPv6
+ICMPv6 je zapouzdřen přímo v protokolu IPv6. Formát zprávy obsahuje typ zprávy,
+kód zprávy, kontrolní součet a tělo zprávy. Zprávy jsou rozděleny na chybové a
+informační.
+
+* Simple Network Management Protocol
+Základní prvky SNMP:
++ Monitorované objekty -- Definice a popis pomocí SMI, adresování pomocí OID
++ Uspořádání objektů do skupin a decentralizovaná správa -- Databáze objektů
+  MIB, stromová struktura
++ Systém monitorování -- Network Management System (SNMP Server), SNMP Agent
++ Přenosový protokol SNMP
+
+** Jazyk Structure Management Information (SNM)
+Definuje pravidla pro vytváření monitorovaných objektů.
+
+Popis objektu tvoří:
++ Jméno objektu -- Jednoznačný identifikátor
++ Syntax -- Abstraktní datový typ spojený s přenosem
++ Kódování pro přenos po síti -- Používá se Basic Encoding Rules (BER)
+
+** Uspořádání objektů v databázi MIB
+Základní strukturou je hierarchický strom objektů.
+
+** Kódování objektů pomocí Basic Encoding Rules
+Definuje reprezentaci hodnot objektů při přenosu po síti. Používá se struktura
+Type, Length, Value.
+
+** Prokokol SNMP
+Aplikační protokol pro práci s monitorovanými objekty. Nestavový protokol typu
+dotaz-odpověď.
+
+SNMPv3 může být navíc šifrováno a autentizováno pomocí MD5 nebo SHA-1.
+
+* Network Time Protocol (NTP)
+Pro koordinaci událostí na síti, logování a spouštění skriptů je potřeba mít
+synchronizovaný čas. Best practice je synchronizovat hodiny na všech síťových
+zařízeních podle UTC.
+
+Manuální nastavování hodin není ani přesné, ani škálovatelné. V praxi se využívá
+systém NTP nebo Simple NTP. Ty jsou vytvořeny pro synchronizaci času skrze celou
+síťovou infrastrukturu. NTP využívá port 123.
+
+NTP vytváří hierarchii serverů mezi několik vrstev, které se nazývají /stratum/.
+Servery ve stratu 0 jsou referenční atomové nebo GPS hodiny. Servery ve stratu 1
+jsou synchronizovány s odchylkou mikrosekund od stratum 0. Každý další stratum
+se synchronizuje na předchozí, tj. stratum 2 podle stratum 1, stratum 3 podle
+stratum 2 atd.
+
+NTP se nikdy nesychronizuje podle serveru, který sám není synchronizován. NTP
+porovnává časy různých serverů a nesynchronizuje se podle serverů, které mají
+příliš velkou odchylku od ostatních.
+
+Zařízení s NTP může pracovat ve 3 režimech:
+1. Server -- Poskytuje přesný čas klientům v síti
+2. Klient -- Synchronizuje čas podle NTP serveru.
+3. Peer -- Pouze vyměňuje syncrhonizační informace s ostatními peery.
+
+NTP využívá 4 časové značky:
+1. T1: Originate timestamp -- Žádost o synchronizaci zaslaná klientem
+2. T2: Receive timestamp -- Žádost o synchronizaci přijatá serverem
+3. T3: Transmit timestamp -- Odpověď zaslaná serverem
+4. T4: Destination timestamp -- Odpověď přijatá klientem
+
+Pomocí těchto značek může klient přibližně určit zpoždění a offset času.
+
+* Syslog
+Síťový protokol, který poskytuje celou řadu reportovacích mechanismů. Používá
+UDP port 514. Logy jsou posílány v plain textu. Syslog definuje úrověň
+závažnosti zpráv. Čím nižší tato úroveň je, tím závažnější situace.
+
+Syslog zprávy mohou být uloženy do souboru nebo poslány na vzdálený stroj. Velmi
+často se používá pro logování aplikací jako DHCP, RADIUS, DNS, Web a Email.
+
+** Formát zprávy syslog
++ Facility -- Dva nebo více znaků, které značí původ zprávy
++ Severity -- Číslo závažnosti
++ Mnemonic -- Kód, který jednoznačně identifikuje chybovou hlášku
++ Message-text -- Text popisující chybu
+
+* Analýza logů
+Z důvodů velkého množství lodovacách zpráv jsou tyto zprávy těžke na
+interpretaci a monitorování. Různé aplikace pomáhají ladění, monitorování a
+odstraňování chyb.
+
+Primárními funkcemi jsou monitorování klientů, SNMP, grafování a notifikace.
+Monitorování SNMP se používá zejména pro zařízení jako sẃithce a routery.
+Servery častěji používají monitorování agentů.
+
+* Monitorování sítí
+** Sledování provozu
+Deep packet inspection. Rekonstrukce protokolů L3 až L7. Analyzuje data L7 a
+rekonstruuje vlastní komunikaci. Např. Wireshark.
+
+** Vyhledávání známých řetězců (Intrusion Detection Systems, Intrusion Protection Systems)
+Detekce malware, identifikace DoS, DDoS, filtrování komunikace.
+
+** Statistické údaje o provozu
+SNMP, RMON
+
+** Statistiky toků
+NetFlow, IPFIX, sFlow, OpenFlow
+
+* Síťový tok
+Tok je posloupnost paketů mající společnou vlastnost a procházející bodem
+pozorování za určitý časový interval.
+
+Záznam o toku je identifikován zdrojovou a cílovou IP adresou, zdrojovým a
+cílovým portem, typem protokolu. Dále se mohou uchovávat údaje o datu a čase
+zaznamenání a počtu přenesených dat toku.
+
+* Cisco NetFlow
+Původně vyvinut firmou Cisco jako proprietírní standard monitorování provozu. Od
+verze 5 je mezinárodní standard.
+
+** Architektura NetFlow
+*** Exportér
+Sonda nebo router pro získávání statistik o tocích. Například nprobe nebo
+Flowmon probe. Vytváří záznamy o tocích a pak je aktualizuje ve flow cache. Data
+mají určitou expiraci, a jsou exportována dále pomocí UDP.
+
+K exportu může dojít v několika případech:
+1. Detekován konec toku -- U TCP příznak RST nebo FIN
+2. Neaktivita toku -- Neaktivní timeout
+3. Příliš dlouhý tok -- Aktivní tiemeout
+4. Zaplnění paměti flow cache
+
+Při exportu je tok považován za ukončený a je vymazán z paměti.
+
+V sondách mohou data být vzorkována, tj. vybírá se jen jeden z několika paketů.
+K vzorkování dochází z důvodu snížení nároků na hardware. Vzorkování může být
+deterministické (každý ntý paket), nebo náhodné (náhodně se vybere n paketů).
+
+Může docházet k filtrování, kdy se klasifikuje provoz na základě hodnot v
+hlavičkách paketů. Například logování jen DNS provozu nebo rozdělení pomocí Type
+of Service.
+
+Exportér může provádět agregaci podle různých prvků, například podle zdrojové
+IP adresy. To sloučí záznamy v tzv. /aggregation cache/ do méně záznamů.
+
+*** Kolektor
+Přijíme pakety protokolu NetFlow z jednoho nebo více exportérů. Rovněž může
+probíhat vzorkování, filtrování a agregace. Záznamy o tocích se zpracovávají a
+statistiky se ukládají na disk nebo do databáze.
+
+Kolektor může poskytovat grafickou prezentaci dat a dotazování nad daty pomocí
+skriptů nebo webových rozhraní.
+
+*** Protkol NetFlow verze 5
+Obsahuje hlavičku:
++ Počet záznamů
++ Čas odeslání paketu NetFlow
++ Identifikace sondy
++ Typ sondy
++ Nastavení sondy
+
+A strukturovaná data ve formě množiny záznamů o tocích, kde každý záznam
+obsahuje statistiku o jednom toku.
+
+Data:
++ Zdrojová IP
++ Cílová IP
++ Zdrojový port
++ Cílový port
++ Next hop router
++ Počet paketů
++ Počet bytů
++ Příznaky u TCP
++ Protokol
++ Type of service
+
+*** Protokol NetFlow verze 9
+Hlavička je podobná. Data jsou však rozděleny podle šablon a jsou dynamická.
+Rozšířeníá o L2 informace, například VLAN, BGP, IPv6, MPLS, Multicast
+
+* Zajištění kvality služeb
+** Service Level Agreement
+Popisuje požadavky na kvalitu připojení mezi zákazníkem a ISP. Obsahuje
+požadavky na dostupnost sítě, povolenou ztrátovost, zpoždění jitter apod.
+
+** Rozložení provozu, Traffic Shaping
+Reguluje rychlost a objem provozu. Řeší problém shlukování a lépe využívá
+přenosové pásmo. Může do přenosu vložit zpoždění.
+
+Provádí se na výstupních bodech sítě.
+
+** Ořezání provozu, Traffic Policing
+Řídí maximální rychlost. Cokoliv ji překročí, je ořezáno. Nemá vliv na zpoždění
+provozu.
+
+Provádí se na vstupních i výstupních bodech sítě.
+
+* Řízení toku dat pomocí front
+** Fronta typu FIFO
+Řadí vstupní pakety v pořadí v jakém přicházejí. Neřeší priority provozu. Jedná
+se o implicitní způsob zpracování dat na výstupu zařízení.
+
+Má předvídatelné zpoždění:
+
+\begin{equation}
+D \leq \frac{B (velikost fronty)}{R (rychlost linky)}
+\end{equation}
+
+** Prioritní fronty
+Více front s různou prioritou zpracování. Obsahuje klasifikátor, který řadí
+pakety do front. Klasifikace například podle Type of Service. Nejprve se
+zpracovávají data ve frontě z vyšší prioritou. Může vést k vyhladovění.
+
+** Cyklické fronty Round Robin
+Každý tok paketů tvoří nezávislou frontu pro zpracování. Počet toků se dynamicky
+mění. Cyklická obsluha všech front vede ke stejnému objemu přenesených dat.
+
+** Váhové fronty WFQ (Weighted Fair Queues)
+Pro každý tok se vytváří jedna fronta. Váha určuje počet odebraných bytů z jedné
+fronty.
+
+Rychlost obsluhy fronty $i$ při rychlosti linky $R$:
+
+\begin{equation}
+R_i = \frac{w_i}{w_1 + w_2 + w_3 + \dots + w_n} \times R
+\end{equation}
+
+Kde $w$ je váha fronty.
+
+** Model tekoucího vědra (Leaky Bucket)
+Používá se pro zajištění rozložení i ořezání provozu. Mechanismus vnustí
+vstupnímu toku konstantní rychlost $r$. Vědro se implementuje jako FIFO s
+počitadlem bytů $X$. Počitadlo se inkrementuje každou sekundu o hodnotu $r: X'
+:= (X + r)$.
+
+Pakety o délce $P$ se odešlou, pokud $P < X$ a počitadlo se upravi
+$X' := X - P$
+
+Pokud dékla paketu $P > X$, paket čeká, dokud se $X$ nezvětší.
+
+Pokud se paket nevejde do fronty, je zahozen.
+
+Po odeslání paketů se čítač $X$ resetuje.
+
+** Model zásobníku žetonů (Token Bucket)
+Zásobník žetonů obsahuje paměť pro uložení nevyužitých oprávnění k odeslání dat.
+Vstupní rychlost se může krátkodobě zvýšit až do hodnoty $CBS$.
+
+Jsou definovány:
+1. Průměrná rychlost CIR (Committed Information Rate)
+2. Rychlost ve špičce PIR (Peak Rate)
+3. Maximální velikost shluků (Committed Burst Size)
+
+*** Implementace u integrovaných služeb
+Definujeme:
++ Maximální délka trvání špičky $T$
++ Token rate $r = CIR$
++ Bucket size $b = CBS$, omezuje špičky na maximum bytů v toku za čas T
+
+Pak:
++ Maximální počet bytů na vstupu je:
+  \begin{equation}
+  A(t) = b + t \times r = CBS + t \times CIR = CBS + t \times \frac{CBS}{T}
+  \end{equation}
++ Maximální rychlost ve špičce bude:
+  \begin{equation}
+  PIR = \frac{CBS}{T} + CIR
+  \end{equation}
+
+* Integrované služby
+Implementují podporu QoS v IP síti formou rezervace zdrojů. Poskytují společnou
+(integrovanou) službu množině provozních požadavků.
+
+Integrované služby alokují zdroje pro jednotlivé toky. To je výpočetně náročné,
+ale garntuje kvalitu přenosu pro jednotlivý tok.
+
+Jsou nevýhodné pro páteřní směrovače.
+
+Integrované služby podporují třídy služeb:
+1. Garantované služby -- Striktní omezení zpoždění ve frontách
+2. Kontrolovaná zátěž -- Kvalita provozu se blíží nezatíženému prvku
+3. Best-effort -- Běžná kvalita nad IP
+
+** Resource Reservation Protoco (RSVP)
+Signalizační protokol pro rezervaci zdrojů na síťových prvcích. Žádost o
+rezervaci provádí koncová stanice.
+
+* Diferenciované služby
+Implementují QoS pomocí značení paketů a prioritního přeposílání. Snadná
+rozšiřitelnost a flexibilita, je možné definovat nové třídy.
+
+Označení paketů probíhá podle filtrovacích pravidel. Nastavují se hodnoty ToS
+nebo DS v hlavičce IP.
+
+Základní třídy provozu:
+1. Expedity Forwarding (EF) -- přednostní přeposílání
+2. Assured Forwarding (AF) -- garantované přeposílání
+3. Best Effort (BE) -- Největší úsilí
+
+* Zajištění kvality služeb v praxi
+1. Identifikace provozu a definice požadavků na provoz
+2. Klasifikace provozu podle požadavků do různých tříd
+3. Definice politiky na zpracování každé třídy provozu
+4. Implementace politiky na síťových prvcích
+
+* Prevence zahlcení RED a WRED
+TCP se v případě zahlcení linky chová tak, že zužuje sliding window, dokud není
+linka volná. Dochází tak k periodickému přetížení a uvolnění linky, tento jev je
+globální z důvodu globální synchronizace TCP. Může kvůli tomu docházet k
+vyhladovění TCP.
+
+** Mechanismus prevence zahlcení Random Early Detection (RED)
+Náhodně zahazuje pakety ve vstupní frontě.
+
+Zpracování dat ve frontě může být ve třech stavech:
+1. Nezahazování
+2. Náhodné zahazování
+3. Úplné zahazování
+
+Pravděpodobnost zahození $P_a$ závisí na aktuálním zaplnění fronty $Q_{avg}$:
+
+\begin{equation}
+P_a = P_{max} \times \frac{Q_{avg} - Q_{min}}{Q_{max} - Q_{min}}
+\end{equation}
+
+Díky mechanismu RED sice stále dochází k periodickému přetížení a uvolnění
+linky, průměrné využití linky se ale zvýší.
+
+** Mechanismus Weighted RED
+Rozšiřuje RED o priority. Pravděpodobnost zahození závisí navíc na IP precedenci
+(ToS) nebo DSCP (DS).
